@@ -1,124 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
+    android:id="@+id/db1_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".QuestionFragment">
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:textAppearance="?android:attr/textAppearanceLarge" >
+        <LinearLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            tools:context=".QuestionFragment">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/timer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+                <TextView
+                    android:id="@+id/no_question"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="TextView" />
+            </LinearLayout>
 
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleHorizontal"/>
+
+            <TextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="148dp"
+                tools:text="@string/title_activity_settings" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/option_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/answer_button"
+                android:text="text" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/option_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/answer_button"
+                android:text="text" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/option_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/answer_button"
+                android:text="text" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/option_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/answer_button"
+                android:text="text" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/bottom_sheet_behavior"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rationale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/timer"
+        <ImageView
+            android:id="@+id/image_view1"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/no_question"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:layout_gravity="end"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Skip"
-            android:textSize="19sp" />
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            android:text="1" />
 
         <ImageView
-
-            android:id="@+id/arrow"
-            android:layout_width="wrap_content"
+            android:id="@+id/image_view2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/ic_baseline_arrow_forward_24" />
+            android:layout_gravity="center_horizontal|center"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            android:text="2" />
 
+        <ImageView
+            android:id="@+id/image_view3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            android:text="3" />
     </LinearLayout>
-
-
-
-    <TextView
-        android:id="@+id/question"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="148dp"
-        tools:text="@string/title_activity_settings" />
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/option_one"
-        android:layout_width="match_parent"
-        android:text="text"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/answer_button" />
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_weight="1"
+            android:text="Quit" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/option_two"
-        android:text="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/answer_button" />
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_weight="1"
+            android:text="Skip" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/option_three"
-        android:layout_width="match_parent"
-        android:text="text"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/answer_button" />
-
-<!--    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/option_four"
-        android:layout_width="match_parent"
-        android:text="text"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/answer_button" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:gravity="start"
-        android:text="@string/bottom_sheet_behavior"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:id="@+id/answer"
-        />-->
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:gravity="start"
-        android:visibility="gone"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:id="@+id/rationale"
-        />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:layout_gravity="bottom"/>
-
+        <Button
+            android:id="@+id/button3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_weight="1"
+            android:text="Next" />
+    </LinearLayout>
 </LinearLayout>
+
+
