@@ -9,5 +9,18 @@
         android:id="@+id/quizListFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.QuizListFragment"
         android:label="fragment_quiz_list"
-        tools:layout="@layout/fragment_quiz_list" />
+        tools:layout="@layout/fragment_quiz_list" >
+        <action
+            android:id="@+id/action_quizListFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" >
+        <argument
+            android:name="number"
+            app:argType="integer" />
+    </fragment>
 </navigation>

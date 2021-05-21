@@ -17,7 +17,7 @@ class QuizListFragment : Fragment() {
 
     val adapter: QuizListAdapter by lazy {
         QuizListAdapter(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)) {
-            Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
+            findNavController().navigate(QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment("$it".toInt()))
         }
     }
 
