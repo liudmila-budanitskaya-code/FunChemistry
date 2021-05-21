@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "111603904071",
+    "project_id": "chemistryquiz-46959",
+    "storage_bucket": "chemistryquiz-46959.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111603904071:android:ddd3833ec3c666d9174b62",
+        "android_client_info": {
+          "package_name": "site.budanitskaya.chemistryquiz.fine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111603904071-bpd5h36ehc3f5nkcljen9opvbinghgc9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "site.budanitskaya.chemistryquiz.fine",
+            "certificate_hash": "3159e7aff53942c121c068c173fcf7e9f5bcb477"
+          }
+        },
+        {
+          "client_id": "111603904071-8hlmejketkceeg23v385ng4u543dmv95.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDejPjdgfzYPmawq5f9BWGJ2wwqg_3RRTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111603904071-8hlmejketkceeg23v385ng4u543dmv95.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
