@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import site.budanitskaya.chemistryquiz.fine.topics.topics
 import java.lang.Exception
 
 class QuizListFragment : Fragment() {
@@ -16,8 +17,9 @@ class QuizListFragment : Fragment() {
     private lateinit var circleRecycler: RecyclerView
 
     val adapter: QuizListAdapter by lazy {
-        QuizListAdapter(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)) {
-            findNavController().navigate(QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment("$it".toInt()))
+        QuizListAdapter(topics) {
+            /*findNavController().navigate(QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment("$it".toInt()))*/
+            Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -35,8 +37,9 @@ class QuizListFragment : Fragment() {
 
         circleRecycler.smoothScrollToPosition(0)
         circleRecycler.layoutManager = layoutManager
-        /*        layoutManager.spanSizeLookup = object : SpanSizeLookup() {
+/*        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
+
                 return when (position % 3) {
                     0 -> 0
                     1 -> 2
@@ -45,7 +48,7 @@ class QuizListFragment : Fragment() {
                 }
             }
         }*/
-       /* circleRecycler.addItemDecoration(SpacesItemDecoration(230))*/
+         /*circleRecycler.addItemDecoration(SpacesItemDecoration(230))*/
         adapter.notifyDataSetChanged()
         return view
     }

@@ -3,13 +3,15 @@ package site.budanitskaya.chemistryquiz.fine
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatButton
+import android.widget.TextView
+import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
+import site.budanitskaya.chemistryquiz.fine.topics.Topic
 
 class QuizListAdapter(
-    private val figures: List<Int>,
-    private val onItemClick: (Int) -> Unit
+    private val topics: List<Topic>,
+    private val onItemClick: (Topic) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -17,26 +19,30 @@ class QuizListAdapter(
         val childRecyclerView = LayoutInflater.from(parent.context)
             .inflate(R.layout.circle_item, parent, false)
 
-        return ButtonsViewHolder(childRecyclerView, figures, onItemClick)
+        return ButtonsViewHolder(childRecyclerView, topics, onItemClick)
     }
 
-    override fun getItemCount(): Int = figures.size
+    override fun getItemCount(): Int = topics.size
 
     class ButtonsViewHolder(
         view: View,
-        private val figures: List<Int>,
-        private val onItemClick: (Int) -> Unit
+        private val topics: List<Topic>,
+        private val onItemClick: (Topic) -> Unit
 
     ) : RecyclerView.ViewHolder(view) {
 
-        private val root: View = view.rootView
-        private val itemButton: CircleImageView = root.findViewById(R.id.chemistry)
+        private var root: View = view.rootView
+        private val itemButton: CircleImageView = root.findViewById(R.id.circle)
 
         fun bind(position: Int) {
 
+
             itemButton.setOnClickListener {
-                onItemClick(figures[position])
+                onItemClick(topics[position])
             }
+
+            root.findViewById<TextView>(R.id.topic_name).text = topics[position].name
+            root.findViewById<CircleImageView>(R.id.circle).setImageResource(topics[position].drawable)
         }
 
     }

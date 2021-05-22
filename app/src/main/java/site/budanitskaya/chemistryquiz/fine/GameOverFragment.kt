@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentGameOverBinding
-import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
 
 class GameOverFragment : Fragment() {
 

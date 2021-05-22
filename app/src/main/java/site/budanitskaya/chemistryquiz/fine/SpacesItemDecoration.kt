@@ -18,3 +18,20 @@ class SpacesItemDecoration(val space: Int) : RecyclerView.ItemDecoration() {
         }
     }
 }
+/*
+
+override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    super.getItemOffsets(outRect, view, parent, state)
+    var position = parent.getChildViewHolder(view)?.adapterPosition
+    if (position == RecyclerView.NO_POSITION) {
+        val oldPosition = parent.getChildViewHolder(view)?.oldPosition
+        if (oldPosition == RecyclerView.NO_POSITION) return
+        position = oldPosition
+    }
+
+    when (parent.getChildViewHolder(view)?.itemViewType?.rem(3)) {
+        //do your outRect here
+        1 -> outRect.left = space
+        2 -> outRect.left = space/20
+    }
+}*/

@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "site.budanitskaya.chemistryquiz.fine"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -45,8 +45,6 @@ dependencies {
 
     //Firebase Database
     implementation 'com.google.firebase:firebase-database:19.5.1'
-// FirebaseUI for Firebase Realtime Database
-    implementation 'com.firebaseui:firebase-ui-database:6.4.0'
     // Google
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 

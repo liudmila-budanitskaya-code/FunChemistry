@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
 
@@ -84,11 +83,9 @@ class QuestionFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentQuestionBinding>(
             inflater, R.layout.fragment_question, container, false
         )
-
-        // Shuffles the questions and sets the question index to the first question.
-        randomizeQuestions()
-
-        // Bind this fragment class to the layout
+        
+        shuffleQuestions()
+        
         binding.game = this
 
 /*        args = QuestionFragmentArgs.fromBundle(requireArguments())
@@ -117,7 +114,7 @@ class QuestionFragment : Fragment() {
         return binding.root
     }
 
-    private fun randomizeQuestions() {
+    private fun shuffleQuestions() {
         questions.shuffle()
         questionIndex = 0
         setQuestion()
@@ -135,6 +132,7 @@ class QuestionFragment : Fragment() {
 
     fun onOptionBtnClicked(view: View) {
         if (view is AppCompatButton) {
+            binding.btnNext.text = "Next"
             if (view.text == currentQuestion.answers[0]) {
                 binding.explanation.text = "True!"
                 binding.explanation.setTextColor(resources.getColor(R.color.green))
@@ -164,5 +162,6 @@ class QuestionFragment : Fragment() {
         binding.btnOptThree.text = answers[2]
         binding.btnOptFour.text = answers[3]
         binding.explanation.text = ""
+        binding.btnNext.text = "Skip"
     }
 }
