@@ -14,8 +14,7 @@
             android:theme="@style/Theme.MaterialComponents.DayNight"
             android:label="@string/title_activity_settings"></activity>
         <activity
-            android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="site.budanitskaya.chemistryquiz.fine.LoginActivity" />
 
@@ -32,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
-            android:theme="@style/Theme.ChemistryQuiz"></activity>
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"></activity>
     </application>
 
 </manifest>

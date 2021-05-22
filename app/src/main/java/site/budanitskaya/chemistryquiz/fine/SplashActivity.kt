@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         activityScope.launch {
-            delay(10000)
+            delay(3000)
 
             val intent = Intent("site.budanitskaya.chemistryquiz.fine.LoginActivity")
             startActivity(intent)

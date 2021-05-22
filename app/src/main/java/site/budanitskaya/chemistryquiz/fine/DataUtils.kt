@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine
 
+/*
 fun generateQuestions(): HashMap<Int, QuizItem> {
     return hashMapOf(
         1 to QuizItem(
@@ -28,4 +29,4 @@ fun generateQuestions(): HashMap<Int, QuizItem> {
             false
         )
     )
-}
+}*/

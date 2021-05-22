@@ -22,5 +22,17 @@
         <argument
             android:name="number"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_questionFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/fragment_game_over" >
+        <action
+            android:id="@+id/action_gameOverFragment_to_quizListFragment"
+            app:destination="@id/quizListFragment" />
     </fragment>
 </navigation>

@@ -35,6 +35,16 @@ class QuizListFragment : Fragment() {
 
         circleRecycler.smoothScrollToPosition(0)
         circleRecycler.layoutManager = layoutManager
+        /*        layoutManager.spanSizeLookup = object : SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when (position % 3) {
+                    0 -> 0
+                    1 -> 2
+                    2 -> 1
+                    else -> throw Exception()
+                }
+            }
+        }*/
        /* circleRecycler.addItemDecoration(SpacesItemDecoration(230))*/
         adapter.notifyDataSetChanged()
         return view
