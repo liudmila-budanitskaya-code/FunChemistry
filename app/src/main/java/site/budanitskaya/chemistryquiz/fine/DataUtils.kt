@@ -1,32 +1,59 @@
 package site.budanitskaya.chemistryquiz.fine
 
-/*
-fun generateQuestions(): HashMap<Int, QuizItem> {
-    return hashMapOf(
-        1 to QuizItem(
-            "Есть стопка монет высотой с Эйфелеву башню. Поместятся ли эти монеты в вашей комнате?",
-            true
+import site.budanitskaya.chemistryquiz.fine.database.Question
+
+
+fun generateQuizItems(): List<QuizItem> {
+    return listOf(
+        QuizItem(
+            text = "What is Android Jetpack?",
+            answers = listOf("All of these", "Tools", "Documentation", "Libraries")
         ),
-        2 to QuizItem("Правда ли, что Земля падает на Солнце?", true),
-        3 to QuizItem(
-            "Правда ли, что язык программирования Kotlin назван в честь острова в Персидском заливе?",
-            false
+        QuizItem(
+            text = "What is the base class for layouts?",
+            answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")
         ),
-        4 to QuizItem(
-            "Верно ли утверждение, что Python является статически типизированным языком программирования, а Kotlin - динамически типизированным?",
-            false
+        QuizItem(
+            text = "What layout do you use for complex screens?",
+            answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")
         ),
-        5 to QuizItem(
-            "Действительно ли в языке программирования Kotlin нет проверяемых исключений?",
-            true
+        QuizItem(
+            text = "What do you use to push structured data into a layout?",
+            answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method")
         ),
-        6 to QuizItem(
-            "Если в 12 часов ночи идёт дождь, то можно ли ожидать, что через 72 часа будет светить солнце?",
-            false
+        QuizItem(
+            text = "What method do you use to inflate layouts in fragments?",
+            answers = listOf(
+                "onCreateView()",
+                "onActivityCreated()",
+                "onCreateLayout()",
+                "onInflateLayout()"
+            )
         ),
-        7 to QuizItem(
-            "Правда ли, что в США официальный государственный язык - английский?",
-            false
+        QuizItem(
+            text = "What's the build system for Android?",
+            answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")
+        ),
+        QuizItem(
+            text = "Which class do you use to create a vector drawable?",
+            answers = listOf(
+                "VectorDrawable",
+                "AndroidVectorDrawable",
+                "DrawableVector",
+                "AndroidVector"
+            )
+        ),
+        QuizItem(
+            text = "Which one of these is an Android navigation component?",
+            answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")
+        ),
+        QuizItem(
+            text = "Which XML element lets you register an activity with the launcher activity?",
+            answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")
+        ),
+        QuizItem(
+            text = "What do you use to mark a layout for data binding?",
+            answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>")
         )
     )
-}*/
+}

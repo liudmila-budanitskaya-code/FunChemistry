@@ -4,14 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
-import site.budanitskaya.chemistryquiz.fine.topics.Topic
+import site.budanitskaya.chemistryquiz.fine.domain.Topic
 
 class QuizListAdapter(
     private val topics: List<Topic>,
-    private val onItemClick: (Topic) -> Unit
+    private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -27,7 +26,7 @@ class QuizListAdapter(
     class ButtonsViewHolder(
         view: View,
         private val topics: List<Topic>,
-        private val onItemClick: (Topic) -> Unit
+        private val onItemClick: (Int) -> Unit
 
     ) : RecyclerView.ViewHolder(view) {
 
@@ -38,7 +37,7 @@ class QuizListAdapter(
 
 
             itemButton.setOnClickListener {
-                onItemClick(topics[position])
+                onItemClick(topics[position].id)
             }
 
             root.findViewById<TextView>(R.id.topic_name).text = topics[position].name

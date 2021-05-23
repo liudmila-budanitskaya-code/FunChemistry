@@ -16,12 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.QuestionFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragment"
         android:label="fragment_question"
         tools:layout="@layout/fragment_question" >
-        <argument
-            android:name="number"
-            app:argType="integer" />
         <action
             android:id="@+id/action_questionFragment_to_gameOverFragment"
             app:destination="@id/gameOverFragment" />

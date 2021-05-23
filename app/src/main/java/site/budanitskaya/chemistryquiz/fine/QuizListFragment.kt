@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragment
 import site.budanitskaya.chemistryquiz.fine.topics.topics
 import java.lang.Exception
 
@@ -18,8 +19,8 @@ class QuizListFragment : Fragment() {
 
     val adapter: QuizListAdapter by lazy {
         QuizListAdapter(topics) {
-            /*findNavController().navigate(QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment("$it".toInt()))*/
-            Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
+            findNavController().navigate(QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment())
+            /* Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show() */
         }
     }
 
@@ -48,7 +49,7 @@ class QuizListFragment : Fragment() {
                 }
             }
         }*/
-         /*circleRecycler.addItemDecoration(SpacesItemDecoration(230))*/
+        /*circleRecycler.addItemDecoration(SpacesItemDecoration(230))*/
         adapter.notifyDataSetChanged()
         return view
     }
