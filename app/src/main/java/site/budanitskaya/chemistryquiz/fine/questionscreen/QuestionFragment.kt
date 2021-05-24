@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.questionscreen
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -67,6 +68,9 @@ class QuestionFragment : Fragment() {
         binding.btnNext.setOnClickListener {
             onNextBtnClicked()
         }
+
+        /*viewModel.insertQuestions(viewModel.questions)
+        Log.d("onCreateView: ", "onCreateView: ${viewModel.questionRepository.getRowCount()}")*/
         return binding.root
     }
 
@@ -113,24 +117,14 @@ class QuestionFragment : Fragment() {
 /*
 class QuestionFragment : Fragment() {
 
-    /*private lateinit var args: site.budanitskaya.chemistryquiz.fine.QuestionFragmentArgs*/
+    /*private lateinit var args: QuestionFragmentArgs*/
 
-
-    private val question by lazy {
-        Question()
+    private val viewModel by lazy {
+        ViewModelProvider(this, QuestionViewModelFactory())
+            .get(QuestionViewModel::class.java)
     }
 
-    private lateinit var viewModel: QuestionViewModel
 
-
-    val questions by lazy {
-        viewModel.questions.value?.toMutableList()
-    }
-
-    lateinit var currentQuestion: QuizItem
-    lateinit var answers: MutableList<String>
-    private var questionIndex = 0
-    private val numQuestions = 3
     private lateinit var binding: FragmentQuestionBinding
 
     override fun onCreateView(
@@ -142,26 +136,19 @@ class QuestionFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentQuestionBinding>(
             inflater, R.layout.fragment_question, container, false
         )
-
         binding.game = this
 
-        viewModel = ViewModelProvider(requireActivity(), QuestionViewModelFactory())
-            .get(QuestionViewModel::class.java)
+        binding.viewModel = viewModel
+
+        viewModel.shuffleQuestions()
 
 
-        viewModel.insertQuestions(viewModel.getQuestionsToPut(generateQuizItems()))
+/*        args = QuestionFragmentArgs.fromBundle(requireArguments())
+        binding.question.text = args.number.toString()*/
 
-        currentQuestion = questions!![0].toQuizItem()
+        setContentView()
 
-
-        binding.questionText.text = currentQuestion.text
-        binding.btnOptOne.text = answers[0]
-        binding.btnOptTwo.text = answers[1]
-        binding.btnOptThree.text = answers[2]
-        binding.btnOptFour.text = answers[3]
-        binding.explanation.text = ""
-        binding.btnNext.text = "Skip"
-
+            /* viewModel.insertQuestions(viewModel.questions) */
         binding.btnOptOne.setOnClickListener { view: View ->
             onOptionBtnClicked(view)
         }
@@ -181,44 +168,13 @@ class QuestionFragment : Fragment() {
         binding.btnNext.setOnClickListener {
             onNextBtnClicked()
         }
-
-        Log.d("onCreateView", "onCreateView: ${viewModel.getQuestionList().value}")
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
-
-
-
-        shuffleQuestions()
-    }
-
-    private fun shuffleQuestions() {
-        questions?.shuffle()
-        questionIndex = 0
-        setQuestion()
-    }
-
-    // Sets the question and randomizes the answers.  This only changes the data, not the UI.
-    // Calling invalidateAll on the FragmentGameBinding updates the data.
-    private fun setQuestion() {
-        if (questions != null) {
-            currentQuestion = questions!![questionIndex].toQuizItem()
-        }
-        // randomize the answers into a copy of the array
-        answers = currentQuestion.answers.toMutableList()
-        // and shuffle them
-        answers.shuffle()
     }
 
     fun onOptionBtnClicked(view: View) {
         if (view is AppCompatButton) {
             binding.btnNext.text = "Next"
-            if (view.text == currentQuestion.answers[0]) {
+            if (view.text == viewModel.currentQuestion.answers[0]) {
                 binding.explanation.text = "True!"
                 binding.explanation.setTextColor(resources.getColor(R.color.green))
             } else {
@@ -229,24 +185,25 @@ class QuestionFragment : Fragment() {
     }
 
     fun onNextBtnClicked() {
-        questionIndex++
-        if (questionIndex < numQuestions) {
-            currentQuestion = questions?.get(questionIndex)?.toQuizItem()!!
-            setQuestion()
+        viewModel.questionIncremented()
+
+        if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
+            viewModel.currentQuestion = viewModel.quizItems[viewModel.questionIndex.value!!]
+            viewModel.setQuestion()
             binding.invalidateAll()
-
-            binding.questionText.text = currentQuestion.text
-            binding.btnOptOne.text = answers[0]
-            binding.btnOptTwo.text = answers[1]
-            binding.btnOptThree.text = answers[2]
-            binding.btnOptFour.text = answers[3]
-            binding.explanation.text = ""
-            binding.btnNext.text = "Skip"
-
+            setContentView()
         } else {
-            /*findNavController().navigate(site.budanitskaya.chemistryquiz.fine.QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment())*/
+            findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment())
         }
     }
 
-
-} */
+    fun setContentView() {
+        binding.questionText.text = viewModel.currentQuestion.text
+        binding.btnOptOne.text = viewModel.answers[0]
+        binding.btnOptTwo.text = viewModel.answers[1]
+        binding.btnOptThree.text = viewModel.answers[2]
+        binding.btnOptFour.text = viewModel.answers[3]
+        binding.explanation.text = ""
+        binding.btnNext.text = "Skip"
+    }
+}*/

@@ -20,4 +20,7 @@ interface QuestionDatabaseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(questions: List<Question>)
+
+    @Query("SELECT COUNT(question_title) FROM question_table")
+    fun getRowCount(): Int
 }

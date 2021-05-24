@@ -18,7 +18,7 @@ abstract class QuestionDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         QuestionDatabase::class.java, "question_table"
-                    ).build()
+                    ).allowMainThreadQueries().build()
                     INSTANCE = instance
                 }
                 return INSTANCE

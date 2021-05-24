@@ -31,4 +31,8 @@ class QuestionRepository(private val questionDataBase: QuestionDatabase) : Quest
     override suspend fun insertAll(questions: List<Question>) {
         questionDataBase.questionDao()?.insertAll(questions)
     }
+
+    override fun getRowCount(): Int {
+        return questionDataBase.questionDao()?.getRowCount()!!
+    }
 }
