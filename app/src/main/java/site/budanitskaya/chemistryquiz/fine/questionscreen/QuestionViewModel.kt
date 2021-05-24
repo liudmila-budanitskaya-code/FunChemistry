@@ -19,6 +19,29 @@ class QuestionViewModel : ViewModel() {
         generateQuizItems()
     }
 
+    lateinit var currentQuestion: QuizItem
+    lateinit var answers: MutableList<String>
+    var questionIndex = 0
+    val numQuestions by lazy {
+        Math.min((quizItems.size + 1) / 2, 3)
+    }
+
+    fun shuffleQuestions() {
+        quizItems.shuffle()
+        questionIndex = 0
+        setQuestion()
+    }
+
+    // Sets the question and randomizes the answers.  This only changes the data, not the UI.
+    // Calling invalidateAll on the FragmentGameBinding updates the data.
+    fun setQuestion() {
+        currentQuestion = quizItems[questionIndex]
+        // randomize the answers into a copy of the array
+        answers = currentQuestion.answers.toMutableList()
+        // and shuffle them
+        answers.shuffle()
+    }
+
 
 /*    lateinit var questions: LiveData<List<Question>>
 

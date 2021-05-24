@@ -24,25 +24,20 @@ class QuestionFragment : Fragment() {
             .get(QuestionViewModel::class.java)
     }
 
-    lateinit var currentQuestion: QuizItem
-    lateinit var answers: MutableList<String>
-    private var questionIndex = 0
-    private val numQuestions by lazy {
-        Math.min((viewModel.quizItems.size + 1) / 2, 3)
-    }
+
     private lateinit var binding: FragmentQuestionBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate<FragmentQuestionBinding>(
             inflater, R.layout.fragment_question, container, false
         )
 
-        shuffleQuestions()
+        viewModel.shuffleQuestions()
 
         binding.game = this
 
@@ -72,26 +67,12 @@ class QuestionFragment : Fragment() {
         return binding.root
     }
 
-    private fun shuffleQuestions() {
-        viewModel.quizItems.shuffle()
-        questionIndex = 0
-        setQuestion()
-    }
 
-    // Sets the question and randomizes the answers.  This only changes the data, not the UI.
-    // Calling invalidateAll on the FragmentGameBinding updates the data.
-    private fun setQuestion() {
-        currentQuestion = viewModel.quizItems[questionIndex]
-        // randomize the answers into a copy of the array
-        answers = currentQuestion.answers.toMutableList()
-        // and shuffle them
-        answers.shuffle()
-    }
 
     fun onOptionBtnClicked(view: View) {
         if (view is AppCompatButton) {
             binding.btnNext.text = "Next"
-            if (view.text == currentQuestion.answers[0]) {
+            if (view.text == viewModel.currentQuestion.answers[0]) {
                 binding.explanation.text = "True!"
                 binding.explanation.setTextColor(resources.getColor(R.color.green))
             } else {
@@ -102,10 +83,10 @@ class QuestionFragment : Fragment() {
     }
 
     fun onNextBtnClicked() {
-        questionIndex++
-        if (questionIndex < numQuestions) {
-            currentQuestion = viewModel.quizItems[questionIndex]
-            setQuestion()
+        viewModel.questionIndex++
+        if (viewModel.questionIndex < viewModel.numQuestions) {
+            viewModel.currentQuestion = viewModel.quizItems[viewModel.questionIndex]
+            viewModel.setQuestion()
             binding.invalidateAll()
             setContentView()
         } else {
@@ -114,11 +95,11 @@ class QuestionFragment : Fragment() {
     }
 
     fun setContentView() {
-        binding.questionText.text = currentQuestion.text
-        binding.btnOptOne.text = answers[0]
-        binding.btnOptTwo.text = answers[1]
-        binding.btnOptThree.text = answers[2]
-        binding.btnOptFour.text = answers[3]
+        binding.questionText.text = viewModel.currentQuestion.text
+        binding.btnOptOne.text = viewModel.answers[0]
+        binding.btnOptTwo.text = viewModel.answers[1]
+        binding.btnOptThree.text = viewModel.answers[2]
+        binding.btnOptFour.text = viewModel.answers[3]
         binding.explanation.text = ""
         binding.btnNext.text = "Skip"
     }
