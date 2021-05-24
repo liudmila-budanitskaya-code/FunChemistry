@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
@@ -36,10 +37,12 @@ class QuestionFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentQuestionBinding>(
             inflater, R.layout.fragment_question, container, false
         )
+        binding.game = this
+
+        binding.viewModel = viewModel
 
         viewModel.shuffleQuestions()
 
-        binding.game = this
 
 /*        args = QuestionFragmentArgs.fromBundle(requireArguments())
         binding.question.text = args.number.toString()*/
@@ -83,9 +86,10 @@ class QuestionFragment : Fragment() {
     }
 
     fun onNextBtnClicked() {
-        viewModel.questionIndex++
-        if (viewModel.questionIndex < viewModel.numQuestions) {
-            viewModel.currentQuestion = viewModel.quizItems[viewModel.questionIndex]
+        viewModel.questionIncremented()
+
+        if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
+            viewModel.currentQuestion = viewModel.quizItems[viewModel.questionIndex.value!!]
             viewModel.setQuestion()
             binding.invalidateAll()
             setContentView()

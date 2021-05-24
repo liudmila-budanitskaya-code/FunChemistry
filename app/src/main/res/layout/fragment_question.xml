@@ -7,6 +7,10 @@
         <variable
             name="game"
             type="site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragment" />
+
+        <variable
+            name="viewModel"
+            type="site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionViewModel" />
     </data>
 
     <LinearLayout

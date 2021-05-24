@@ -1,10 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.questionscreen
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.QuizItem
@@ -21,25 +18,34 @@ class QuestionViewModel : ViewModel() {
 
     lateinit var currentQuestion: QuizItem
     lateinit var answers: MutableList<String>
-    var questionIndex = 0
+
+
+    private var _questionIndex = MutableLiveData<Int>(0)
+    val questionIndex: LiveData<Int>
+        get() = _questionIndex
+
     val numQuestions by lazy {
         Math.min((quizItems.size + 1) / 2, 3)
     }
 
     fun shuffleQuestions() {
         quizItems.shuffle()
-        questionIndex = 0
+        _questionIndex.value = 0
         setQuestion()
     }
 
     // Sets the question and randomizes the answers.  This only changes the data, not the UI.
     // Calling invalidateAll on the FragmentGameBinding updates the data.
     fun setQuestion() {
-        currentQuestion = quizItems[questionIndex]
+        currentQuestion = quizItems[questionIndex.value!!]
         // randomize the answers into a copy of the array
         answers = currentQuestion.answers.toMutableList()
         // and shuffle them
         answers.shuffle()
+    }
+
+    fun questionIncremented() {
+        _questionIndex.value = _questionIndex.value?.plus(1)
     }
 
 
