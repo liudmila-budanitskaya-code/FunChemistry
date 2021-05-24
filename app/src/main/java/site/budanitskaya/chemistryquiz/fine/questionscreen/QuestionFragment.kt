@@ -1,14 +1,10 @@
 package site.budanitskaya.chemistryquiz.fine.questionscreen
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 
 import site.budanitskaya.chemistryquiz.fine.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.database.Question
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
 import site.budanitskaya.chemistryquiz.fine.generateQuizItems
 
@@ -24,63 +19,17 @@ class QuestionFragment : Fragment() {
 
     /*private lateinit var args: QuestionFragmentArgs*/
 
-    private val questions: MutableList<QuizItem> = mutableListOf(
-        QuizItem(
-            text = "What is Android Jetpack?",
-            answers = listOf("All of these", "Tools", "Documentation", "Libraries")
-        ),
-        QuizItem(
-            text = "What is the base class for layouts?",
-            answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")
-        ),
-        QuizItem(
-            text = "What layout do you use for complex screens?",
-            answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")
-        ),
-        QuizItem(
-            text = "What do you use to push structured data into a layout?",
-            answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method")
-        ),
-        QuizItem(
-            text = "What method do you use to inflate layouts in fragments?",
-            answers = listOf(
-                "onCreateView()",
-                "onActivityCreated()",
-                "onCreateLayout()",
-                "onInflateLayout()"
-            )
-        ),
-        QuizItem(
-            text = "What's the build system for Android?",
-            answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")
-        ),
-        QuizItem(
-            text = "Which class do you use to create a vector drawable?",
-            answers = listOf(
-                "VectorDrawable",
-                "AndroidVectorDrawable",
-                "DrawableVector",
-                "AndroidVector"
-            )
-        ),
-        QuizItem(
-            text = "Which one of these is an Android navigation component?",
-            answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")
-        ),
-        QuizItem(
-            text = "Which XML element lets you register an activity with the launcher activity?",
-            answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")
-        ),
-        QuizItem(
-            text = "What do you use to mark a layout for data binding?",
-            answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>")
-        )
-    )
+    private val viewModel by lazy {
+        ViewModelProvider(this, QuestionViewModelFactory())
+            .get(QuestionViewModel::class.java)
+    }
 
     lateinit var currentQuestion: QuizItem
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
-    private val numQuestions = Math.min((questions.size + 1) / 2, 3)
+    private val numQuestions by lazy {
+        Math.min((viewModel.quizItems.size + 1) / 2, 3)
+    }
     private lateinit var binding: FragmentQuestionBinding
 
     override fun onCreateView(
@@ -124,7 +73,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun shuffleQuestions() {
-        questions.shuffle()
+        viewModel.quizItems.shuffle()
         questionIndex = 0
         setQuestion()
     }
@@ -132,7 +81,7 @@ class QuestionFragment : Fragment() {
     // Sets the question and randomizes the answers.  This only changes the data, not the UI.
     // Calling invalidateAll on the FragmentGameBinding updates the data.
     private fun setQuestion() {
-        currentQuestion = questions[questionIndex]
+        currentQuestion = viewModel.quizItems[questionIndex]
         // randomize the answers into a copy of the array
         answers = currentQuestion.answers.toMutableList()
         // and shuffle them
@@ -155,7 +104,7 @@ class QuestionFragment : Fragment() {
     fun onNextBtnClicked() {
         questionIndex++
         if (questionIndex < numQuestions) {
-            currentQuestion = questions[questionIndex]
+            currentQuestion = viewModel.quizItems[questionIndex]
             setQuestion()
             binding.invalidateAll()
             setContentView()

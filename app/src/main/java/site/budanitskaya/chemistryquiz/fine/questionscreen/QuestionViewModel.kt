@@ -11,8 +11,14 @@ import site.budanitskaya.chemistryquiz.fine.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.Question
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase.Companion.getInstance
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
+import site.budanitskaya.chemistryquiz.fine.generateQuizItems
 
-class QuestionViewModel() : ViewModel() {
+class QuestionViewModel : ViewModel() {
+
+    val quizItems by lazy {
+        generateQuizItems()
+    }
+
 
 /*    lateinit var questions: LiveData<List<Question>>
 

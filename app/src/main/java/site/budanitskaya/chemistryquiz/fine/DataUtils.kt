@@ -3,8 +3,8 @@ package site.budanitskaya.chemistryquiz.fine
 import site.budanitskaya.chemistryquiz.fine.database.Question
 
 
-fun generateQuizItems(): List<QuizItem> {
-    return listOf(
+fun generateQuizItems(): MutableList<QuizItem> {
+    return mutableListOf(
         QuizItem(
             text = "What is Android Jetpack?",
             answers = listOf("All of these", "Tools", "Documentation", "Libraries")
