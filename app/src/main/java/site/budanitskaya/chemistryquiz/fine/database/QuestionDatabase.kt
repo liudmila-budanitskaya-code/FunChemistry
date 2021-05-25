@@ -8,6 +8,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import site.budanitskaya.chemistryquiz.fine.generateQuizItems
+import site.budanitskaya.chemistryquiz.fine.questionscreen.generateQuestionsList
 import site.budanitskaya.chemistryquiz.fine.questionscreen.mapQuizItemsToQuestionsList
 
 @Database(entities = [Question::class], version = 1)
@@ -35,11 +36,19 @@ abstract class QuestionDatabase : RoomDatabase() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     db.beginTransaction()
-                    val values = ContentValues().apply {
-                        put("question_title", mapQuizItemsToQuestionsList(generateQuizItems())[0].questionTitle)
-                        put("answer_options", AnswersConverter().fromAnswers(mapQuizItemsToQuestionsList(generateQuizItems())[0].answers))
+                    val list = generateQuestionsList()
+                    for (i in list.indices) {
+                        val values = ContentValues().apply {
+                            put("question_title", list[i].questionTitle)
+                            put(
+                                "answer_options",
+                                AnswersConverter().fromAnswers(
+                                    list[i].answers
+                                )
+                            )
+                        }
+                        db.insert("question_table", SQLiteDatabase.CONFLICT_ABORT, values);
                     }
-                    db.insert("question_table", SQLiteDatabase.CONFLICT_ABORT, values);
                     db.setTransactionSuccessful();
                     db.endTransaction()
 

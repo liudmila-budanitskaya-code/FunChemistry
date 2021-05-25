@@ -2,6 +2,7 @@ package site.budanitskaya.chemistryquiz.fine.questionscreen
 
 import site.budanitskaya.chemistryquiz.fine.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.Question
+import site.budanitskaya.chemistryquiz.fine.generateQuizItems
 
 
 fun Question.toQuizItem() = QuizItem(text = questionTitle, answers = answers)
@@ -25,3 +26,6 @@ fun mapQuestionsToQuizItems(questions: List<Question>): MutableList<QuizItem> {
     }
     return quizItems
 }
+
+fun generateQuestionsList() =
+    mapQuizItemsToQuestionsList(generateQuizItems())
