@@ -19,7 +19,7 @@ import site.budanitskaya.chemistryquiz.fine.generateQuizItems
 
 class QuestionFragment : Fragment() {
 
-    /*private lateinit var args: QuestionFragmentArgs*/
+    private lateinit var args: QuestionFragmentArgs
 
     private val viewModel by lazy {
         ViewModelProvider(this, QuestionViewModelFactory())
@@ -33,8 +33,7 @@ class QuestionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
+
         binding = DataBindingUtil.inflate<FragmentQuestionBinding>(
             inflater, R.layout.fragment_question, container, false
         )
@@ -45,8 +44,8 @@ class QuestionFragment : Fragment() {
         viewModel.shuffleQuestions()
 
 
-/*        args = QuestionFragmentArgs.fromBundle(requireArguments())
-        binding.question.text = args.number.toString()*/
+        args = QuestionFragmentArgs.fromBundle(requireArguments())
+        binding.questionText.text = args.topic.name
 
         setContentView()
         binding.btnOptOne.setOnClickListener { view: View ->
@@ -103,7 +102,7 @@ class QuestionFragment : Fragment() {
     }
 
     fun setContentView() {
-        binding.questionText.text = viewModel.currentQuestion.text
+        /*binding.questionText.text = viewModel.currentQuestion.text*/
         binding.btnOptOne.text = viewModel.answers[0]
         binding.btnOptTwo.text = viewModel.answers[1]
         binding.btnOptThree.text = viewModel.answers[2]
