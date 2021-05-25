@@ -18,13 +18,13 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
-    <style name="MyCardViewStyle" parent="CardView">
+   <!-- <style name="MyCardViewStyle" parent="CardView">
         <item name="cardBackgroundColor">@android:color/white</item>
         <item name="android:foreground">?android:selectableItemBackground</item>
         <item name="cardElevation">21dp</item>
         <item name="cardCornerRadius">50dp</item>
         <item name="android:clickable">true</item>
         <item name="android:layout_margin">8dp</item>
-    </style>
+    </style>-->
 
 </resources>

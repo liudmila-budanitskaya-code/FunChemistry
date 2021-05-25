@@ -36,7 +36,7 @@ class QuestionViewModel : ViewModel() {
         get() = _questionIndex
 
     val numQuestions by lazy {
-        Math.min((quizItems.size + 1) / 2, 3)
+        Math.min((quizItems.size + 1) / 2, 1)
     }
 
     fun shuffleQuestions() {
@@ -51,23 +51,7 @@ class QuestionViewModel : ViewModel() {
         }
     }
 
-    fun getQuestionList(quizItems: List<QuizItem>): List<Question> {
-        val questions = mutableListOf<Question>()
-        quizItems.forEach {
-            it.toQuestion()
-            questions.add(it.toQuestion())
-        }
-        return questions
-    }
 
-    fun mapQuestionsToQuizItems(questions: List<Question>): MutableList<QuizItem> {
-        val quizItems = mutableListOf<QuizItem>()
-        questions.forEach {
-            it.toQuizItem()
-            quizItems.add(it.toQuizItem())
-        }
-        return quizItems
-    }
 /*        viewModelScope.launch {
             questionsList = questionRepository.getQuestionList().value!!
         }*/
