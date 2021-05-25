@@ -22,5 +22,5 @@ interface QuestionDatabaseDao {
     suspend fun insertAll(questions: List<Question>)
 
     @Query("SELECT COUNT(question_title) FROM question_table")
-    fun getRowCount(): Int
+    suspend fun getRowCount(): Int
 }

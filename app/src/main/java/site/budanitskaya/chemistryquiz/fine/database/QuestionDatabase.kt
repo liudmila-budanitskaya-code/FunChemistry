@@ -53,7 +53,6 @@ abstract class QuestionDatabase : RoomDatabase() {
                     db.endTransaction()
 
                 }
-            }).allowMainThreadQueries().build()
+            }).build()
     }
-
 }

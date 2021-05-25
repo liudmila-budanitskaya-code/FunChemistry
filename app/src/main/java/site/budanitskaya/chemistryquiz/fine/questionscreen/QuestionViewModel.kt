@@ -51,23 +51,21 @@ class QuestionViewModel : ViewModel() {
         }
     }
 
-
-/*        viewModelScope.launch {
-            questionsList = questionRepository.getQuestionList().value!!
-        }*/
-
-
-    // Sets the question and randomizes the answers.  This only changes the data, not the UI.
-    // Calling invalidateAll on the FragmentGameBinding updates the data.
     fun setQuestion() {
         currentQuestion = quizItems[questionIndex.value!!]
-        // randomize the answers into a copy of the array
         answers = currentQuestion.answers.toMutableList()
-        // and shuffle them
         answers.shuffle()
     }
 
     fun questionIncremented() {
         _questionIndex.value = _questionIndex.value?.plus(1)
+    }
+
+    fun getRowCount() : Int{
+        var rowCount = 0
+        viewModelScope.launch {
+            rowCount = questionRepository.getRowCount()
+        }
+        return rowCount
     }
 }
