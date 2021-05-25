@@ -24,7 +24,7 @@ class QuestionRepository(private val questionDataBase: QuestionDatabase) : Quest
 
     }
 
-    override fun getQuestionList(): LiveData<List<Question>> {
+    override suspend fun getQuestionList(): List<Question> {
         return questionDataBase.questionDao()?.getQuestionList()!!
     }
 

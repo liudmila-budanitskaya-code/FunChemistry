@@ -65,6 +65,7 @@ class QuestionFragment : Fragment() {
             onOptionBtnClicked(view)
         }
 
+
         binding.btnNext.setOnClickListener {
             onNextBtnClicked()
         }

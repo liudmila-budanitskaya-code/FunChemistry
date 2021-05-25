@@ -16,7 +16,7 @@ interface QuestionDatabaseDao {
     suspend fun delete(question: Question)
 
     @Query("SELECT * FROM question_table")
-    fun getQuestionList(): LiveData<List<Question>>
+    suspend fun getQuestionList(): List<Question>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(questions: List<Question>)
