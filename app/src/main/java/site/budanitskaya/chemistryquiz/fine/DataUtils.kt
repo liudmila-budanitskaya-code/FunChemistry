@@ -1,28 +1,24 @@
 package site.budanitskaya.chemistryquiz.fine
 
-import site.budanitskaya.chemistryquiz.fine.database.Question
-import kotlin.math.exp
-
 
 fun generateQuizItems(): MutableList<QuizItem> {
     return mutableListOf(
         QuizItem(
-            text = R.string.q1_text.toString(),
+            text = "Which of these is a weak acid?",
             answers = listOf("HF", "HCl", "HI", "HBr"),
             topic = "Acids and bases",
             explanation = "HF is a really weak acid while the others are strong"
         ),
         QuizItem(
-            text = "Which of these indicators is useless foe detecting acids?",
-            answers = listOf("Cresolphthalein", "Congo red", "Methyl yellow", "Bromocresol green"),
-            topic = "Acids and bases",
-            explanation = "All phthaleins in aqueous solutions are insensible towards acids, so the correct answer is cresolphthalein"
-        ),
+            text = resourceWrapper(R.array.acid_base_q1)[0],
+            answers = resourceWrapper(R.array.acid_base_q1)[1].split(", "),
+            topic = resourceWrapper(R.array.acid_base_q1)[2],
+            explanation = resourceWrapper(R.array.acid_base_q1)[3]),
         QuizItem(
-            text = resourceWrapper(R.array.biochemistry_q1)[0],
-            answers = resourceWrapper(R.array.biochemistry_q1)[1].split(", "),
-            topic = resourceWrapper(R.array.biochemistry_q1)[2],
-            explanation = resourceWrapper(R.array.biochemistry_q1)[3]
+            text = resourceWrapper(R.array.bio_q1)[0],
+            answers = resourceWrapper(R.array.bio_q1)[1].split(", "),
+            topic = resourceWrapper(R.array.bio_q1)[2],
+            explanation = resourceWrapper(R.array.bio_q1)[3]
         ),
         QuizItem(
             text = "Which is the key enzyme in the biosynthesis of deoxyribonucletides?",

@@ -1,23 +1,23 @@
 package site.budanitskaya.chemistryquiz.fine.questionscreen
 
-import android.opengl.Visibility
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-
-import site.budanitskaya.chemistryquiz.fine.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
-import site.budanitskaya.chemistryquiz.fine.generateQuizItems
+
 
 class QuestionFragment : Fragment() {
 
@@ -27,6 +27,8 @@ class QuestionFragment : Fragment() {
         ViewModelProvider(this, QuestionViewModelFactory())
             .get(QuestionViewModel::class.java)
     }
+    var clickFlag = false
+    private var currentQuizItem = 0
 
 
     private lateinit var binding: FragmentQuestionBinding
@@ -44,7 +46,19 @@ class QuestionFragment : Fragment() {
         binding.viewModel = viewModel
 
         viewModel.shuffleQuestions()
+        var i = 0
+        object : CountDownTimer(30000, 1) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.timer.text = "seconds remaining: " + millisUntilFinished / 1000
+                i++;
+                binding.progressBar.invalidate()
+                binding.progressBar.setProgress(((3000 - i*100)/(30000/1000)), true)
+            }
 
+            override fun onFinish() {
+                findNavController().navigate(R.id.action_questionFragment_to_gameOverFragment)
+            }
+        }.start()
 
         args = QuestionFragmentArgs.fromBundle(requireArguments())
         viewModel.setQuestion(args.topic.name)
@@ -75,31 +89,51 @@ class QuestionFragment : Fragment() {
         binding.btnNext.setOnClickListener {
             onNextBtnClicked()
         }
+        currentQuizItem++
+
+
 
         Log.d("onCreateView: ", "onCreateView: ${viewModel.getRowCount()}")
         return binding.root
     }
 
 
+    /*
+    clickFlag должен ставиться true только в том случае, если кнопка нажата впервые и вопрос новый
+
+
+     */
     fun onOptionBtnClicked(view: View) {
-        if (view is AppCompatButton) {
-            binding.btnNext.text = "Next"
-            if (view.text == viewModel.currentQuestion.answers[0]) {
-                binding.bool.text = "True!"
-                binding.bool.setTextColor(getColor(requireContext(), R.color.green))
-            } else {
-                binding.bool.text = "False!"
-                binding.bool.setTextColor(getColor(requireContext(), R.color.red))
+
+        if (!clickFlag) {
+            if (view is AppCompatButton) {
+                binding.btnNext.text = "Next"
+                if (view.text == viewModel.currentQuestion.answers[0]) {
+                    binding.bool.text = "True!"
+                    binding.bool.setTextColor(getColor(requireContext(), R.color.green))
+                } else {
+                    binding.bool.text = "False!"
+                    binding.bool.setTextColor(getColor(requireContext(), R.color.red))
+                }
+                binding.rationale.visibility = View.VISIBLE
+                binding.rationale.text = viewModel.currentQuestion.explanation
             }
-            binding.rationale.visibility = View.VISIBLE
-            binding.rationale.text = viewModel.currentQuestion.explanation
+            clickFlag = true
         }
     }
 
     fun onNextBtnClicked() {
+
         viewModel.questionIncremented()
         if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
-            binding.invalidateAll()
+            binding.noQuestion.invalidate()
+            binding.questionText.invalidate()
+            binding.btnOptOne.invalidate()
+            binding.btnOptThree.invalidate()
+            binding.btnOptFour.invalidate()
+            binding.bool.invalidate()
+            binding.rationale.invalidate()
+            clickFlag = false
             setContentView()
         } else {
             findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment())

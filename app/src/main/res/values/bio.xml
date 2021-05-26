@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bio_q1">
+        <item name="bio_q1_text">Adenosine is a …</item>
+        <item name="bio_q1_answers">Nucleoside, Base, Ribonucleotide, Deoxyribonucleotide</item>
+        <item name="bio_q1_topic">Biochemistry</item>
+        <item name="bio_q1_explanation">Adenosine is composed of the sugar ribose and the base adenine. Sugar + base = nucleoside.</item>
+    </string-array>
+</resources>

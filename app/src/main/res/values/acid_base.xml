@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="acid_base_q1">
+        <item name="ab_q1_text">Which of these indicators is useless foe detecting acids?</item>
+        <item name="ab_q1_answers">Cresolphthalein, Congo red, Methyl yellow, Bromocresol green</item>
+        <item name="ab_q1_topic">Acids and bases</item>
+        <item name="ab_q1_explanation">All phthaleins in aqueous solutions are insensible towards acids, so the correct answer is cresolphthalein.</item>
+    </string-array>
+</resources>

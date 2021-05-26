@@ -45,23 +45,28 @@
                         android:id="@+id/timer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/no_question"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:gravity="end"
-                        android:text="TextView" />
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <ProgressBar
+                    android:id="@+id/progress_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:max="100"
                     style="?android:attr/progressBarStyleHorizontal" />
+
+                <TextView
+                    android:id="@+id/no_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/question_text"
@@ -69,6 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="TextView"
+                    android:textSize="20sp"
                     tools:layout_editor_absoluteX="57dp"
                     tools:layout_editor_absoluteY="148dp"
                     tools:text="@string/title_activity_settings" />
@@ -110,12 +116,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/rationale"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
                     android:gravity="start"
                     android:textStyle="bold"
                     android:visibility="gone" />
