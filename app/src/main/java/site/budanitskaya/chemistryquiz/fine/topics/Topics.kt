@@ -53,24 +53,7 @@ val topics: MutableList<Topic> = mutableListOf(
     ),
     Topic(
         id = 10,
-        name = "Structure",
-        drawable = R.drawable.structure
+        name = "Crystals",
+        drawable = R.drawable.crystals
     )
-    /*
-    Topic(
-        name = "Acids and bases",
-        drawable = R.drawable.acids_and_bases
-    ),
-    Topic(
-        name = "Acids and bases",
-        drawable = R.drawable.acids_and_bases
-    ),
-    Topic(
-        name = "Acids and bases",
-        drawable = R.drawable.acids_and_bases
-    ),
-    Topic(
-        name = "Acids and bases",
-        drawable = R.drawable.acids_and_bases
-    )*/
 )

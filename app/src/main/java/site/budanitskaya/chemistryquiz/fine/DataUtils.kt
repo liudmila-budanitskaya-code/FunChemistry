@@ -7,74 +7,76 @@ import kotlin.math.exp
 fun generateQuizItems(): MutableList<QuizItem> {
     return mutableListOf(
         QuizItem(
-            text = "What is Android Jetpack?",
-            answers = listOf("All of these", "Tools", "Documentation", "Libraries"),
+            text = "Which of these is a weak acid?",
+            answers = listOf("HF", "HCl", "HI", "HBr"),
             topic = "Acids and bases",
-            explanation = "Android Jetpack consists of all of these"
+            explanation = "HF is a really weak acid while the others are strong"
         ),
         QuizItem(
-            text = "What is the base class for layouts?",
-            answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot"),
+            text = "Which of these indicators is useless foe detecting acids?",
+            answers = listOf("Cresolphthalein", "Congo red", "Methyl yellow", "Bromocresol green"),
+            topic = "Acids and bases",
+            explanation = "All phthaleins in aqueous solutions are insensible towards acids, so the correct answer is cresolphthalein"
+        ),
+        QuizItem(
+            text = " Adenosine is a ...",
+            answers = listOf("nucleoside", "base", "ribonucleotide", "deoxyribonucleotide"),
             topic = "Biochemistry",
-            explanation = "Constraintlayout is the best"
+            explanation = "Adenosine is composed of the sugar ribose and the base adenine. Sugar + base = nucleoside."
         ),
         QuizItem(
-            text = "What layout do you use for complex screens?",
-            answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout"),
+            text = "Which is the key enzyme in the biosynthesis of deoxyribonucletides?",
+            answers = listOf("Ribonucleotide reductase", "deoxyribonuclease", "Endonuclease", "Exonuclease"),
+            topic = "Biochemistry",
+            explanation = "Ribonucleotide reductase of course. This enzyme catalyses the conversion of diphosphate ribonucleotides into diphosphate deoxyribonucleotides."
+        ),
+        QuizItem(
+            text = "Which of these element pairs are not similar in their chemical and physical properties?",
+            answers = listOf("Sr and Ba", "Al and Be", "B and Si", "Li and Mg"),
             topic = "Periodic table",
-            explanation = "343242"
+            explanation = "Of these element pairs, only Sr and Ba do not possess diagonal likelikhood. This is the fact that along the main diagonal of the periodic table, two nearest elements are similar in their properties."
         ),
         QuizItem(
-            text = "What do you use to push structured data into a layout?",
-            answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method"),
+            text = "Which of these compounds i an aromatic compound?",
+            answers = listOf("All of these", "Toluene", "Phenolphthalein", "Benzene"),
             topic = "Organic chemistry",
-            explanation = "fgfs"
+            explanation = "Benzene is the simplest aromatic compound, toluene contains one additional methyl group while phenolphthalein, as the name says, contains phenolic structure in itself "
         ),
         QuizItem(
-            text = "What method do you use to inflate layouts in fragments?",
-            answers = listOf(
-                "onCreateView()",
-                "onActivityCreated()",
-                "onCreateLayout()",
-                "onInflateLayout()"
-            ),
-            topic = "Atomic structure",
-            explanation = "456465467"
-        ),
-        QuizItem(
-            text = "What's the build system for Android?",
-            answers = listOf("Gradle", "Graddle", "Grodle", "Groyle"),
+            text = "Which of the following compounds do not contain molecular bonds?",
+            answers = listOf("NaCl", "Organic salts", "All inorganic salts", "All of these"),
             topic = "Chemical bonds",
-            explanation = "dfsdfvsdf"
+            explanation = "Inorganic salts contain complex acid residues more often than not which is even more common for organic salts. NaCl, a simplest inorganic salt, however, does not contain molecular bonds. So the answers is..."
         ),
         QuizItem(
-            text = "Which class do you use to create a vector drawable?",
-            answers = listOf(
-                "VectorDrawable",
-                "AndroidVectorDrawable",
-                "DrawableVector",
-                "AndroidVector"
-            ),
-            topic = "Energy in chemical reactions",
-            explanation = "dfdsfgsdfsfsgfg"
+            text = "Which element provides a model for Schrödinger equation?",
+            answers = listOf("H", "B", "Si", "None of these"),
+            topic = "Atomic structure",
+            explanation = "Atoms other than that of hydrogen can not be described using Schrödinger equation due to fact that hydrogen atom is the simplest one that's why it is a suitable model to study such complex things as atoms."
         ),
         QuizItem(
-            text = "Which one of these is an Android navigation component?",
-            answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher"),
+            text = "Oxygen does not oxidize everything upon normal conditions. What is a probable explanation for this fact?",
+            answers = listOf("The reason is the very slow kinetics for this process", "On the contrary, oxygen is oxidised itself", "Oxygen has no enough potential to do this", "None of these"),
             topic = "Redox reactions",
-            explanation = "sdsdcszd"
+            explanation = "Oxygen is potent oxidant and, according to thermodynamic predictions, it must oxidize a lot of things while it does not upon normal conditions. Kinetics is the reason."
         ),
         QuizItem(
-            text = "Which XML element lets you register an activity with the launcher activity?",
-            answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher"),
+            text = "Which of these characteristics explains the potential ability of compounds to react with each other?",
+            answers = listOf("Chemical affinity", "Gibbs free energy", "Entropy", "Heat"),
+            topic = "Energy in chemical reactions",
+            explanation = "Chemical affinity is the real measure of whether chemical substances have the potential to react with each other. However, none of the experimental techniques can measure it accurately."
+        ),
+        QuizItem(
+            text = "Which of these compounds is a strong electrolyte?",
+            answers = listOf("RbBr", "NH4Cl", "Ammonia", "HF"),
             topic = "Electrolytes",
-            explanation = "s555zd"
+            explanation = "A salt containing a cation of alkaline metal and a halogen anion would be the best match. And we have such answer options, this is RbBr. ."
         ),
         QuizItem(
-            text = "What do you use to mark a layout for data binding?",
-            answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"),
-            topic = "Structure",
-            explanation = "sdsgggggggd"
+            text = "Which of these substances has a 2D hexagonal crystalline structure?",
+            answers = listOf("Graphen", "BN", "Diamond", "NaCl"),
+            topic = "Crystals",
+            explanation = "Graphen consists of graphite slices and thus it contains a 2D hexagonal crystalline structure."
         )
     )
 }

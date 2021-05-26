@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -46,8 +47,11 @@ class QuestionFragment : Fragment() {
 
 
         args = QuestionFragmentArgs.fromBundle(requireArguments())
+        viewModel.setQuestion(args.topic.name)
 
         Log.d("12345678", "onCreateView: ${viewModel.getFirstQuestionByTopic(args.topic.name)}")
+        viewModel.getFirstQuestionByTopic(args.topic.name)
+
         binding.questionText.text = args.topic.name
 
         setContentView()
@@ -82,10 +86,10 @@ class QuestionFragment : Fragment() {
             binding.btnNext.text = "Next"
             if (view.text == viewModel.currentQuestion.answers[0]) {
                 binding.bool.text = "True!"
-                binding.bool.setTextColor(resources.getColor(R.color.green))
+                binding.bool.setTextColor(getColor(requireContext(), R.color.green))
             } else {
                 binding.bool.text = "False!"
-                binding.bool.setTextColor(resources.getColor(R.color.red))
+                binding.bool.setTextColor(getColor(requireContext(), R.color.red))
             }
             binding.rationale.visibility = View.VISIBLE
             binding.rationale.text = viewModel.currentQuestion.explanation
@@ -95,8 +99,6 @@ class QuestionFragment : Fragment() {
     fun onNextBtnClicked() {
         viewModel.questionIncremented()
         if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
-            viewModel.currentQuestion = viewModel.quizItems[viewModel.questionIndex.value!!]
-            viewModel.setQuestion()
             binding.invalidateAll()
             setContentView()
         } else {

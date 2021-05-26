@@ -43,7 +43,6 @@ class QuestionViewModel : ViewModel() {
     fun shuffleQuestions() {
         quizItems.shuffle()
         _questionIndex.value = 0
-        setQuestion()
     }
 
     fun insertQuestions(questions: List<Question>) {
@@ -52,8 +51,8 @@ class QuestionViewModel : ViewModel() {
         }
     }
 
-    fun setQuestion() {
-        currentQuestion = quizItems[questionIndex.value!!]
+    fun setQuestion(currentTopic: String) {
+        currentQuestion = getFirstQuestionByTopic(currentTopic).toQuizItem()
         answers = currentQuestion.answers.toMutableList()
         answers.shuffle()
     }
