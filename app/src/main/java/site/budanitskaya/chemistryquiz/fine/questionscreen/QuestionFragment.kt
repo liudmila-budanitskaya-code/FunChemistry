@@ -45,6 +45,8 @@ class QuestionFragment : Fragment() {
 
 
         args = QuestionFragmentArgs.fromBundle(requireArguments())
+
+        Log.d("12345678", "onCreateView: ${viewModel.getFirstQuestionByTopic(args.topic.name)}")
         binding.questionText.text = args.topic.name
 
         setContentView()
@@ -68,7 +70,6 @@ class QuestionFragment : Fragment() {
         binding.btnNext.setOnClickListener {
             onNextBtnClicked()
         }
-
 
         Log.d("onCreateView: ", "onCreateView: ${viewModel.getRowCount()}")
         return binding.root

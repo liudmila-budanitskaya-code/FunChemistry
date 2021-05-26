@@ -35,4 +35,10 @@ class QuestionRepository(private val questionDataBase: QuestionDatabase) : Quest
     override suspend fun getRowCount(): Int {
         return questionDataBase.questionDao()?.getRowCount()!!
     }
+
+    override suspend fun getQuestionByTopic(currentTopic: String): List<Question> {
+        return questionDataBase.questionDao()?.getQuestionByTopic(currentTopic)!!
+    }
+
+
 }

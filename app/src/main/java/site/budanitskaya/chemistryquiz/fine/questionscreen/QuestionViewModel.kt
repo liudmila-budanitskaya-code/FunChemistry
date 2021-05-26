@@ -22,7 +22,8 @@ class QuestionViewModel : ViewModel() {
 
     init {
         runBlocking {
-            quizItems = mapQuestionsToQuizItems(questionRepository.getQuestionList().toMutableList())
+            quizItems =
+                mapQuestionsToQuizItems(questionRepository.getQuestionList().toMutableList())
             delay(0L)
         }
     }
@@ -61,11 +62,19 @@ class QuestionViewModel : ViewModel() {
         _questionIndex.value = _questionIndex.value?.plus(1)
     }
 
-    fun getRowCount() : Int{
-        var rowCount = 0
-        viewModelScope.launch {
+    fun getRowCount(): Int {
+        var rowCount: Int
+        runBlocking {
             rowCount = questionRepository.getRowCount()
         }
         return rowCount
+    }
+
+    fun getFirstQuestionByTopic(currentTopic: String): Question {
+        var question: Question
+        runBlocking {
+            question = questionRepository.getQuestionByTopic(currentTopic)[0]
+        }
+        return question
     }
 }

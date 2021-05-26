@@ -23,4 +23,7 @@ interface QuestionDatabaseDao {
 
     @Query("SELECT COUNT(question_title) FROM question_table")
     suspend fun getRowCount(): Int
+
+    @Query("SELECT * FROM question_table WHERE topic =:currentTopic")
+    suspend fun getQuestionByTopic(currentTopic: String): List<Question>
 }
