@@ -7,7 +7,7 @@ import kotlin.math.exp
 fun generateQuizItems(): MutableList<QuizItem> {
     return mutableListOf(
         QuizItem(
-            text = "Which of these is a weak acid?",
+            text = R.string.q1_text.toString(),
             answers = listOf("HF", "HCl", "HI", "HBr"),
             topic = "Acids and bases",
             explanation = "HF is a really weak acid while the others are strong"
@@ -19,10 +19,10 @@ fun generateQuizItems(): MutableList<QuizItem> {
             explanation = "All phthaleins in aqueous solutions are insensible towards acids, so the correct answer is cresolphthalein"
         ),
         QuizItem(
-            text = " Adenosine is a ...",
-            answers = listOf("nucleoside", "base", "ribonucleotide", "deoxyribonucleotide"),
-            topic = "Biochemistry",
-            explanation = "Adenosine is composed of the sugar ribose and the base adenine. Sugar + base = nucleoside."
+            text = resourceWrapper(R.array.biochemistry_q1)[0],
+            answers = resourceWrapper(R.array.biochemistry_q1)[1].split(", "),
+            topic = resourceWrapper(R.array.biochemistry_q1)[2],
+            explanation = resourceWrapper(R.array.biochemistry_q1)[3]
         ),
         QuizItem(
             text = "Which is the key enzyme in the biosynthesis of deoxyribonucletides?",
@@ -80,3 +80,5 @@ fun generateQuizItems(): MutableList<QuizItem> {
         )
     )
 }
+
+fun resourceWrapper(res: Int): Array<String> = MainApplication.applicationContext().resources.getStringArray(res)
