@@ -5,9 +5,9 @@ import site.budanitskaya.chemistryquiz.fine.database.Question
 import site.budanitskaya.chemistryquiz.fine.generateQuizItems
 
 
-fun Question.toQuizItem() = QuizItem(text = questionTitle, answers = answers, topic = topic)
+fun Question.toQuizItem() = QuizItem(text = questionTitle, answers = answers, topic = topic, explanation = explanation)
 
-fun QuizItem.toQuestion() = Question(questionTitle = text, answers = answers,  topic = topic)
+fun QuizItem.toQuestion() = Question(questionTitle = text, answers = answers,  topic = topic, explanation = explanation)
 
 fun mapQuizItemsToQuestionsList(quizItems: List<QuizItem>): List<Question> {
     val questions = mutableListOf<Question>()

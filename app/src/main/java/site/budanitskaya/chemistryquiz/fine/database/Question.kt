@@ -14,7 +14,9 @@ data class Question(
     @ColumnInfo(name = "answer_options")
     var answers: List<String> = listOf("answer1", "answer2", "answer3", "answer4"),
     @ColumnInfo(name = "topic")
-    var topic: String = "default_topic"
+    var topic: String = "default_topic",
+    @ColumnInfo(name = "explanation")
+    var explanation: String = "default_explanation"
 )
 
 class AnswersConverter {

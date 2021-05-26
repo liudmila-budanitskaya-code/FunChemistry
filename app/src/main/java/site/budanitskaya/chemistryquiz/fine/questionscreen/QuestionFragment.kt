@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.questionscreen
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -80,18 +81,19 @@ class QuestionFragment : Fragment() {
         if (view is AppCompatButton) {
             binding.btnNext.text = "Next"
             if (view.text == viewModel.currentQuestion.answers[0]) {
-                binding.explanation.text = "True!"
-                binding.explanation.setTextColor(resources.getColor(R.color.green))
+                binding.bool.text = "True!"
+                binding.bool.setTextColor(resources.getColor(R.color.green))
             } else {
-                binding.explanation.text = "False!"
-                binding.explanation.setTextColor(resources.getColor(R.color.red))
+                binding.bool.text = "False!"
+                binding.bool.setTextColor(resources.getColor(R.color.red))
             }
+            binding.rationale.visibility = View.VISIBLE
+            binding.rationale.text = viewModel.currentQuestion.explanation
         }
     }
 
     fun onNextBtnClicked() {
         viewModel.questionIncremented()
-
         if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
             viewModel.currentQuestion = viewModel.quizItems[viewModel.questionIndex.value!!]
             viewModel.setQuestion()
@@ -103,12 +105,12 @@ class QuestionFragment : Fragment() {
     }
 
     fun setContentView() {
-        /*binding.questionText.text = viewModel.currentQuestion.text*/
+        binding.questionText.text = viewModel.currentQuestion.text
         binding.btnOptOne.text = viewModel.answers[0]
         binding.btnOptTwo.text = viewModel.answers[1]
         binding.btnOptThree.text = viewModel.answers[2]
         binding.btnOptFour.text = viewModel.answers[3]
-        binding.explanation.text = ""
+        binding.rationale.text = viewModel.currentQuestion.explanation
         binding.btnNext.text = "Skip"
     }
 }

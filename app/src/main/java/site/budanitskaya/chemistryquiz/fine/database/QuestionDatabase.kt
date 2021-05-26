@@ -50,6 +50,10 @@ abstract class QuestionDatabase : RoomDatabase() {
                                 "topic",
                                     list[i].topic
                             )
+                            put(
+                                "explanation",
+                                list[i].explanation
+                            )
                         }
                         db.insert("question_table", SQLiteDatabase.CONFLICT_ABORT, values);
                     }
