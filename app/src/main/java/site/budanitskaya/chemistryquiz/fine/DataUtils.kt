@@ -7,23 +7,19 @@ fun generateQuizItems(): MutableList<QuizItem> {
     return mutableListOf(
         QuizItem(
             text = "What is Android Jetpack?",
-            answers = listOf("All of these", "Tools", "Documentation", "Libraries"),
-            topic = "Acids and bases"
+            answers = listOf("All of these", "Tools", "Documentation", "Libraries")
         ),
         QuizItem(
             text = "What is the base class for layouts?",
-            answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot"),
-            topic = "Biochemistry"
+            answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")
         ),
         QuizItem(
             text = "What layout do you use for complex screens?",
-            answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout"),
-            topic = "Periodic table"
+            answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")
         ),
         QuizItem(
             text = "What do you use to push structured data into a layout?",
-            answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method"),
-            topic = "Organic chemistry"
+            answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method")
         ),
         QuizItem(
             text = "What method do you use to inflate layouts in fragments?",
@@ -32,13 +28,11 @@ fun generateQuizItems(): MutableList<QuizItem> {
                 "onActivityCreated()",
                 "onCreateLayout()",
                 "onInflateLayout()"
-            ),
-            topic = "Atomic structure"
+            )
         ),
         QuizItem(
             text = "What's the build system for Android?",
-            answers = listOf("Gradle", "Graddle", "Grodle", "Groyle"),
-            topic = "Chemical bonds"
+            answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")
         ),
         QuizItem(
             text = "Which class do you use to create a vector drawable?",
@@ -47,23 +41,19 @@ fun generateQuizItems(): MutableList<QuizItem> {
                 "AndroidVectorDrawable",
                 "DrawableVector",
                 "AndroidVector"
-            ),
-            topic = "Energy in chemical reactions"
+            )
         ),
         QuizItem(
             text = "Which one of these is an Android navigation component?",
-            answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher"),
-            topic = "Redox reactions"
+            answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")
         ),
         QuizItem(
             text = "Which XML element lets you register an activity with the launcher activity?",
-            answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher"),
-            topic = "Electrolytes"
+            answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")
         ),
         QuizItem(
             text = "What do you use to mark a layout for data binding?",
-            answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"),
-            topic = "Structure"
+            answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>")
         )
     )
 }
