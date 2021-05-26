@@ -12,7 +12,9 @@ data class Question(
     @ColumnInfo(name = "question_title")
     var questionTitle: String = "default_question_title",
     @ColumnInfo(name = "answer_options")
-    var answers: List<String> = listOf("answer1", "answer2", "answer3", "answer4")
+    var answers: List<String> = listOf("answer1", "answer2", "answer3", "answer4"),
+    @ColumnInfo(name = "topic")
+    var topic: String = "default_topic"
 )
 
 class AnswersConverter {

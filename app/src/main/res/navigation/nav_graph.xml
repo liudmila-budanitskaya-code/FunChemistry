@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_questionFragment_to_gameOverFragment"
             app:destination="@id/gameOverFragment" />
+        <argument
+            android:name="topic"
+            app:argType="site.budanitskaya.chemistryquiz.fine.domain.Topic" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"

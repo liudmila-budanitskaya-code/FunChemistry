@@ -36,7 +36,7 @@ class QuestionViewModel : ViewModel() {
         get() = _questionIndex
 
     val numQuestions by lazy {
-        Math.min((quizItems.size + 1) / 2, 3)
+        Math.min((quizItems.size + 1) / 2, 1)
     }
 
     fun shuffleQuestions() {
