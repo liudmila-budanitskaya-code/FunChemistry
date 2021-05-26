@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragment
 import site.budanitskaya.chemistryquiz.fine.topics.topics
 import java.lang.Exception
@@ -35,10 +34,11 @@ class QuizListFragment : Fragment() {
         circleRecycler = view.findViewById(R.id.circle_recycler)
 
         circleRecycler.adapter = adapter
-        val layoutManager = IntermittentSpanLayoutManager(requireContext(), 2)
-        circleRecycler.layoutManager = layoutManager
-        circleRecycler.adapter = adapter
+        val layoutManager = GridLayoutManager(requireContext(), 2)
 
+
+        circleRecycler.smoothScrollToPosition(0)
+        circleRecycler.layoutManager = layoutManager
 /*        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
 

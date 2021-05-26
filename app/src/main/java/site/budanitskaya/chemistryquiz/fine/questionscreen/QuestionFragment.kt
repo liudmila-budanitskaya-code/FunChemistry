@@ -102,7 +102,7 @@ class QuestionFragment : Fragment() {
     }
 
     fun setContentView() {
-        binding.questionText.text = viewModel.currentQuestion.text
+        /*binding.questionText.text = viewModel.currentQuestion.text*/
         binding.btnOptOne.text = viewModel.answers[0]
         binding.btnOptTwo.text = viewModel.answers[1]
         binding.btnOptThree.text = viewModel.answers[2]
