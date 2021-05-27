@@ -1,6 +1,5 @@
 package site.budanitskaya.chemistryquiz.fine.questionscreen
 
-import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -9,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.LinearInterpolator
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
@@ -47,18 +47,23 @@ class QuestionFragment : Fragment() {
 
         viewModel.shuffleQuestions()
         var i = 0
-        object : CountDownTimer(30000, 1) {
+        object : CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.timer.text = "seconds remaining: " + millisUntilFinished / 1000
-                i++;
-                binding.progressBar.invalidate()
-                binding.progressBar.setProgress(((3000 - i*100)/(30000/1000)), true)
             }
 
             override fun onFinish() {
                 findNavController().navigate(R.id.action_questionFragment_to_gameOverFragment)
             }
         }.start()
+
+        val progressbar = binding.progressBar
+
+        val animation = ObjectAnimator.ofInt(progressbar, "progress", 1000000, 0)
+        animation.duration = 30000
+
+        animation.interpolator = LinearInterpolator()
+        animation.start()
 
         args = QuestionFragmentArgs.fromBundle(requireArguments())
         viewModel.setQuestion(args.topic.name)
@@ -98,11 +103,6 @@ class QuestionFragment : Fragment() {
     }
 
 
-    /*
-    clickFlag должен ставиться true только в том случае, если кнопка нажата впервые и вопрос новый
-
-
-     */
     fun onOptionBtnClicked(view: View) {
 
         if (!clickFlag) {
