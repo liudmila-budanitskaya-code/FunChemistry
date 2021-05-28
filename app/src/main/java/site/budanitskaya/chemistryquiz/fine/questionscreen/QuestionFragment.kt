@@ -18,8 +18,7 @@ import androidx.navigation.fragment.findNavController
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
 
-
-class QuestionFragment : Fragment() {
+class QuestionFragment : Fragment(), INavigate {
 
     private lateinit var args: QuestionFragmentArgs
 
@@ -30,7 +29,7 @@ class QuestionFragment : Fragment() {
     var clickFlag = false
     private var currentQuizItem = 0
 
-
+    var navigateFlag = 0
     private lateinit var binding: FragmentQuestionBinding
 
     override fun onCreateView(
@@ -47,15 +46,7 @@ class QuestionFragment : Fragment() {
 
         viewModel.shuffleQuestions()
         var i = 0
-        object : CountDownTimer(30000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                binding.timer.text = "seconds remaining: " + millisUntilFinished / 1000
-            }
-
-            override fun onFinish() {
-                findNavController().navigate(R.id.action_questionFragment_to_gameOverFragment)
-            }
-        }.start()
+        Timer(this).start()
 
         val progressbar = binding.progressBar
 
@@ -136,7 +127,7 @@ class QuestionFragment : Fragment() {
             clickFlag = false
             setContentView()
         } else {
-            findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment())
+            navigateToGameOverScreen()
         }
     }
 
@@ -149,4 +140,25 @@ class QuestionFragment : Fragment() {
         binding.rationale.text = viewModel.currentQuestion.explanation
         binding.btnNext.text = "Skip"
     }
+
+    inner class Timer(val fragment: QuestionFragment) : CountDownTimer(30000, 1000) {
+        override fun onTick(millisUntilFinished: Long) {
+            binding.timer.text = "seconds remaining: " + millisUntilFinished / 1000
+        }
+
+        override fun onFinish() {
+            if(navigateFlag !=1){
+                fragment.navigateToGameOverScreen()
+            }
+        }
+    }
+
+    override fun navigateToGameOverScreen() {
+        findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment())
+        navigateFlag = 1
+    }
+}
+
+interface INavigate {
+    fun navigateToGameOverScreen()
 }
