@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.questionscreen
 
 import android.animation.ObjectAnimator
+import android.app.Dialog
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
@@ -21,6 +23,11 @@ import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
 class QuestionFragment : Fragment(), INavigate {
 
     private lateinit var args: QuestionFragmentArgs
+    lateinit var dialog: Dialog
+    var startTime: Long = 0
+    val spentTimes by lazy {
+        mutableListOf<Long>()
+    }
 
     private val viewModel by lazy {
         ViewModelProvider(this, QuestionViewModelFactory())
@@ -45,7 +52,6 @@ class QuestionFragment : Fragment(), INavigate {
         binding.viewModel = viewModel
 
         viewModel.shuffleQuestions()
-        var i = 0
         Timer(this).start()
 
         val progressbar = binding.progressBar
@@ -67,6 +73,7 @@ class QuestionFragment : Fragment(), INavigate {
         setContentView()
         binding.btnOptOne.setOnClickListener { view: View ->
             onOptionBtnClicked(view)
+            createDialog()
         }
 
         binding.btnOptTwo.setOnClickListener { view: View ->
@@ -87,7 +94,8 @@ class QuestionFragment : Fragment(), INavigate {
         }
         currentQuizItem++
 
-
+        binding.simpleChronometer.start()
+        startTime = System.currentTimeMillis()
 
         Log.d("onCreateView: ", "onCreateView: ${viewModel.getRowCount()}")
         return binding.root
@@ -114,7 +122,6 @@ class QuestionFragment : Fragment(), INavigate {
     }
 
     fun onNextBtnClicked() {
-
         viewModel.questionIncremented()
         if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
             binding.noQuestion.invalidate()
@@ -154,8 +161,20 @@ class QuestionFragment : Fragment(), INavigate {
     }
 
     override fun navigateToGameOverScreen() {
-        findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment())
         navigateFlag = 1
+        val endTime = System.currentTimeMillis()
+        Toast.makeText(requireContext(), ((endTime - startTime)/1000).toString(), Toast.LENGTH_LONG).show()
+        spentTimes.add((endTime - startTime)/1000)
+        startTime = endTime
+        findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment(spentTimes.toLongArray()))
+    }
+
+    fun createDialog(){
+        dialog = Dialog(requireContext())
+        dialog.setTitle("Player")
+        dialog.setContentView(R.layout.activity_splash)
+        dialog.show()
+
     }
 }
 
