@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="crystals_q1">
+        <item name="one">What state or phase of material are crystals?</item>
+        <item name="two">Solid, Gas, Plasma, Liquid</item>
+        <item name="three">Crystals</item>
+        <item name="four">Generally, crystals are solids.</item>
+    </string-array>
+    <string-array name="crystals_q2">
+        <item name="one">Which of the following best describes a crystal?</item>
+        <item name="two">Molecules fit together in a repeating pattern, Molecules fit together in a random pattern, All of the above, None of the above</item>
+        <item name="three">Crystals</item>
+        <item name="four">Definitely, you are right!</item>
+    </string-array>
+    <string-array name="crystals_q3">
+        <item name="one">Which of the following is not one of the seven basic crystal shapes?</item>
+        <item name="two">Pentagonal, Hexagonal, Trigonal, Cubic</item>
+        <item name="three">Crystals</item>
+        <item name="four">Such crystals would be unstable.</item>
+    </string-array>
+    <string-array name="crystals_q4">
+        <item name="one">What type of crystals are formed in clouds when water freezes?</item>
+        <item name="two">Snowflakes, Quartz, Diamond, Amethyst</item>
+        <item name="three">Crystals</item>
+        <item name="four">Snowflakes is the name for water crystals formed in the clouds.</item>
+    </string-array>
+
+    <string-array name="crystals_q5">
+        <item name="one">What are the seven basic shapes formed by crystals called?</item>
+        <item name="two">Lattices, Shapelets, Formations, Shapes</item>
+        <item name="three">Crystals</item>
+        <item name="four">Lattices is the best termfor how the crystals are internally organized.</item>
+    </string-array>
+</resources>
+
+
+
+

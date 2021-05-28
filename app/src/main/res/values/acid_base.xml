@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="acid_base_q1">
-        <item name="ab_q1_text">Which of these indicators is useless foe detecting acids?</item>
-        <item name="ab_q1_answers">Cresolphthalein, Congo red, Methyl yellow, Bromocresol green</item>
-        <item name="ab_q1_topic">Acids and bases</item>
-        <item name="ab_q1_explanation">All phthaleins in aqueous solutions are insensible towards acids, so the correct answer is cresolphthalein.</item>
+        <item name="one">Which of these indicators is useless foe detecting acids?</item>
+        <item name="two">Cresolphthalein, Congo red, Methyl yellow, Bromocresol green</item>
+        <item name="three">Acids and bases</item>
+        <item name="four">All phthaleins in aqueous solutions are insensible towards acids, so the correct answer is cresolphthalein.</item>
+    </string-array>
+
+    <string-array name="acid_base_q2">
+        <item name="one">What measurement of the pH scale is considered a neutral liquid?</item>
+        <item name="two">7, 0, 3, 14</item>
+        <item name="three">Acids and bases</item>
+        <item name="four">pH values below 7 are acidic, above 7 are basic and 7 is neutral.</item>
+    </string-array>
+
+    <string-array name="acid_base_q3">
+        <item name="one">Which of the following is a way that acids and bases are used in science and technology?</item>
+        <item name="two">All of the Above, Batteries, Household cleaning products, Fertilizer</item>
+        <item name="three">Acids and bases</item>
+        <item name="four">All of these products contain alkaline or acidic substances and are used in technological applications.</item>
+    </string-array>
+
+    <string-array name="acid_base_q4">
+        <item name="one">What is the pH value of orange juice?</item>
+        <item name="two">3, 1, 6, 8</item>
+        <item name="three">Acids and bases</item>
+        <item name="four">pH value of 1 represents 1 a strong acid, 6 is only slightly acidic while 3 seems to be the best match.</item>
+    </string-array>
+
+    <string-array name="acid_base_q5">
+        <item name="one">What is the pH value of milk of magnesia?</item>
+        <item name="two">10, 6, 3, 8</item>
+        <item name="three">Acids and bases</item>
+        <item name="four">pH value of 3 represents a rather strong acid, 6 and 8 are nearly neutral while 3 seems to be the best match.</item>
     </string-array>
 </resources>

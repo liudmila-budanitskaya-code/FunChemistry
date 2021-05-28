@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pt_q1">
+        <item name="one">The … is a particle that has one unit of positive charge</item>
+        <item name="two">Proton, Photon, Electron, Nucleus</item>
+        <item name="three">Periodic table</item>
+        <item name="four">A proton is a particle with one unit of positive charge.</item>
+    </string-array>
+
+    <string-array name="pt_q2">
+        <item name="one">From its position in the periodic table, one would predict that the element Potassium,
+K, has the following property</item>
+        <item name="two">Is more active than lithium, Participate in chemical reactions by taking electrons from other elements, Would react with elements like oxygen or iodine to form covalent compounds, Has less attraction for its outer electron than does rubidium</item>
+        <item name="three">Periodic table</item>
+        <item name="four">Potassium and Lithium belong to the same group in the
+periodic table. Reactivity tends to increase when you go down on a group in the case of metals,
+as it becomes easier for an atom to lose electrons when they become bigger.</item>
+    </string-array>
+
+    <string-array name="pt_q3">
+        <item name="one">From the following countries which one is not represented on the periodic table?</item>
+        <item name="two">United States, India, France, Germany</item>
+        <item name="three">Periodic table</item>
+        <item name="four">United States. Some elements in the periodic table are named after a person, an
+object or a country. This is the case of Francium, in honor to France, Germanium in honor to
+Germany and Indium in honor to India. There is not an element representing United States.</item>
+    </string-array>
+
+    <string-array name="pt_q4">
+        <item name="one">The element chlorine (atomic number 17) will tend to:</item>
+        <item name="two">Gain electron(s) to become a negative ion, Lose electron(s) to become a positive ion, Lose electron(s) to become a negative ion., Gain electron(s) to become a positive ion</item>
+        <item name="three">Periodic table</item>
+        <item name="four">You can write the electron configuration
+of the atom in order to find its valence electrons, use the electron configuration chart at the end
+of the book to build electron configurations. For Chlorine the electron configuration will be: 1s2 2s2 2p6 3s2 3p5
+. According to the octet rule Chlorine will need 1 electron in order to fill the
+energy level 3 to be 1s2 2s2 2p6 3s2 3p6. This mean that chloride has a tendency to acquire electrons instead of donate</item>
+    </string-array>
+
+    <string-array name="pt_q5">
+        <item name="one">Which of the following elements is a metalloid?</item>
+        <item name="two">Silicon, Oxygen, Chlorine, Argon</item>
+        <item name="three">Periodic table</item>
+        <item name="four">Silicon has properties that are between those of metals and non-metals
+(metalloid). Metalloids can be distinguished in a periodic table as they are forming a diagonal
+between the metals and the non-metals.</item>
+    </string-array>
+</resources>

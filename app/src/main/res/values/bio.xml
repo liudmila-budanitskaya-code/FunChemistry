@@ -6,4 +6,39 @@
         <item name="bio_q1_topic">Biochemistry</item>
         <item name="bio_q1_explanation">Adenosine is composed of the sugar ribose and the base adenine. Sugar + base = nucleoside.</item>
     </string-array>
+
+    <string-array name="bio_q2">
+        <item name="bio_q2_text">In hybridization method, which of the following is pressed onto agar?</item>
+        <item name="bio_q2_answers">Nitrocellulose paper, Silicon paper, Filter paper, PVDF</item>
+        <item name="bio_q2_topic">Biochemistry</item>
+        <item name="bio_q2_explanation">Nitrocellulose membrane has high binding capacity for proteins.</item>
+    </string-array>
+
+    <string-array name="bio_q3">
+        <item name="bio_q3_text">Recombinant DNA molecule is produced by ligating …</item>
+        <item name="bio_q3_answers">Two DNA segments, Two m-RNA molecules, One m-RNA with one t-RNA, One m-RNA with DNA segment</item>
+        <item name="bio_q3_topic">Biochemistry</item>
+        <item name="bio_q3_explanation">For the construction of recombinant DNA molecule, two DNA segments are ligated.</item>
+    </string-array>
+
+    <string-array name="bio_q4">
+        <item name="bio_q4_text">Which of the following statements is true about a vector?</item>
+        <item name="bio_q4_answers">Plasmids, phages can be used as vectors, All vectors are plasmids, Cyanobacteria can also be used as vectors, Fungi can also be used as vectors</item>
+        <item name="bio_q4_topic">Biochemistry</item>
+        <item name="bio_q4_explanation">Plasmids and phages can be used as vectors.</item>
+    </string-array>
+
+    <string-array name="bio_q5">
+        <item name="bio_q5_text">What is the main aim of human genome project?</item>
+        <item name="bio_q5_answers">To identify and sequence of all the genes present in the human body, To introduce new genes to human beings, To remove disease causing genes from humans, To improve techniques of finger printing</item>
+        <item name="bio_q5_topic">Biochemistry</item>
+        <item name="bio_q5_explanation">The main aim of human genome project is to identify and sequence of all the genes present in the human body.</item>
+    </string-array>
+
+    <string-array name="bio_q6">
+        <item name="bio_q5_text">Agar is extracted from...</item>
+        <item name="bio_q5_answers">Algae, Bacteria, Fungi, Virus</item>
+        <item name="bio_q5_topic">Biochemistry</item>
+        <item name="bio_q5_explanation">Agar is obtained from an alga..</item>
+    </string-array>
 </resources>

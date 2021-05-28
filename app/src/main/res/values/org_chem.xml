@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="och_q1">
+        <item name="one">Consider (E)-2-butene and (Z)-2-butene. This is a pair of what type(s) of isomers?
+    I. Cis–trans isomers
+    II. Diastereomers
+    III. Enantiomers</item>
+        <item name="two">I and II only, I only, II only, I and III only</item>
+        <item name="three">Organic chemistry</item>
+        <item name="four">(E)-2-butene can also be called trans-2-butene; (Z)-2-butene can also be called cis-2-butene. As such, they are cis–transisomers. Remember that cis–trans isomers are a subtype of diastereomers in which the position of substituents differs about an immovable bond. Diastereomers are molecules that are non-mirror-image stereoisomers (molecules with the same atomic connectivity). These are not enantiomers because they are not mirror images of each other..</item>
+    </string-array>
+
+    <string-array name="och_q2">
+        <item name="one">Butanoic anhydride can be produced by the reaction of butanoic acid with which of the following compounds?</item>
+        <item name="two">Butanoic acid, Ethanoic acid, Butanol, Methanal</item>
+        <item name="three">Organic chemistry</item>
+        <item name="four">Butanoic anhydride is an anhydride with two butane R groups. Anhydrides are produced by the reaction of two carboxylic acids with the loss of a water molecule. Therefore, butanoic anhydride would be produced by the reaction of two molecules of butanoic acid.</item>
+    </string-array>
+
+    <string-array name="och_q3">
+        <item name="one">What would be the charge of aspartic acid at pH 7?</item>
+        <item name="two">Negative, Neutral, Positive, There is not enough information to answer the question.</item>
+        <item name="three">Organic chemistry</item>
+        <item name="four">The amino acid in question is aspartic acid, which is an acidic amino acid because it contains an extra carboxyl group. At neutral pH, both of the carboxyl groups are ionized, so there are two negative charges on the molecule. Only one of the charges is neutralized by the positive charge on the amino group, so the molecule has an overall negative charge.</item>
+    </string-array>
+
+    <string-array name="och_q4">
+        <item name="one">Which of these molecules has the highest boiling point?</item>
+        <item name="two">Cyclopenthane, Penthane, 2,2-Dimethylpropane, 2-methylbutane</item>
+        <item name="three">Organic chemistry</item>
+        <item name="four">The physical properties of cycloalkanes are similar to those of alkanes, but they have higher boiling points, melting points and higher densities due to the greater number of London forces that they contain.</item>
+    </string-array>
+
+    <string-array name="och_q5">
+        <item name="one">Which of the following amino acids have side-chains that cannot participate in intermolecular hydrogen bonding?</item>
+        <item name="two">Isoleucine, Tyrosine, Asparagine, Tryptophan</item>
+        <item name="three">Organic chemistry</item>
+        <item name="four">Of these aminoacids, only isoleucine contains only isopropyl group which is generally non-reactive.</item>
+    </string-array>
+</resources>
