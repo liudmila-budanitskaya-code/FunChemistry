@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
 
-@Database(entities = [Question::class], version = 1)
+@Database(entities = [Question::class, Reaction::class], version = 1)
 abstract class QuestionDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDatabaseDao?
 
@@ -34,6 +34,10 @@ abstract class QuestionDatabase : RoomDatabase() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     db.beginTransaction()
+                    val second_values = ContentValues().apply {
+                        put("reaction_title", "one")
+                    }
+                    db.insert("reaction_table", SQLiteDatabase.CONFLICT_ABORT, second_values);
                     val list = generateQuestionsList()
                     for (i in list.indices) {
                         val values = ContentValues().apply {

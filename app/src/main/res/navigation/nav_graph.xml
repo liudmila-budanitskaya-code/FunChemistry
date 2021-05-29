@@ -25,6 +25,9 @@
         <argument
             android:name="topic"
             app:argType="site.budanitskaya.chemistryquiz.fine.domain.Topic" />
+        <action
+            android:id="@+id/action_questionFragment_to_gameOverFragment2"
+            app:destination="@id/gameOverFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
@@ -37,5 +40,8 @@
         <argument
             android:name="spent_times"
             app:argType="long[]" />
+        <argument
+            android:name="areCorrect"
+            app:argType="boolean[]" />
     </fragment>
 </navigation>

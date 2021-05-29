@@ -28,6 +28,10 @@ class QuestionFragment : Fragment(), INavigate {
         mutableListOf<Long>()
     }
 
+    val areCorrect by lazy {
+        mutableListOf<Boolean>()
+    }
+
     private val viewModel by lazy {
         ViewModelProvider(this, QuestionViewModelFactory())
             .get(QuestionViewModel::class.java)
@@ -107,9 +111,11 @@ class QuestionFragment : Fragment(), INavigate {
             if (view is AppCompatButton) {
                 binding.btnNext.text = "Next"
                 if (view.text == viewModel.currentQuestion.answers[0]) {
+                    areCorrect.add(true)
                     binding.bool.text = "True!"
                     binding.bool.setTextColor(getColor(requireContext(), R.color.green))
                 } else {
+                    areCorrect.add(false)
                     binding.bool.text = "False!"
                     binding.bool.setTextColor(getColor(requireContext(), R.color.red))
                 }
@@ -178,7 +184,7 @@ class QuestionFragment : Fragment(), INavigate {
         startTime = endTime
         findNavController().navigate(
             QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment(
-                spentTimes.toLongArray()
+                spentTimes.toLongArray(), areCorrect.toBooleanArray()
             )
         )
     }

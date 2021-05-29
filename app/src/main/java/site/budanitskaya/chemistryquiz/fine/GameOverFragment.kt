@@ -12,7 +12,6 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentGameOverBinding
-import site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragmentArgs
 
 class GameOverFragment : Fragment() {
 
@@ -29,7 +28,7 @@ class GameOverFragment : Fragment() {
             inflater, R.layout.fragment_game_over, container, false
         )
         args = GameOverFragmentArgs.fromBundle(requireArguments())
-        setBarChart(args.spentTimes.toList())
+        setBarChart(args.spentTimes.toList(), args.areCorrect.toList())
         return binding.root
     }
 
@@ -40,16 +39,24 @@ class GameOverFragment : Fragment() {
         }
     }
 
-    private fun setBarChart(list: List<Long>) {
-        val entries = ArrayList<BarEntry>()
+    private fun setBarChart(list: List<Long>, areCorrect: List<Boolean>) {
+        val true_entries = ArrayList<BarEntry>()
+        val false_entries = ArrayList<BarEntry>()
         Log.d("setBarChart", "setBarChart: ${list.size}")
         for (i in list.indices){
-            entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
+            if(areCorrect[i]){
+                true_entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
+            } else {
+                false_entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
+            }
         }
 
-        val barDataSet = BarDataSet(entries, "")
+        val barDataSet = BarDataSet(true_entries, "True")
+        barDataSet.color = R.color.colorPrimary
+        val falSet = BarDataSet(false_entries, "False")
+        falSet.color = R.color.colorAccent
 
-        val data = BarData(barDataSet)
+        val data = BarData(barDataSet, falSet)
 
         val barChart = binding.barChart
         barChart.data = data // set the data and list of lables into chart
