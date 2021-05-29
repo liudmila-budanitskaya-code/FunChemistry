@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="electrolytes_q1">
+        <item name="one">What is the difference between a nonelectrolyte and an electrolyte?</item>
+        <item name="two">
+An aqueous solution of an electrolyte will conduct electricity, while a solution of a nonelectrolyte will not., A non-electrolyte is ionic in nature, while an electrolyte is molecular.,
+An electrolyte is basic in aqueous solution, while a non-electrolyte is acidic., An electrolyte contains chloride atoms, while a non-electrolyte contains carbon atoms.</item>
+        <item name="three">Electrolytes</item>
+        <item name="four">As far as electrolytes in aqueous solutions are considered, An aqueous solution of an electrolyte will conduct electricity, while a solution of a nonelectrolyte will not.</item>
+    </string-array>
+
+    <string-array name="electrolytes_q2">
+        <item name="one">What is the equation used for determining molarity?</item>
+        <item name="two">
+Molarity = moles of solute / liters of solution, Molarity = liters of solution / moles of solute,Molarity = moles of solvent / liters of solution, Molarity = liters of solution / moles of solvent</item>
+        <item name="three">Electrolytes</item>
+        <item name="four">By definition, molarity is moles of solute divided by liters of solution.</item>
+    </string-array>
+
+    <string-array name="electrolytes_q3">
+        <item name="one">A solution in which [H+] = 10–8 M has a pH of … and is ...</item>
+        <item name="two">
+8, basic, 8, acidic, -6, basic, 6, basic</item>
+        <item name="three">Electrolytes</item>
+        <item name="four">pH is 8 and medium is basic</item>
+    </string-array>
+
+    <string-array name="electrolytes_q4">
+        <item name="one">A solution in which [H+] = 10–8 M has a pH of … and is ...</item>
+        <item name="two">
+8; basic, 8; acidic, -6; basic, 6; basic</item>
+        <item name="three">Electrolytes</item>
+        <item name="four">pH is 8 and medium is basic</item>
+    </string-array>
+
+    <string-array name="electrolytes_q5">
+        <item name="one">What is the concentration of ammonium chloride in a solution if its pH is 4.80?</item>
+        <item name="two">
+0.45 M,  0.25 M, 0.15 M, 0.60 M</item>
+        <item name="three">Electrolytes</item>
+        <item name="four">The calculation is based on dissociation constant of ammonium hydroxide. </item>
+    </string-array>
+</resources>
+
+
+
+
+
+
+

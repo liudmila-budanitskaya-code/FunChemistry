@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="redox_q1">
+        <item name="one"> If an atom loses electrons during a chemical reaction, the atom was:</item>
+        <item name="two">Oxidized, Reduced, Neutralized, TPrecipitated</item>
+        <item name="three">Redox reactions</item>
+        <item name="four">The element is oxidized.</item>
+    </string-array>
+
+    <string-array name="redox_q2">
+        <item name="one">Oxygen does not oxidize everything upon normal conditions. What is a probable explanation for this fact?</item>
+        <item name="two">The reason is the very slow kinetics for this process, On the contrary, oxygen is oxidised itself, Oxygen has no enough potential to do this, None of these</item>
+        <item name="three">Redox reactions</item>
+        <item name="four">Oxygen is potent oxidant and, according to thermodynamic predictions, it must oxidize a lot of things while it does not upon normal conditions. Kinetics is the reason.</item>
+    </string-array>
+
+    <string-array name="redox_q3">
+        <item name="one">Substance that loses electrons?</item>
+        <item name="two">Reducing agent, Oxidizing agent, Neutralizing agent, There is no enough information to say for sure</item>
+        <item name="three">Redox reactions</item>
+        <item name="four">The substance that loses electrons from the outer shell of its key elements is oxidized while the other reaction participant are reduced.</item>
+    </string-array>
+
+    <string-array name="redox_q4">
+        <item name="one">Substance that gains electrons?</item>
+        <item name="two">Oxidizing agent, Reducing agent, Redox agent, There is no enough information to say for sure</item>
+        <item name="three">Redox reactions</item>
+        <item name="four">The substance that gains electrons to add to the outer shell of its key elements is reduced while the other reaction participant are oxidized.</item>
+    </string-array>
+
+    <string-array name="redox_q5">
+        <item name="one">The species that is being reduced will have</item>
+        <item name="two">a more negative oxidation state, a more positive oxidation state after the reduction has occurred, no change in its oxidation state, There is no enough information</item>
+        <item name="three">Redox reactions</item>
+        <item name="four">The substance that gains electrons is reduced while the other reaction participant are oxidized.</item>
+    </string-array>
+
+
+</resources>

@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="as_q1">
+        <item name="one">Which of the three sub-atomic particles is the lightest?</item>
+        <item name="two">Neutrino, The neutron, The proton, The electron</item>
+        <item name="three">Atomic structure</item>
+        <item name="four">Sure, neutrino is the lightest one of these subatomic particles</item>
+    </string-array>
 
+    <string-array name="as_q2">
+        <item name="one">Which of the following statements is/are correct?
+(a) Protons have a charge of -1.
+(b) Neutrons have no charge.
+(c) An electron has negligible mass compared to the mass of a neutron.</item>
+        <item name="two">Statements (b) and (c), Statements (a) and (c), Statement (c) only, Statement (c) only</item>
+        <item name="three">Atomic structure</item>
+        <item name="four">Protons have a charge of +1, Neutrons have no charge, the mass of electron is negligible compared to the mass of proton and neutron</item>
+    </string-array>
 
+    <string-array name="as_q3">
+        <item name="one">Which of the following pairs of properties is correct for the proton?</item>
+        <item name="two"> Its got a charge of +1 and normally found inside the nucleus.,  Its got no charge and normally found inside the nucleus., Its got a charge of -1 and normally found inside the nucleus of an atom., Its got a charge of +1 and normally found outside the nucleus.</item>
+        <item name="three">Atomic structure</item>
+        <item name="four">By definition, proton is a positively charged particle found inside of the nucleus if one could look inside of it.</item>
+    </string-array>
+
+    <string-array name="as_q4">
+        <item name="one">Which of the following statements is false?</item>
+        <item name="two"> An element consists of more than one type of atom, There are more than 100 different types of elements known, An atom is the smallest part of an element that can exist on its own., Not all elements can be found naturally on earth.</item>
+        <item name="three">Atomic structure</item>
+        <item name="four">An element consists of one type of atoms. The other statements are true.</item>
+    </string-array>
+
+    <string-array name="as_q5">
+        <item name="one">Which one of the elements shown in the periodic table below has a full outer shell of electrons??</item>
+        <item name="two"> An element consists of more than one type of atom, There are more than 100 different types of elements known, An atom is the smallest part of an element that can exist on its own., Not all elements can be found naturally on earth.</item>
+        <item name="three">Atomic structure</item>
+        <item name="four">Neon is a noble gas which has its outer shell completely filled.</item>
+    </string-array>
 </resources>

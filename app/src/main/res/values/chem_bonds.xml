@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cb_q1">
+        <item name="one">What is the main reason that atoms form ions?</item>
+        <item name="two">To fill their outer electron shells, To develop a positive charge, To create a negative charge, To bond with other elementsTo bond with other elements.</item>
+        <item name="three">Chemical bonds</item>
+        <item name="four">Electron gain or loss can give an atom a filled outermost electron shell and make it energetically more stable.</item>
+    </string-array>
+
+    <string-array name="cb_q2">
+        <item name="one">Which scenario would cause a covalent bond to form?</item>
+        <item name="two">Two atoms share electrons so they can fill their outer shells, One atom loses one or more electrons and the other atom gains one or more electrons, The constant motion of electrons and the creation of charge imbalances bonds two molecules together, A hydrogen atom with a slight positive charge is attracted to a negative charge of another molecule or atom.</item>
+        <item name="three">Chemical bonds</item>
+        <item name="four">Covalent bonds form so that atoms can become more stable. They do this by sharing electrons, rather than fully gaining or losing them.</item>
+    </string-array>
+
+    <string-array name="cb_q3">
+        <item name="one">What does a hydrogen atom need to be in for hydrogen bonding to occur?</item>
+        <item name="two">A polar covalent bond, An alkaline bond, An ionic bond, A non-polar covalent bond.</item>
+        <item name="three">Chemical bonds</item>
+        <item name="four">Hydrogens in a polar covalent bond will have a slight positive charge because the bond electrons are pulled more strongly toward the other element.</item>
+    </string-array>
+
+    <string-array name="cb_q4">
+        <item name="one">What is the main reason that atoms form ions?</item>
+        <item name="two">To fill their outer electron shells, To bond with other elements, To develop a positive charge, To create a negative charge.</item>
+        <item name="three">Chemical bonds</item>
+        <item name="four">Ionic bonds form when one atom loses one or more electrons and the other atom gains one or more electrons.</item>
+    </string-array>
+
+    <string-array name="cb_q5">
+        <item name="one">The electrons involved in bonding are:</item>
+        <item name="two">In the highest occupied energy level(s), Found closest to the nucleus, Found in the nucleus, Found on the lowest energy level.</item>
+        <item name="three">Chemical bonds</item>
+        <item name="four">The electrons involved in bonding are in the highest occupied energy levels.</item>
+    </string-array>
+</resources>
