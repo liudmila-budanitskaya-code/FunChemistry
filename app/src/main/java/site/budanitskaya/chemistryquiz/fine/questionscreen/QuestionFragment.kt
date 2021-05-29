@@ -102,7 +102,6 @@ class QuestionFragment : Fragment(), INavigate {
 
 
     fun onOptionBtnClicked(view: View) {
-
         if (!clickFlag) {
             if (view is AppCompatButton) {
                 binding.btnNext.text = "Next"
@@ -123,15 +122,21 @@ class QuestionFragment : Fragment(), INavigate {
     fun onNextBtnClicked() {
         viewModel.questionIncremented(args.topic.name)
         if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
-       /*     binding.noQuestion.invalidate()
-            binding.questionText.invalidate()
-            binding.btnOptOne.invalidate()
-            binding.btnOptThree.invalidate()
-            binding.btnOptFour.invalidate()
-            binding.bool.invalidate()
-            binding.rationale.invalidate() */
-                binding.invalidateAll()
-            setContentView()
+            /*     binding.noQuestion.invalidate()
+                 binding.questionText.invalidate()
+                 binding.btnOptOne.invalidate()
+                 binding.btnOptThree.invalidate()
+                 binding.btnOptFour.invalidate()
+                 binding.bool.invalidate()
+                 binding.rationale.invalidate() */
+            binding.invalidateAll()
+            binding.bool.text = ""
+            binding.rationale.text = ""
+            binding.questionText.text = viewModel.currentQuestion.text
+            binding.btnOptOne.text = viewModel.answers[0]
+            binding.btnOptTwo.text = viewModel.answers[1]
+            binding.btnOptThree.text = viewModel.answers[2]
+            binding.btnOptFour.text = viewModel.answers[3]
             clickFlag = false
         } else {
             navigateToGameOverScreen()
@@ -154,7 +159,7 @@ class QuestionFragment : Fragment(), INavigate {
         }
 
         override fun onFinish() {
-            if(navigateFlag !=1){
+            if (navigateFlag != 1) {
                 fragment.navigateToGameOverScreen()
             }
         }
@@ -163,13 +168,21 @@ class QuestionFragment : Fragment(), INavigate {
     override fun navigateToGameOverScreen() {
         navigateFlag = 1
         val endTime = System.currentTimeMillis()
-        Toast.makeText(requireContext(), ((endTime - startTime)/1000).toString(), Toast.LENGTH_LONG).show()
-        spentTimes.add((endTime - startTime)/1000)
+        Toast.makeText(
+            requireContext(),
+            ((endTime - startTime) / 1000).toString(),
+            Toast.LENGTH_LONG
+        ).show()
+        spentTimes.add((endTime - startTime) / 1000)
         startTime = endTime
-        findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment(spentTimes.toLongArray()))
+        findNavController().navigate(
+            QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment(
+                spentTimes.toLongArray()
+            )
+        )
     }
 
-    fun createDialog(){
+    fun createDialog() {
         dialog = Dialog(requireContext())
         dialog.setTitle("Player")
         dialog.setContentView(R.layout.activity_splash)
