@@ -48,6 +48,9 @@ repositories {
 
 dependencies {
 
+    implementation 'androidx.appcompat:appcompat:1.4.0-alpha01'
+    implementation 'com.google.android.material:material:1.4.0-beta01'
+
     //material dialogs
 
     implementation 'com.afollestad.material-dialogs:core:3.3.0'

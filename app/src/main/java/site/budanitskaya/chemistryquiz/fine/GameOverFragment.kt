@@ -43,8 +43,8 @@ class GameOverFragment : Fragment() {
     private fun setBarChart(list: List<Long>) {
         val entries = ArrayList<BarEntry>()
         Log.d("setBarChart", "setBarChart: ${list.size}")
-        list.forEach{
-            entries.add(BarEntry(it.toFloat(), 5f))
+        for (i in list.indices){
+            entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
         }
 
         val barDataSet = BarDataSet(entries, "")

@@ -44,7 +44,8 @@ class QuestionFragment : Fragment(), INavigate {
     ): View {
 
         binding = DataBindingUtil.inflate<FragmentQuestionBinding>(
-            inflater, R.layout.fragment_question, container, false
+            inflater,
+            R.layout.fragment_question, container, false
         )
         binding.game = this
 
@@ -121,23 +122,9 @@ class QuestionFragment : Fragment(), INavigate {
 
     fun onNextBtnClicked() {
         viewModel.questionIncremented(args.topic.name)
+
         if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
-            /*     binding.noQuestion.invalidate()
-                 binding.questionText.invalidate()
-                 binding.btnOptOne.invalidate()
-                 binding.btnOptThree.invalidate()
-                 binding.btnOptFour.invalidate()
-                 binding.bool.invalidate()
-                 binding.rationale.invalidate() */
-            binding.invalidateAll()
-            binding.bool.text = ""
-            binding.rationale.text = ""
-            binding.questionText.text = viewModel.currentQuestion.text
-            binding.btnOptOne.text = viewModel.answers[0]
-            binding.btnOptTwo.text = viewModel.answers[1]
-            binding.btnOptThree.text = viewModel.answers[2]
-            binding.btnOptFour.text = viewModel.answers[3]
-            clickFlag = false
+            moveToQuestionForward()
         } else {
             navigateToGameOverScreen()
         }
@@ -163,6 +150,20 @@ class QuestionFragment : Fragment(), INavigate {
                 fragment.navigateToGameOverScreen()
             }
         }
+    }
+    fun moveToQuestionForward(){
+        binding.invalidateAll()
+        binding.bool.text = ""
+        binding.rationale.text = ""
+        binding.questionText.text = viewModel.currentQuestion.text
+        binding.btnOptOne.text = viewModel.answers[0]
+        binding.btnOptTwo.text = viewModel.answers[1]
+        binding.btnOptThree.text = viewModel.answers[2]
+        binding.btnOptFour.text = viewModel.answers[3]
+        clickFlag = false
+        val endTime = System.currentTimeMillis()
+        spentTimes.add((endTime - startTime) / 1000)
+        startTime = endTime
     }
 
     override fun navigateToGameOverScreen() {
