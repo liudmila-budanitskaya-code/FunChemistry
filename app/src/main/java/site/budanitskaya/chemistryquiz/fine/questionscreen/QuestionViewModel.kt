@@ -1,6 +1,5 @@
 package site.budanitskaya.chemistryquiz.fine.questionscreen
 
-import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -10,7 +9,8 @@ import site.budanitskaya.chemistryquiz.fine.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.Question
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase.Companion.getInstance
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
-import site.budanitskaya.chemistryquiz.fine.generateQuizItems
+import site.budanitskaya.chemistryquiz.fine.domain.mapQuestionsToQuizItems
+import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
 
 class QuestionViewModel : ViewModel() {
 
@@ -37,7 +37,7 @@ class QuestionViewModel : ViewModel() {
         get() = _questionIndex
 
     val numQuestions by lazy {
-        Math.min((quizItems.size + 1) / 2, 1)
+        Math.min((quizItems.size + 1) / 2, 3)
     }
 
     fun shuffleQuestions() {
@@ -52,13 +52,14 @@ class QuestionViewModel : ViewModel() {
     }
 
     fun setQuestion(currentTopic: String) {
-        currentQuestion = getFirstQuestionByTopic(currentTopic).toQuizItem()
+        currentQuestion = getRandomQuestionByTopic(currentTopic).toQuizItem()
         answers = currentQuestion.answers.toMutableList()
         answers.shuffle()
     }
 
-    fun questionIncremented() {
+    fun questionIncremented(currentTopic: String) {
         _questionIndex.value = _questionIndex.value?.plus(1)
+        setQuestion(currentTopic)
     }
 
     fun getRowCount(): Int {
@@ -69,10 +70,10 @@ class QuestionViewModel : ViewModel() {
         return rowCount
     }
 
-    fun getFirstQuestionByTopic(currentTopic: String): Question {
+    fun getRandomQuestionByTopic(currentTopic: String): Question {
         var question: Question
         runBlocking {
-            question = questionRepository.getQuestionByTopic(currentTopic)[0]
+            question = questionRepository.getQuestionByTopic(currentTopic).random()
         }
         return question
     }

@@ -7,9 +7,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import site.budanitskaya.chemistryquiz.fine.generateQuizItems
-import site.budanitskaya.chemistryquiz.fine.questionscreen.generateQuestionsList
-import site.budanitskaya.chemistryquiz.fine.questionscreen.mapQuizItemsToQuestionsList
+import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
 
 @Database(entities = [Question::class], version = 1)
 abstract class QuestionDatabase : RoomDatabase() {
@@ -59,7 +57,6 @@ abstract class QuestionDatabase : RoomDatabase() {
                     }
                     db.setTransactionSuccessful();
                     db.endTransaction()
-
                 }
             }).build()
     }

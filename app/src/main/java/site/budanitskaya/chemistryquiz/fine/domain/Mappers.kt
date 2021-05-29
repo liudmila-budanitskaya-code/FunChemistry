@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.questionscreen
+package site.budanitskaya.chemistryquiz.fine.domain
 
 import site.budanitskaya.chemistryquiz.fine.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.Question

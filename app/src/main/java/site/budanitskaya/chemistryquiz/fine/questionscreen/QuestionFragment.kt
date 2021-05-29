@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
@@ -65,8 +64,8 @@ class QuestionFragment : Fragment(), INavigate {
         args = QuestionFragmentArgs.fromBundle(requireArguments())
         viewModel.setQuestion(args.topic.name)
 
-        Log.d("12345678", "onCreateView: ${viewModel.getFirstQuestionByTopic(args.topic.name)}")
-        viewModel.getFirstQuestionByTopic(args.topic.name)
+        Log.d("12345678", "onCreateView: ${viewModel.getRandomQuestionByTopic(args.topic.name)}")
+        viewModel.getRandomQuestionByTopic(args.topic.name)
 
         binding.questionText.text = args.topic.name
 
@@ -122,17 +121,18 @@ class QuestionFragment : Fragment(), INavigate {
     }
 
     fun onNextBtnClicked() {
-        viewModel.questionIncremented()
+        viewModel.questionIncremented(args.topic.name)
         if (viewModel.questionIndex.value!! < viewModel.numQuestions) {
-            binding.noQuestion.invalidate()
+       /*     binding.noQuestion.invalidate()
             binding.questionText.invalidate()
             binding.btnOptOne.invalidate()
             binding.btnOptThree.invalidate()
             binding.btnOptFour.invalidate()
             binding.bool.invalidate()
-            binding.rationale.invalidate()
-            clickFlag = false
+            binding.rationale.invalidate() */
+                binding.invalidateAll()
             setContentView()
+            clickFlag = false
         } else {
             navigateToGameOverScreen()
         }

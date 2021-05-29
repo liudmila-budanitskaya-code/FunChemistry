@@ -1,14 +1,8 @@
 package site.budanitskaya.chemistryquiz.fine.datasource
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import site.budanitskaya.chemistryquiz.fine.database.Question
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabaseDao
-import site.budanitskaya.chemistryquiz.fine.generateQuizItems
-import site.budanitskaya.chemistryquiz.fine.questionscreen.toQuestion
 
 class QuestionRepository(private val questionDataBase: QuestionDatabase) : QuestionDatabaseDao {
 

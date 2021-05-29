@@ -1,6 +1,4 @@
 package site.budanitskaya.chemistryquiz.fine
-
-
 fun generateQuizItems(): MutableList<QuizItem> {
     return mutableListOf(
         QuizItem(
