@@ -3,23 +3,58 @@ package site.budanitskaya.chemistryquiz.fine
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.firebase.ui.auth.AuthUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import site.budanitskaya.chemistryquiz.fine.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+
     val auth = FirebaseAuth.getInstance().currentUser
+
+    private lateinit var navView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         actionBar?.show()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        navView = findViewById(R.id.nav_view)
+        navView.itemRippleColor = getColorStateList(R.color.colorPrimary)
 
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.quizListFragment, R.id.navigation_dashboard, R.id.navigation_notifications
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        navController.addOnDestinationChangedListener{_, destination, _ ->
+            when (destination.id) {
+                R.id.quizListFragment  -> navView.visibility = View.VISIBLE
+                R.id.navigation_dashboard  -> navView.visibility = View.VISIBLE
+                R.id.navigation_notifications  -> navView.visibility = View.VISIBLE
+                R.id.questionFragment -> navView.visibility = View.GONE
+                R.id.gameOverFragment -> navView.visibility = View.GONE
+                else -> navView.visibility = View.VISIBLE
+            }
+        }
+        navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

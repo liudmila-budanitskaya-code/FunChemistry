@@ -16,6 +16,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
 
@@ -54,6 +56,8 @@ class QuestionFragment : Fragment(), INavigate {
         binding.game = this
 
         binding.viewModel = viewModel
+        if(activity != null && activity is MainActivity)
+            (activity as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
 
         viewModel.shuffleQuestions()
         Timer(this).start()
@@ -71,6 +75,7 @@ class QuestionFragment : Fragment(), INavigate {
 
         Log.d("12345678", "onCreateView: ${viewModel.getRandomQuestionByTopic(args.topic.name)}")
         viewModel.getRandomQuestionByTopic(args.topic.name)
+
 
         binding.questionText.text = args.topic.name
 

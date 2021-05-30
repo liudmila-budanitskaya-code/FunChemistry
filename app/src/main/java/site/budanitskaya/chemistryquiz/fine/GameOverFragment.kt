@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentGameOverBinding
 
 class GameOverFragment : Fragment() {
@@ -28,6 +29,9 @@ class GameOverFragment : Fragment() {
             inflater, R.layout.fragment_game_over, container, false
         )
         args = GameOverFragmentArgs.fromBundle(requireArguments())
+        /*if(activity != null && activity is MainActivity)
+            (activity as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
+*/
         setBarChart(args.spentTimes.toList(), args.areCorrect.toList())
         return binding.root
     }

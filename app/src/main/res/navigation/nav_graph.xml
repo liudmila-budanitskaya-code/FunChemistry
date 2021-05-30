@@ -14,6 +14,7 @@
             android:id="@+id/action_quizListFragment_to_questionFragment"
             app:destination="@id/questionFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/questionFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragment"
@@ -44,4 +45,18 @@
             android:name="areCorrect"
             app:argType="boolean[]" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="site.budanitskaya.chemistryquiz.fine.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="site.budanitskaya.chemistryquiz.fine.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
 </navigation>

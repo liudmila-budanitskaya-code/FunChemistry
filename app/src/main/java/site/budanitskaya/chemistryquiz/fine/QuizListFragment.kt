@@ -1,17 +1,17 @@
 package site.budanitskaya.chemistryquiz.fine
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragment
 import site.budanitskaya.chemistryquiz.fine.topics.topics
-import java.lang.Exception
+
 
 class QuizListFragment : Fragment() {
 
@@ -21,7 +21,11 @@ class QuizListFragment : Fragment() {
         QuizListAdapter(topics) {
             /*findNavController().navigate(QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment())*/
             /*Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()*/
-            findNavController().navigate(QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment(it))
+            findNavController().navigate(
+                QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment(
+                    it
+                )
+            )
         }
     }
 
@@ -52,6 +56,15 @@ class QuizListFragment : Fragment() {
         }*/
         /*circleRecycler.addItemDecoration(SpacesItemDecoration(230))*/
         adapter.notifyDataSetChanged()
+
+        /*activity?.startActivity(Intent(requireContext(), MainActivity::class.java))*/
+
         return view
     }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
+
+
 }
