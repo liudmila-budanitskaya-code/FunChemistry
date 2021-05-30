@@ -12,7 +12,7 @@
         android:theme="@style/Theme.ChemistryQuiz">
         <activity
             android:name=".SettingsActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
             android:label="@string/title_activity_settings"></activity>
         <activity
             android:name=".LoginActivity">
@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,8 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"></activity>
-
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

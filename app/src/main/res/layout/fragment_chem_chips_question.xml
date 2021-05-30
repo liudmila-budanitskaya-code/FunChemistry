@@ -1,15 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".chemicalchips.ChemChipsQuestionFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <TextView
-        android:id="@+id/text_game"
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/background_opacity_3"
+        android:scaleX="2"
+        tools:context=".chemicalchips.ChemChipsQuestionFragment">
 
-</FrameLayout>
+
+        <TextView
+            android:id="@+id/text_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toTopOf="@+id/chem_reaction"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/chem_reaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:text="TextView"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/chipGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_game" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleX="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chem_reaction">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="is"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="a"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="chip"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="group"/>
+
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
