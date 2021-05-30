@@ -15,22 +15,22 @@ import java.lang.StringBuilder
 
 class ChemChipsQuestionFragment : Fragment() {
 
+    private val allReactionsList = generateReactionsList()
+
+    var reactionIndex = (0 until allReactionsList.size).random()
+
+    var reaction = allReactionsList[reactionIndex]
+
     private lateinit var fragmentView: View
     private val rawReagents by lazy {
-        mutableListOf("Ba(OH)<sub>2</sub>", "H<sub>2</sub>SO<sub size = 2>4</sub>")
+        reaction.reagents
     }
+
     lateinit var chipHashMap: Map<Chip, String>
     private lateinit var rawReagentsString: StringBuilder
 
-    private var lastProductFlag = false
-    private val rawProducts =
-        mutableListOf(
-            "BaSO<sub>4</sub>",
-            "H<sub>2</sub>O",
-            "BaS",
-            "BaSO<sub>3</sub>",
-            "BaSO<sub>2</sub>"
-        )
+    private val rawProducts = reaction.products
+
     private val shuffledRawProducts = rawProducts.shuffled()
     private lateinit var txtChemReaction: TextView
 
@@ -42,7 +42,6 @@ class ChemChipsQuestionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-
         fragmentView =
             inflater.inflate(R.layout.fragment_chem_chips_question, container, false)
         fragmentView.findViewById<TextView>(R.id.text_game).text =
@@ -50,7 +49,6 @@ class ChemChipsQuestionFragment : Fragment() {
 
 // raw - unprocessed html string
         // spannable - formula with indices
-        // equified - without indices and any information about it
         val rawFirstReagent = rawReagents[0]
         val rawSecondReagent = rawReagents[1]
 
@@ -119,17 +117,19 @@ class ChemChipsQuestionFragment : Fragment() {
                 ).duration = 3000
                 rawReagentsString.append(("${values[0]} + "))
                 txtChemReaction.invalidate()
+                txtChemReaction.animate().rotation(360F)
                 txtChemReaction.setText(
                     formatFormula(rawReagentsString.toString()),
                     TextView.BufferType.SPANNABLE
                 )
                 rawCorrectProducts.remove(values[0])
             } else if (rawCorrectProducts.contains(values[0]) && rawCorrectProducts.size == 1) {
-                view.animate().translationY(300F).alpha(
+                view.animate().translationY(-3000F).alpha(
                     0.0F
-                ).duration = 3000
+                ).duration = 300
                 rawReagentsString.append("${values[0]}")
                 txtChemReaction.invalidate()
+                txtChemReaction.animate().rotation(-360F)
                 txtChemReaction.setText(
                     formatFormula(rawReagentsString.toString()),
                     TextView.BufferType.SPANNABLE

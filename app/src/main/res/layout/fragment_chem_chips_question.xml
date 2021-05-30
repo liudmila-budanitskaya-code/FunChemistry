@@ -11,7 +11,7 @@
         android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_opacity_3"
+        android:background="@drawable/back"
         android:scaleX="2"
         tools:context=".chemicalchips.ChemChipsQuestionFragment">
 
@@ -78,11 +78,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="group"/>
-
-
-
         </com.google.android.material.chip.ChipGroup>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
