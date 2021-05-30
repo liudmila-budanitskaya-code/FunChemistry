@@ -21,12 +21,9 @@ class GameListFragment : Fragment() {
             Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
             if (it.name == "Chemical chips") {
                 findNavController().navigate(
-                    GameListFragmentDirections.actionNavigationGameToChemChipsQuestionFragment(
-                        it
-                    )
+                    R.id.action_navigation_game_to_chemChipsQuestionFragment
                 )
             }
-
         }
     }
 

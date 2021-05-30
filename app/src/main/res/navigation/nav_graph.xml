@@ -65,10 +65,6 @@
         android:id="@+id/chemChipsQuestionFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.ChemChipsQuestionFragment"
         android:label="fragment_chem_chips_question"
-        tools:layout="@layout/fragment_chem_chips_question" >
-        <argument
-            android:name="game_name"
-            app:argType="site.budanitskaya.chemistryquiz.fine.chemicalchips.Game" />
-    </fragment>
+        tools:layout="@layout/fragment_chem_chips_question" />
 
 </navigation>
