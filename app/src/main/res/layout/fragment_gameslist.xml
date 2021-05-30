@@ -4,11 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:scaleX="2"
     tools:context=".chemicalchips.GameListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/game_recycler"
         android:layout_width="wrap_content"
+        android:scaleX="0.5"
+        android:backgroundTint="@android:color/transparent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         app:flow_horizontalBias="0.5"

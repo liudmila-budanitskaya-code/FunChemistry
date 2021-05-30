@@ -5,13 +5,15 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:scaleX="2"
     tools:context=".QuizListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/game_recycler"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:flow_horizontalBias="0.5"
+        android:scaleX="0.5"
         android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

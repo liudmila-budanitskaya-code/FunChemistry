@@ -17,7 +17,7 @@ import site.budanitskaya.chemistryquiz.fine.topics.topics
 class GameListFragment : Fragment() {
 
     val adapter: GamesListAdapter by lazy {
-        GamesListAdapter(listOf("Chemical Chips", "Wise Koa", "Guess the scientist")) {
+        GamesListAdapter(games) {
             Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
 
         }
