@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +34,7 @@ class QuizListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_quiz_list, container, false)
-        circleRecycler = view.findViewById(R.id.circle_recycler)
+        circleRecycler = view.findViewById(R.id.game_recycler)
 
         circleRecycler.adapter = adapter
         val layoutManager = GridLayoutManager(requireContext(), 2)

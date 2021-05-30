@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.chemicalchips
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,27 +6,26 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
-import site.budanitskaya.chemistryquiz.fine.domain.Topic
+import site.budanitskaya.chemistryquiz.fine.R
 
-class QuizListAdapter(
-    private val topics: List<Topic>,
-    private val onItemClick: (Topic) -> Unit
+class GamesListAdapter(
+    private val topics: List<String>,
+    private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         val childRecyclerView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.circle_item, parent, false)
+            .inflate(R.layout.game_item, parent, false)
 
-        return ButtonsViewHolder(childRecyclerView, topics, onItemClick)
+        return GamesViewHolder(childRecyclerView, topics, onItemClick)
     }
 
     override fun getItemCount(): Int = topics.size
 
-    class ButtonsViewHolder(
+    class GamesViewHolder(
         view: View,
-        private val topics: List<Topic>,
-        private val onItemClick: (Topic) -> Unit
+        private val topics: List<String>,
+        private val onItemClick: (Int) -> Unit
 
     ) : RecyclerView.ViewHolder(view) {
 
@@ -35,19 +34,15 @@ class QuizListAdapter(
 
         fun bind(position: Int) {
 
-
             itemButton.setOnClickListener {
-                onItemClick(topics[position])
+                onItemClick(position)
             }
-
-            root.findViewById<TextView>(R.id.topic_name).text = topics[position].name
-            root.findViewById<CircleImageView>(R.id.game_item).setImageResource(topics[position].drawable)
         }
 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is ButtonsViewHolder) {
+        if (holder is GamesViewHolder) {
             holder.bind(position)
         }
     }
