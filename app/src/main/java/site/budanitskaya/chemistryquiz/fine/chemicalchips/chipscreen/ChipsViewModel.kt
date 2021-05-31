@@ -4,23 +4,21 @@ import android.text.SpannableString
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.StringFormatter
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.generateReactionsList
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.mapReactionEntitiesToReactions
-import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
-import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.domain.Reaction
 import java.lang.StringBuilder
 
 class ChipsViewModel: ViewModel() {
+    val chipsDatasource by lazy {
+        ChipsDatasource()
+    }
 
-    private val allReactionsList = generateReactionsList()
-    var reactionIndex = (0 until allReactionsList.size).random()
+    private val allReactionsList = getAllReactionsList()
+    var reactionIndex = (allReactionsList.indices).random()
 
     var reaction = allReactionsList[reactionIndex]
 
@@ -60,10 +58,6 @@ class ChipsViewModel: ViewModel() {
     private var _reactionNumber = MutableLiveData(0)
     val reactionNumber: LiveData<Int>
         get() = _reactionNumber
-
-    val chipsDatasource by lazy {
-        ChipsDatasource()
-    }
 
     fun getAllReactionsList() : List<Reaction>{
         val allReactions: List<Reaction>
