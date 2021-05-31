@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.questionscreen
+package site.budanitskaya.chemistryquiz.fine.testscreen
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.delay
@@ -12,7 +12,7 @@ import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.domain.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
 
-class QuestionViewModel : ViewModel() {
+class TestViewModel : ViewModel() {
 
     val questionRepository by lazy {
         QuestionRepository(getInstance(MainApplication.getApplication()!!))

@@ -6,11 +6,11 @@
 
         <variable
             name="game"
-            type="site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragment" />
+            type="site.budanitskaya.chemistryquiz.fine.testscreen.QuestionFragment" />
 
         <variable
             name="viewModel"
-            type="site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionViewModel" />
+            type="site.budanitskaya.chemistryquiz.fine.testscreen.TestViewModel" />
     </data>
 
     <LinearLayout
@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="10dp"
-                tools:context=".questionscreen.QuestionFragment">
+                tools:context=".testscreen.QuestionFragment">
 
                 <LinearLayout
                     android:layout_width="match_parent"

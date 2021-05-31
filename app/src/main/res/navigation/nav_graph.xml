@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/questionFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.questionscreen.QuestionFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.testscreen.QuestionFragment"
         android:label="fragment_question"
         tools:layout="@layout/fragment_question" >
         <action
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/chemChipsQuestionFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.ChemChipsQuestionFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.chipscreen.ChipsFragment"
         android:label="fragment_chem_chips_question"
         tools:layout="@layout/fragment_chem_chips_question" />
 

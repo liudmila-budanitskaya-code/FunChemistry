@@ -1,5 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.chemicalchips
 
+import site.budanitskaya.chemistryquiz.fine.domain.Reaction
+
 fun generateReactionsList(): MutableList<Reaction> {
     return mutableListOf(
         Reaction(

@@ -1,14 +1,13 @@
-package site.budanitskaya.chemistryquiz.fine.questionscreen
+package site.budanitskaya.chemistryquiz.fine.testscreen
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class QuestionViewModelFactory() : ViewModelProvider.Factory {
+class TestViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(QuestionViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(TestViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return QuestionViewModel() as T
+            return TestViewModel() as T
         }
         throw IllegalArgumentException("Unable to construct viewmodel")
     }

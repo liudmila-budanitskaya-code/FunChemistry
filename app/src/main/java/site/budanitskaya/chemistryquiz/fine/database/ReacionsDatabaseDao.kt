@@ -1,7 +1,7 @@
-package site.budanitskaya.chemistryquiz.fine.chemicalchips
+package site.budanitskaya.chemistryquiz.fine.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
+import site.budanitskaya.chemistryquiz.fine.chemicalchips.ReactionEntity
 
 @Dao
 interface ReactionsDatabaseDao {
@@ -16,7 +16,7 @@ interface ReactionsDatabaseDao {
     suspend fun delete(reaction: ReactionEntity)
 
     @Query("SELECT * FROM reaction_table")
-    fun getReactionList(): List<ReactionEntity>
+    suspend fun getReactionList(): List<ReactionEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(reactions: List<ReactionEntity>)

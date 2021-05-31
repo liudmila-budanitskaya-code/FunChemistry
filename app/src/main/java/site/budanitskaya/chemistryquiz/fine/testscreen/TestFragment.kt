@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.questionscreen
+package site.budanitskaya.chemistryquiz.fine.testscreen
 
 import android.animation.ObjectAnimator
 import android.app.Dialog
@@ -35,8 +35,8 @@ class QuestionFragment : Fragment(), INavigate {
     }
 
     private val viewModel by lazy {
-        ViewModelProvider(this, QuestionViewModelFactory())
-            .get(QuestionViewModel::class.java)
+        ViewModelProvider(this, TestViewModelFactory())
+            .get(TestViewModel::class.java)
     }
     var clickFlag = false
     private var currentQuizItem = 0

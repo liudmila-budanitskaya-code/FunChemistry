@@ -71,6 +71,6 @@ abstract class QuestionDatabase : RoomDatabase() {
                     db.setTransactionSuccessful();
                     db.endTransaction()
                 }
-            }).allowMainThreadQueries().build()
+            }).build()
     }
 }
