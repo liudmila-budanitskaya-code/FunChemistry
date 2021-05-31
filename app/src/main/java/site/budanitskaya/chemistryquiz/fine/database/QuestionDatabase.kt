@@ -7,12 +7,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.ReactionEntity
+import site.budanitskaya.chemistryquiz.fine.chemicalchips.*
 import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
 
 @Database(entities = [Question::class, ReactionEntity::class], version = 1)
 abstract class QuestionDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDatabaseDao?
+    abstract fun reactionDao(): ReactionsDatabaseDao?
 
     companion object {
         private lateinit var INSTANCE: QuestionDatabase
@@ -30,39 +31,46 @@ abstract class QuestionDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                QuestionDatabase::class.java, "question_table"
+                QuestionDatabase::class.java, "database"
             ).addCallback(object : Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     db.beginTransaction()
-                    val second_values = ContentValues().apply {
-                        put("reaction_title", "one")
+                    val reactionEntitiesList = generateReactionEntitiesList()
+                    for(i in reactionEntitiesList.indices){
+                        val reactionValues = ContentValues().apply {
+                            put("reagents", StringConverter().toOneString(reactionEntitiesList[i].reagents))
+                            put("products", StringConverter().toOneString(reactionEntitiesList[i].products))
+                        }
+                        db.insert("reaction_table", SQLiteDatabase.CONFLICT_ABORT, reactionValues)
                     }
-                    db.insert("reaction_table", SQLiteDatabase.CONFLICT_ABORT, second_values);
-                    val list = generateQuestionsList()
-                    for (i in list.indices) {
+
+                    val questionsList = generateQuestionsList()
+                    for (i in questionsList.indices) {
                         val values = ContentValues().apply {
-                            put("question_title", list[i].questionTitle)
+                            put("question_title", questionsList[i].questionTitle)
                             put(
                                 "answer_options",
                                 AnswersConverter().fromAnswers(
-                                    list[i].answers
+                                    questionsList[i].answers
                                 )
                             )
                             put(
                                 "topic",
-                                    list[i].topic
+                                    questionsList[i].topic
                             )
                             put(
                                 "explanation",
-                                list[i].explanation
+                                questionsList[i].explanation
                             )
                         }
                         db.insert("question_table", SQLiteDatabase.CONFLICT_ABORT, values);
                     }
+
+
                     db.setTransactionSuccessful();
                     db.endTransaction()
                 }
-            }).build()
+            }).allowMainThreadQueries().build()
     }
 }
