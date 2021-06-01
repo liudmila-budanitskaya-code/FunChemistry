@@ -7,51 +7,49 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.runBlocking
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.StringFormatter
+import site.budanitskaya.chemistryquiz.fine.chemicalchips.generateReactionsList
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.mapReactionEntitiesToReactions
 import site.budanitskaya.chemistryquiz.fine.domain.Reaction
 import java.lang.StringBuilder
 
-class ChipsViewModel : ViewModel() {
+class ChipsViewModel: ViewModel() {
     val chipsDatasource by lazy {
         ChipsDatasource()
     }
 
-    private var allReactionsList : List<Reaction>
+    private val allReactionsList = getAllReactionsList()
+    var reactionIndex = (allReactionsList.indices).random()
 
-    init {
-        val allReactions: List<Reaction>
-        runBlocking {
-            allReactions = mapReactionEntitiesToReactions(chipsDatasource.getReactionList())
-        }
-        allReactionsList = allReactions
+    var reaction = allReactionsList[reactionIndex]
+
+    private val rawReagents by lazy {
+        reaction.reagents
     }
+    private val rawProducts = reaction.products
 
-    var shuffledReactionsList: List<Reaction>
+    lateinit var currentReaction: Reaction
 
-    init {
-        lateinit var reaction: Reaction
-        val mixedReactions = mutableListOf<Reaction>()
-        allReactionsList.forEach {
-            val products = it.products.shuffled()
-            val reagents = it.reagents.shuffled()
-            reaction = Reaction(reagents, products)
-            mixedReactions.add(reaction)
-        }
+    val shuffledRawProducts = rawProducts.shuffled()
 
 
-        shuffledReactionsList = mixedReactions.shuffled()
-    }
+    val rawCorrectProducts = mutableListOf(rawProducts[0], rawProducts[1])
 
-
-    var reactionIndex = 0
-
+    val rawFirstReagent = rawReagents[0]
+    val rawSecondReagent = rawReagents[1]
     lateinit var rawReagentsString: StringBuilder
+    lateinit var spannableReagentsString: SpannableString
 
-    fun superFunction() {
+    fun superFunction(){
         val rawReagentList = mutableListOf<String>()
-        rawReagentList.add(shuffledReactionsList[reactionIndex].reagents[0])
-        rawReagentList.add(shuffledReactionsList[reactionIndex].reagents[1])
+        rawReagentList.add(rawFirstReagent)
+        rawReagentList.add(rawSecondReagent)
         rawReagentsString = StringBuilder(rawReagentList.joinToString(" + ").plus(" = "))
+        spannableReagentsString = StringFormatter.formatFormula(rawReagentsString.toString())
+
+        val spannableCorrectProducts = mutableListOf<SpannableString>()
+        rawCorrectProducts.forEach {
+            spannableCorrectProducts.add(StringFormatter.formatFormula(it))
+        }
     }
 
 
@@ -61,4 +59,11 @@ class ChipsViewModel : ViewModel() {
     val reactionNumber: LiveData<Int>
         get() = _reactionNumber
 
+    fun getAllReactionsList() : List<Reaction>{
+        val allReactions: List<Reaction>
+        runBlocking {
+            allReactions = mapReactionEntitiesToReactions(chipsDatasource.getReactionList())
+        }
+        return allReactions
+    }
 }

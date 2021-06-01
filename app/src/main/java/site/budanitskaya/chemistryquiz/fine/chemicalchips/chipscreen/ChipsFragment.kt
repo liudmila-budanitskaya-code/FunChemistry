@@ -51,11 +51,11 @@ class ChipsFragment : Fragment() {
 
 
         chipHashMap = hashMapOf(
-            binding.chipOne to viewModel.shuffledReactionsList[viewModel.reactionIndex].products[0],
-            binding.chipTwo to viewModel.shuffledReactionsList[viewModel.reactionIndex].products[1],
-            binding.chipThree to viewModel.shuffledReactionsList[viewModel.reactionIndex].products[2],
-            binding.chipFour to viewModel.shuffledReactionsList[viewModel.reactionIndex].products[3],
-            binding.chipFive to viewModel.shuffledReactionsList[viewModel.reactionIndex].products[4]
+            binding.chipOne to viewModel.shuffledRawProducts[0],
+            binding.chipTwo to viewModel.shuffledRawProducts[1],
+            binding.chipThree to viewModel.shuffledRawProducts[2],
+            binding.chipFour to viewModel.shuffledRawProducts[3],
+            binding.chipFive to viewModel.shuffledRawProducts[4]
 
         )
 
@@ -63,12 +63,12 @@ class ChipsFragment : Fragment() {
 
 
         with(binding){
-            chipOne.text = formatFormula(viewModel.shuffledReactionsList[viewModel.reactionIndex].products[0])
-            chipTwo.text = formatFormula(viewModel.shuffledReactionsList[viewModel.reactionIndex].products[1])
-            chipThree.text = formatFormula(viewModel.shuffledReactionsList[viewModel.reactionIndex].products[2])
-            chipFour.text = formatFormula(viewModel.shuffledReactionsList[viewModel.reactionIndex].products[3])
-            chipFive.text = formatFormula(viewModel.shuffledReactionsList[viewModel.reactionIndex].products[4])
-            txtChemReaction.setText(formatFormula(viewModel.rawReagentsString.toString()), TextView.BufferType.SPANNABLE)
+            chipOne.text = formatFormula(viewModel.shuffledRawProducts[0])
+            chipTwo.text = formatFormula(viewModel.shuffledRawProducts[1])
+            chipThree.text = formatFormula(viewModel.shuffledRawProducts[2])
+            chipFour.text = formatFormula(viewModel.shuffledRawProducts[3])
+            chipFive.text = formatFormula(viewModel.shuffledRawProducts[4])
+            txtChemReaction.setText(viewModel.spannableReagentsString, TextView.BufferType.SPANNABLE)
             chipOne.setOnClickListener { view ->
                 onChipClick(view)
             }
@@ -93,10 +93,8 @@ class ChipsFragment : Fragment() {
     fun onChipClick(view: View) {
         if (view is Chip) {
             val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
-/*            Log.d("onCreateView", "onCreateView: $values")
-            Log.d("onCreateView", "onCreateView: ${viewModel.correctAnswersList[viewModel.reactionIndex]}")
-            Log.d("onCreateView", "onCreateView: ${values[0]}")*/
-            if (viewModel.correctAnswersList[viewModel.reactionIndex].contains(values[0]) && viewModel.correctAnswersList.size > 1) {
+            Log.d("onCreateView", "onCreateView: $values")
+            if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size > 1) {
                 view.animate().translationY(300F).alpha(
                     0.0F
                 ).duration = 3000
@@ -109,13 +107,14 @@ class ChipsFragment : Fragment() {
                         TextView.BufferType.SPANNABLE
                     )
                 }
-                viewModel.correctAnswersList.remove(values[0])
-            } else if (viewModel.correctAnswersList.contains(values[0]) && viewModel.correctAnswersList.size == 1) {
+                viewModel.rawCorrectProducts.remove(values[0])
+            } else if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size == 1) {
                 view.animate().translationY(-3000F).alpha(
                     0.0F
                 ).duration = 300
                 viewModel.rawReagentsString.append("${values[0]}")
                 with(binding){
+                    txtChemReaction.invalidate()
                     txtChemReaction.animate().rotation(-360F)
                     txtChemReaction.setText(
                         formatFormula(viewModel.rawReagentsString.toString()),
@@ -125,9 +124,8 @@ class ChipsFragment : Fragment() {
                         0.0F
                     ).duration = 6000
                 }
-                viewModel.correctAnswersList.remove(values[0])
+                viewModel.rawCorrectProducts.remove(values[0])
             }
         }
     }
 }
-

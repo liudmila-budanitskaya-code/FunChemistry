@@ -5,7 +5,6 @@ import site.budanitskaya.chemistryquiz.fine.domain.Reaction
 fun generateReactionsList(): MutableList<Reaction> {
     return mutableListOf(
         Reaction(
-            1,
             listOf("Zn", "CuSO<sub size = 2>4</sub>"),
             listOf(
                 "Cu",
@@ -16,7 +15,6 @@ fun generateReactionsList(): MutableList<Reaction> {
             )
         ),
         Reaction(
-            2,
             listOf("Ba(OH)<sub>2</sub>", "H<sub>2</sub>SO<sub size = 2>4</sub>"),
             listOf(
                 "BaSO<sub>4</sub>",
@@ -28,18 +26,16 @@ fun generateReactionsList(): MutableList<Reaction> {
         ),
 
         Reaction(
-            3,
             listOf("KCl", "AgNO>3</sub>"),
             listOf(
                 "AgCl",
-                "KNO<sub>3</sub>",
-                "AgClO<sub>3</sub>",
-                "KNO<sub>2</sub>",
+                "KNO>3</sub>",
+                "AgClO>3</sub>",
+                "KNO>2</sub>",
                 "KClO<sub>3</sub>"
             )
         ),
         Reaction(
-            4,
             listOf("H<sub>2</sub>O", "CO<sub>2</sub>"),
             listOf(
                 "O<sub>2</sub>",
@@ -50,7 +46,6 @@ fun generateReactionsList(): MutableList<Reaction> {
             )
         ),
         Reaction(
-            5,
             listOf("CHCl<sub>3</sub>", "Cl<sub>2</sub>"),
             listOf(
                 "HCl",
@@ -61,7 +56,6 @@ fun generateReactionsList(): MutableList<Reaction> {
             )
         ),
         Reaction(
-            6,
             listOf("CH<sub>3</sub>CONH<sub>2</sub>", "NaClO"),
             listOf(
                 "CH<sub>3</sub>NH<sub>2</sub>",
@@ -72,7 +66,6 @@ fun generateReactionsList(): MutableList<Reaction> {
             )
         ),
         Reaction(
-            7,
             listOf("CH<sub>3</sub>CN", "LiAlH<sub>4</sub>"),
             listOf(
                 "CH<sub>3</sub>NH<sub>2</sub>",
@@ -83,7 +76,6 @@ fun generateReactionsList(): MutableList<Reaction> {
             )
         ),
         Reaction(
-            8,
             listOf("CH<sub>3</sub>COCl", "NaN<sub>3</sub>"),
             listOf(
                 "CH<sub>3</sub>NCO",
@@ -94,7 +86,6 @@ fun generateReactionsList(): MutableList<Reaction> {
             )
         ),
         Reaction(
-            9,
             listOf("C<sub>6</sub>H<sub>6</sub>", "N<sub>2</sub>O<sub>4</sub>"),
             listOf(
                 "CH<sub>6</sub>H<sub>5</sub>NO<sub>2</sub>",
