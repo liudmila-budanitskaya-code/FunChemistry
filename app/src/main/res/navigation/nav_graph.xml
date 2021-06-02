@@ -60,11 +60,22 @@
         <action
             android:id="@+id/action_navigation_game_to_chemChipsQuestionFragment"
             app:destination="@id/chemChipsQuestionFragment" />
+        <action
+            android:id="@+id/action_navigation_game_to_crosswordFragment"
+            app:destination="@id/crosswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/chemChipsQuestionFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.chipscreen.ChipsFragment"
         android:label="fragment_chem_chips_question"
         tools:layout="@layout/fragment_chem_chips_question" />
+    <activity
+        android:id="@+id/crosswordActivity"
+        android:name="site.budanitskaya.chemistryquiz.fine.crossword.CrosswordActivity"
+        android:label="CrosswordActivity" />
+    <fragment
+        android:id="@+id/crosswordFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.crossword.CrosswordFragment"
+        android:label="CrosswordFragment" />
 
 </navigation>

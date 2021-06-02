@@ -8,7 +8,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
@@ -23,6 +25,12 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navView: BottomNavigationView
 
+    lateinit var appBarConfiguration: AppBarConfiguration
+
+    private val navController by lazy {
+        this.findNavController(R.id.nav_host_fragment_activity_main)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         actionBar?.show()
         super.onCreate(savedInstanceState)
@@ -33,7 +41,9 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
+        appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.quizListFragment, R.id.navigation_game, R.id.navigation_notifications
             )
@@ -49,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.questionFragment -> navView.visibility = View.GONE
                 R.id.gameOverFragment -> navView.visibility = View.GONE
                 R.id.chemChipsQuestionFragment -> navView.visibility = View.GONE
+                R.id.crosswordFragment -> navView.visibility = View.GONE
                 else -> navView.visibility = View.VISIBLE
             }
         }
@@ -127,5 +138,9 @@ class MainActivity : AppCompatActivity() {
 
     fun openSettingsActivity(view: View?) {
         startActivity(Intent(this, SettingsActivity::class.java))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 }

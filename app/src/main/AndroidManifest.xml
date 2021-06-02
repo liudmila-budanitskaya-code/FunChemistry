@@ -3,19 +3,19 @@
     package="site.budanitskaya.chemistryquiz.fine">
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".MainApplication"
         android:theme="@style/Theme.ChemistryQuiz">
+        <activity android:name=".crossword.CrosswordActivity"></activity>
         <activity
             android:name=".SettingsActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-            android:label="@string/title_activity_settings"></activity>
-        <activity
-            android:name=".LoginActivity">
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="site.budanitskaya.chemistryquiz.fine.LoginActivity" />
 
@@ -31,8 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

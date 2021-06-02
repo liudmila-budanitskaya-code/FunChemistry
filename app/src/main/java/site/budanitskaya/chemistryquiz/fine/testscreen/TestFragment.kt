@@ -158,10 +158,13 @@ class QuestionFragment : Fragment(), INavigate {
 
         override fun onFinish() {
             if (navigateFlag != 1) {
-                fragment.navigateToGameOverScreen()
+                if(fragment.isAdded){
+                    fragment.navigateToGameOverScreen()
+                }
             }
         }
     }
+
     fun moveToQuestionForward(){
         binding.invalidateAll()
         binding.bool.text = ""

@@ -19,10 +19,22 @@ class GameListFragment : Fragment() {
     val adapter: GamesListAdapter by lazy {
         GamesListAdapter(games) {
             Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
-            if (it.name == "Chemical chips") {
-                findNavController().navigate(
-                    R.id.action_navigation_game_to_chemChipsQuestionFragment
-                )
+            when(it.name){
+                "Chemical chips" -> {
+                    findNavController().navigate(
+                        R.id.action_navigation_game_to_chemChipsQuestionFragment
+                    )
+                }
+                "Chemical crossword" -> {
+                    findNavController().navigate(
+                        R.id.action_navigation_game_to_crosswordFragment
+                    )
+                }
+                "Guess the scientist" -> {
+                    findNavController().navigate(
+                        R.id.action_navigation_game_to_chemChipsQuestionFragment
+                    )
+                }
             }
         }
     }

@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.chemicalchips.chipscreen
 
 import android.os.Bundle
-import android.text.SpannableString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,18 +8,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
-import site.budanitskaya.chemistryquiz.fine.MainApplication
+import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.domain.Reaction
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.StringFormatter.Companion.formatFormula
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.generateReactionsList
-import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase.Companion.getInstance
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
-import java.lang.StringBuilder
+
 
 class ChipsFragment : Fragment() {
 
@@ -28,6 +23,7 @@ class ChipsFragment : Fragment() {
         ViewModelProvider(this, ChipsViewModelFactory())
             .get(ChipsViewModel::class.java)
     }
+
     private lateinit var binding: FragmentChemChipsQuestionBinding
 
     lateinit var chipHashMap: Map<Chip, String>
@@ -62,13 +58,17 @@ class ChipsFragment : Fragment() {
         viewModel.superFunction()
 
 
-        with(binding){
+
+        with(binding) {
             chipOne.text = formatFormula(viewModel.shuffledRawProducts[0])
             chipTwo.text = formatFormula(viewModel.shuffledRawProducts[1])
             chipThree.text = formatFormula(viewModel.shuffledRawProducts[2])
             chipFour.text = formatFormula(viewModel.shuffledRawProducts[3])
             chipFive.text = formatFormula(viewModel.shuffledRawProducts[4])
-            txtChemReaction.setText(viewModel.spannableReagentsString, TextView.BufferType.SPANNABLE)
+            txtChemReaction.setText(
+                viewModel.spannableReagentsString,
+                TextView.BufferType.SPANNABLE
+            )
             chipOne.setOnClickListener { view ->
                 onChipClick(view)
             }
@@ -91,17 +91,22 @@ class ChipsFragment : Fragment() {
     }
 
     fun onChipClick(view: View) {
+
         if (view is Chip) {
             val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
-            Log.d("onCreateView", "onCreateView: $values")
+            Log.d("onCreateView", "onCreateView: ${values[0]}")
+            Log.d("onCreateView", "onCreateView: ${viewModel.rawCorrectProducts}")
             if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size > 1) {
-                view.animate().translationY(300F).alpha(
+/*                view.animate().alpha(
                     0.0F
-                ).duration = 3000
+                ).duration = 3000*/
                 viewModel.rawReagentsString.append(("${values[0]} + "))
-                with(binding){
+                with(binding) {
                     txtChemReaction.invalidate()
-                    txtChemReaction.animate().rotation(360F)
+                    /* GlobalScope.launch(Dispatchers.Default) {
+                        txtChemReaction.animate().rotation(360F)
+                        delay(1000)
+                    } */
                     txtChemReaction.setText(
                         formatFormula(viewModel.rawReagentsString.toString()),
                         TextView.BufferType.SPANNABLE
@@ -109,23 +114,60 @@ class ChipsFragment : Fragment() {
                 }
                 viewModel.rawCorrectProducts.remove(values[0])
             } else if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size == 1) {
-                view.animate().translationY(-3000F).alpha(
+/*                view.animate().alpha(
                     0.0F
-                ).duration = 300
-                viewModel.rawReagentsString.append("${values[0]}")
-                with(binding){
+                ).duration = 300*/
+                binding.txtChemReaction.setText(
+                    formatFormula(viewModel.rawReagentsString.toString()),
+                    TextView.BufferType.SPANNABLE
+                )
+                Log.d("onChipClick", "onChipClick: ${"I am here!"}")
+                Log.d("onChipClick", "onChipClick: ${viewModel.reactionNumber.value}")
+                viewModel.rawReagentsString.append(values[0])
+                with(binding) {
                     txtChemReaction.invalidate()
-                    txtChemReaction.animate().rotation(-360F)
-                    txtChemReaction.setText(
-                        formatFormula(viewModel.rawReagentsString.toString()),
-                        TextView.BufferType.SPANNABLE
-                    )
-                    txtChemReaction.animate().translationY(16000F).translationX(3000F).alpha(
-                        0.0F
-                    ).duration = 6000
+
                 }
                 viewModel.rawCorrectProducts.remove(values[0])
+                viewModel.setNewReaction()
+                setNewReactionView()
+
+            } else {
+
             }
         }
     }
+
+    private fun setNewReactionView() {
+
+        with(binding) {
+            invalidateAll()
+
+            txtChemReaction.alpha = 1F
+            txtChemReaction.text = formatFormula(viewModel.rawReagentsString.toString())
+            chipOne.text = formatFormula(viewModel.shuffledRawProducts[0])
+            chipTwo.text = formatFormula(viewModel.shuffledRawProducts[1])
+            chipThree.text = formatFormula(viewModel.shuffledRawProducts[2])
+            chipFour.text = formatFormula(viewModel.shuffledRawProducts[3])
+            chipFive.text = formatFormula(viewModel.shuffledRawProducts[4])
+
+
+            chipHashMap = hashMapOf(
+                binding.chipOne to viewModel.shuffledRawProducts[0],
+                binding.chipTwo to viewModel.shuffledRawProducts[1],
+                binding.chipThree to viewModel.shuffledRawProducts[2],
+                binding.chipFour to viewModel.shuffledRawProducts[3],
+                binding.chipFive to viewModel.shuffledRawProducts[4]
+
+            )
+
+            chipOne.alpha = 1F
+            chipTwo.alpha = 1F
+            chipThree.alpha = 1F
+            chipFour.alpha = 1F
+            chipFive.alpha = 1F
+
+        }
+    }
+
 }

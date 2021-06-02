@@ -23,6 +23,14 @@
     <string name="title_home">Home</string>
     <string name="title_game">Games</string>
     <string name="title_notifications">Notifications</string>
+    <string name="solve_square">Solve square</string>
+    <string name="solve_word">Solve word</string>
+    <string name="solve_puzzle">Solve puzzle</string>
+    <string name="restart">Restart</string>
+    <string name="across">%1$d. Across • %2$s</string>
+    <string name="down">%1$d. Down • %2$s</string>
+    <string name="title_by_author">%1$s by %2$s</string>
+    <string name="youve_solved_the_puzzle">You\'ve solved the puzzle!</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

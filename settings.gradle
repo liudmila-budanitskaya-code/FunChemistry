@@ -1,2 +1,3 @@
 rootProject.name = "ChemistryQuiz"
 include ':app'
+include ':library'
