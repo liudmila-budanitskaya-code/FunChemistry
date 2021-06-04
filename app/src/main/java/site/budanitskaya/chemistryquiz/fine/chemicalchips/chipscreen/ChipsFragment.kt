@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.*
@@ -91,51 +92,53 @@ class ChipsFragment : Fragment() {
     }
 
     fun onChipClick(view: View) {
-
-        if (view is Chip) {
-            val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
-            Log.d("onCreateView", "onCreateView: ${values[0]}")
-            Log.d("onCreateView", "onCreateView: ${viewModel.rawCorrectProducts}")
-            if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size > 1) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            if (view is Chip) {
+                val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
+                Log.d("onCreateView", "onCreateView: ${values[0]}")
+                Log.d("onCreateView", "onCreateView: ${viewModel.rawCorrectProducts}")
+                if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size > 1) {
 /*                view.animate().alpha(
                     0.0F
                 ).duration = 3000*/
-                viewModel.rawReagentsString.append(("${values[0]} + "))
-                with(binding) {
-                    txtChemReaction.invalidate()
-                    /* GlobalScope.launch(Dispatchers.Default) {
+                    viewModel.rawReagentsString.append(("${values[0]} + "))
+                    with(binding) {
+                        txtChemReaction.invalidate()
+
                         txtChemReaction.animate().rotation(360F)
                         delay(1000)
-                    } */
-                    txtChemReaction.setText(
-                        formatFormula(viewModel.rawReagentsString.toString()),
-                        TextView.BufferType.SPANNABLE
-                    )
-                }
-                viewModel.rawCorrectProducts.remove(values[0])
-            } else if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size == 1) {
+
+                        txtChemReaction.setText(
+                            formatFormula(viewModel.rawReagentsString.toString()),
+                            TextView.BufferType.SPANNABLE
+                        )
+                    }
+                    viewModel.rawCorrectProducts.remove(values[0])
+                } else if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size == 1) {
 /*                view.animate().alpha(
                     0.0F
                 ).duration = 300*/
-                binding.txtChemReaction.setText(
-                    formatFormula(viewModel.rawReagentsString.toString()),
-                    TextView.BufferType.SPANNABLE
-                )
-                Log.d("onChipClick", "onChipClick: ${"I am here!"}")
-                Log.d("onChipClick", "onChipClick: ${viewModel.reactionNumber.value}")
-                viewModel.rawReagentsString.append(values[0])
-                with(binding) {
-                    txtChemReaction.invalidate()
+                    binding.txtChemReaction.setText(
+                        formatFormula(viewModel.rawReagentsString.toString()),
+                        TextView.BufferType.SPANNABLE
+                    )
+                    Log.d("onChipClick", "onChipClick: ${"I am here!"}")
+                    Log.d("onChipClick", "onChipClick: ${viewModel.reactionNumber.value}")
+                    viewModel.rawReagentsString.append(values[0])
+                    with(binding) {
+                        txtChemReaction.invalidate()
+
+                    }
+                    viewModel.rawCorrectProducts.remove(values[0])
+                    viewModel.setNewReaction()
+                    setNewReactionView()
+
+                } else {
 
                 }
-                viewModel.rawCorrectProducts.remove(values[0])
-                viewModel.setNewReaction()
-                setNewReactionView()
-
-            } else {
-
             }
         }
+
     }
 
     private fun setNewReactionView() {

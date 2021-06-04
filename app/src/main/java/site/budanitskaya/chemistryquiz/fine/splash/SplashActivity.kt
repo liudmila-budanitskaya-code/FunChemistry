@@ -1,9 +1,10 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.coroutines.*
+import site.budanitskaya.chemistryquiz.fine.R
 
 class SplashActivity : AppCompatActivity() {
 
@@ -13,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         activityScope.launch {
-            delay(3000)
+            delay(5000)
 
             val intent = Intent("site.budanitskaya.chemistryquiz.fine.LoginActivity")
             startActivity(intent)

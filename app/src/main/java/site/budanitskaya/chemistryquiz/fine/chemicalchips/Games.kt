@@ -13,11 +13,5 @@ val games: MutableList<Game> = mutableListOf(
         id = 2,
         name = "Chemical crossword",
         drawable = R.drawable.crossword
-    ),
-
-    Game(
-        id = 3,
-        name = "Guess the scientist",
-        drawable = R.drawable.scientist
     )
 )

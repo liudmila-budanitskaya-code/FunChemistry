@@ -30,7 +30,7 @@ class CrosswordFragment : Fragment(), CrosswordView.OnLongPressListener, Crosswo
             inflater,
             R.layout.fragment_crossword, container, false
         )
-        val crossword = readPuzzle(R.raw.puzzle)
+        val crossword = readPuzzle(R.raw.sample)
         hint = binding.hint
         crosswordView = binding.crossword
         crosswordView!!.let { cv ->
@@ -51,42 +51,46 @@ class CrosswordFragment : Fragment(), CrosswordView.OnLongPressListener, Crosswo
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        binding.guessCrosswordIcon.setOnClickListener{
+            guessCrossword()
+        }
+
+        binding.guessLetterIcon.setOnClickListener{
+            guessLetter()
+        }
+
+        binding.guessWordIcon.setOnClickListener{
+            guessWord()
+        }
+
+        binding.restartIcon.setOnClickListener{
+            restartCrossword()
+        }
+    }
+
+    private fun restartCrossword() {
+        crosswordView!!.reset()
+    }
+
+    private fun guessLetter() {
+        crosswordView!!.solveChar(
+            crosswordView!!.selectedWord!!,
+            crosswordView!!.selectedCell
+        )
+    }
+
+    private fun guessWord() {
+        crosswordView!!.solveWord(crosswordView!!.selectedWord!!)
+    }
+
+
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
         outState.putParcelable("state", crosswordView!!.state)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.activity_main, menu)
-
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_restart -> {
-                crosswordView!!.reset()
-                return true
-            }
-            R.id.menu_solve_cell -> {
-                crosswordView!!.solveChar(
-                    crosswordView!!.selectedWord!!,
-                    crosswordView!!.selectedCell
-                )
-                return true
-            }
-            R.id.menu_solve_word -> {
-                crosswordView!!.solveWord(crosswordView!!.selectedWord!!)
-                return true
-            }
-            R.id.menu_solve_puzzle -> {
-                crosswordView!!.solveCrossword()
-                return true
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onCellLongPressed(view: CrosswordView,
@@ -119,5 +123,9 @@ class CrosswordFragment : Fragment(), CrosswordView.OnLongPressListener, Crosswo
             Crossword.Word.DIR_DOWN -> getString(R.string.down, word.number, word.hint)
             else -> ""
         }
+    }
+
+    fun guessCrossword(){
+        crosswordView!!.solveCrossword()
     }
 }

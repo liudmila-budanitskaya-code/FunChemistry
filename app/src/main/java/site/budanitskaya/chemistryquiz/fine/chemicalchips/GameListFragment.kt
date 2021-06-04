@@ -30,11 +30,6 @@ class GameListFragment : Fragment() {
                         R.id.action_navigation_game_to_crosswordFragment
                     )
                 }
-                "Guess the scientist" -> {
-                    findNavController().navigate(
-                        R.id.action_navigation_game_to_chemChipsQuestionFragment
-                    )
-                }
             }
         }
     }

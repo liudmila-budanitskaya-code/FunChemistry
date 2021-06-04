@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -10,6 +11,54 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/guess_crossword_icon"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/answer_button"
+                android:src="@drawable/guess_crossword"
+                android:contentDescription="@string/play_again_button" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/guess_word_icon"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/answer_button"
+                android:src="@drawable/guess_word"
+                android:contentDescription="@string/play_again_button" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/guess_letter_icon"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/answer_button"
+                android:src="@drawable/guess_letter"
+                android:contentDescription="@string/play_again_button" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/restart_icon"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:layout_height="50dp"
+                android:background="@drawable/answer_button"
+                android:src="@drawable/restart"
+                android:contentDescription="@string/play_again_button" />
+        </LinearLayout>
         <org.akop.ararat.view.CrosswordView
             android:id="@+id/crossword"
             android:layout_width="match_parent"
