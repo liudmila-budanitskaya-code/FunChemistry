@@ -30,7 +30,7 @@ class CrosswordFragment : Fragment(), CrosswordView.OnLongPressListener, Crosswo
             inflater,
             R.layout.fragment_crossword, container, false
         )
-        val crossword = readPuzzle(R.raw.sample)
+        val crossword = readPuzzle(R.raw.puzzle)
         hint = binding.hint
         crosswordView = binding.crossword
         crosswordView!!.let { cv ->

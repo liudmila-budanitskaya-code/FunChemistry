@@ -35,7 +35,6 @@ class QuizListAdapter(
 
         fun bind(position: Int) {
 
-
             itemButton.setOnClickListener {
                 onItemClick(topics[position])
             }

@@ -1,14 +1,23 @@
 package site.budanitskaya.chemistryquiz.fine
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
+import site.budanitskaya.chemistryquiz.fine.chemicalchips.cardsscreen.CardsActivity
+import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.topics.topics
 
 
@@ -18,52 +27,86 @@ class QuizListFragment : Fragment() {
 
     val adapter: QuizListAdapter by lazy {
         QuizListAdapter(topics) {
-            /*findNavController().navigate(QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment())*/
-            /*Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()*/
-            findNavController().navigate(
-                QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment(
-                    it
-                )
-            )
+            showAlertDialog(it)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_quiz_list, container, false)
-        circleRecycler = view.findViewById(R.id.game_recycler)
+    private fun showAlertDialog(topic: Topic) {
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("AlertDialog")
+        val items = arrayOf("Test Mode", "FlashCard Mode")
+        val checkedItem = 1
+        alertDialog.setSingleChoiceItems(items, checkedItem) { dialog, which ->
 
-        circleRecycler.adapter = adapter
-        val layoutManager = GridLayoutManager(requireContext(), 2)
+            when (which) {
+                0 -> {
+                    dialog.dismiss()
+                    findNavController().navigate(
+                        QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment(
+                            topic
+                        )
+                    )
+                }
+
+            1 -> {
+                val action =
+                QuizListFragmentDirections.actionQuizListFragmentToCardsActivity(topic)
+
+                findNavController().navigate(action)
+                dialog.dismiss()
+            }
+        }
+    }
+
+    val alert = alertDialog.create()
+    alert.setCanceledOnTouchOutside(true)
+    alert.show()
+}
+
+override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?
+): View? {
+    // Inflate the layout for this fragment
+    val view = inflater.inflate(R.layout.fragment_quiz_list, container, false)
+    circleRecycler = view.findViewById(R.id.game_recycler)
+
+    circleRecycler.adapter = adapter
+    val layoutManager = GridLayoutManager(requireContext(), 2)
 
 
-        circleRecycler.smoothScrollToPosition(0)
-        circleRecycler.layoutManager = layoutManager
-/*        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+    circleRecycler.smoothScrollToPosition(0)
+    circleRecycler.layoutManager = layoutManager
+
+    viewLifecycleOwner.lifecycleScope.launch {
+        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
 
                 return when (position % 3) {
-                    0 -> 0
-                    1 -> 2
-                    2 -> 1
+                    0 -> 2
+                    1, 2 -> 1
                     else -> throw Exception()
                 }
             }
-        }*/
-        /*circleRecycler.addItemDecoration(SpacesItemDecoration(230))*/
-        adapter.notifyDataSetChanged()
+        }
 
-        /*activity?.startActivity(Intent(requireContext(), MainActivity::class.java))*/
+        circleRecycler.addItemDecoration(SpacesItemDecoration(230))
+        circleRecycler.setHasFixedSize(true)
 
-        return view
+
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
+    adapter.notifyDataSetChanged()
+
+
+    /*activity?.startActivity(Intent(requireContext(), MainActivity::class.java))*/
+
+    return view
+}
+
+override fun onAttach(context: Context) {
+    super.onAttach(context)
+}
 
 
 }

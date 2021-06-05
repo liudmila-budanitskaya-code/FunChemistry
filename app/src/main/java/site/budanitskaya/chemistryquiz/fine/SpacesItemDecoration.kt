@@ -13,11 +13,14 @@ class SpacesItemDecoration(val space: Int) : RecyclerView.ItemDecoration() {
     ) {
         super.getItemOffsets(outRect, view, parent, state)
         when (parent.getChildLayoutPosition(view) % 3) {
-            1 -> outRect.left = space
-            2 -> outRect.left = space/20
+            0 -> {
+                outRect.left = space
+                outRect.right = space
+            }
         }
     }
 }
+
 /*
 
 override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {

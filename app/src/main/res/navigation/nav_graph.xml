@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_quizListFragment_to_questionFragment"
             app:destination="@id/questionFragment" />
+        <action
+            android:id="@+id/action_quizListFragment_to_cardsActivity"
+            app:destination="@id/cardsActivity" />
     </fragment>
 
     <fragment
@@ -69,13 +72,18 @@
         android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.chipscreen.ChipsFragment"
         android:label="fragment_chem_chips_question"
         tools:layout="@layout/fragment_chem_chips_question" />
-    <activity
-        android:id="@+id/crosswordActivity"
-        android:name="site.budanitskaya.chemistryquiz.fine.crossword.CrosswordActivity"
-        android:label="CrosswordActivity" />
     <fragment
         android:id="@+id/crosswordFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.crossword.CrosswordFragment"
         android:label="CrosswordFragment" />
+    <activity
+        android:id="@+id/cardsActivity"
+        android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.cardsscreen.CardsActivity"
+        android:label="activity_cards"
+        tools:layout="@layout/activity_cards" >
+        <argument
+            android:name="topic"
+            app:argType="site.budanitskaya.chemistryquiz.fine.domain.Topic" />
+    </activity>
 
 </navigation>
