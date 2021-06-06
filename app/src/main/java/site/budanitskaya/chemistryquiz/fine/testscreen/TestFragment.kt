@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat.getColor
@@ -20,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
+
 
 class QuestionFragment : Fragment(), INavigate {
 
@@ -56,19 +58,13 @@ class QuestionFragment : Fragment(), INavigate {
         binding.game = this
 
         binding.viewModel = viewModel
+        binding.mCountDownTimer.start(30000)
+
         if(activity != null && activity is MainActivity)
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
 
         viewModel.shuffleQuestions()
         Timer(this).start()
-
-        val progressbar = binding.progressBar
-
-        val animation = ObjectAnimator.ofInt(progressbar, "progress", 1000000, 0)
-        animation.duration = 30000
-
-        animation.interpolator = LinearInterpolator()
-        animation.start()
 
         args = QuestionFragmentArgs.fromBundle(requireArguments())
         viewModel.setQuestion(args.topic.name)
@@ -103,7 +99,6 @@ class QuestionFragment : Fragment(), INavigate {
         }
         currentQuizItem++
 
-        binding.simpleChronometer.start()
         startTime = System.currentTimeMillis()
 
         Log.d("onCreateView: ", "onCreateView: ${viewModel.getRowCount()}")
@@ -113,7 +108,7 @@ class QuestionFragment : Fragment(), INavigate {
 
     fun onOptionBtnClicked(view: View) {
         if (!clickFlag) {
-            if (view is AppCompatButton) {
+            if (view is RadioButton) {
                 binding.btnNext.text = "Next"
                 if (view.text == viewModel.currentQuestion.answers[0]) {
                     areCorrect.add(true)
@@ -169,6 +164,7 @@ class QuestionFragment : Fragment(), INavigate {
         binding.invalidateAll()
         binding.bool.text = ""
         binding.rationale.text = ""
+        binding.rg.clearCheck()
         binding.questionText.text = viewModel.currentQuestion.text
         binding.btnOptOne.text = viewModel.answers[0]
         binding.btnOptTwo.text = viewModel.answers[1]
@@ -203,6 +199,10 @@ class QuestionFragment : Fragment(), INavigate {
         dialog.setContentView(R.layout.activity_splash)
         dialog.show()
 
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 }
 

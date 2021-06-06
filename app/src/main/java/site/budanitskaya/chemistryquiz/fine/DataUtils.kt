@@ -1,8 +1,12 @@
 package site.budanitskaya.chemistryquiz.fine
+
+import android.graphics.Color
+import java.util.*
+
 fun generateQuizItems(): MutableList<QuizItem> {
     return mutableListOf(
         QuizItem(
-            text = "Which of these is a weak acid?",
+            text = "Which of these acids is a weak acid: HF, HCl, HI, or HBr?",
             answers = listOf("HF", "HCl", "HI", "HBr"),
             topic = "Acids and bases",
             explanation = "HF is a really weak acid while the others are strong"
@@ -396,3 +400,8 @@ fun generateQuizItems(): MutableList<QuizItem> {
 
 fun resourceWrapper(res: Int): Array<String> =
     MainApplication.applicationContext().resources.getStringArray(res)
+
+fun generateRandomColor(): Int {
+    val rnd = Random()
+    return Color.argb(120, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+}

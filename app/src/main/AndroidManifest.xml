@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChemistryQuiz">
         <activity
-            android:name=".chemicalchips.cardsscreen.CardsActivity"
+            android:name="site.budanitskaya.chemistryquiz.fine.cardsscreen.CardsActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
         <activity android:name=".crossword.CrosswordActivity" />
         <activity

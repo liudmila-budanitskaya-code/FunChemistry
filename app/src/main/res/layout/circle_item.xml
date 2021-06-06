@@ -7,7 +7,7 @@
     android:backgroundTint="@android:color/transparent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.google.android.material.imageview.ShapeableImageView
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintVertical_bias="0.5"
         android:id="@+id/game_item"
@@ -16,11 +16,15 @@
         android:foreground="?android:selectableItemBackground"
         android:scaleType="centerCrop"
         android:alpha="0.8"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:src="@drawable/organic_chemistry"
-        app:civ_border_width="3dp"
-        app:civ_border_color="#707070"
+        android:padding="5dp"
+        app:strokeWidth="5dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        app:strokeColor="#CCB0B0B0"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toTopOf="@+id/topic_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

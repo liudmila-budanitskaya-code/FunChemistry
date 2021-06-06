@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_back"
     android:layout_width="300dp"
-    android:layout_height="300dp"
+    android:layout_height="500dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -13,8 +13,8 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#a6c"
-        android:gravity="bottom"
+        android:background="#FFFFFF"
+        android:gravity="top"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,22 +23,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@android:id/text1"
+            android:id="@+id/answer_txt"
             style="?android:textAppearanceLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Card Back"
-            android:textColor="#fff"
+            android:fontFamily="@font/the_girl_next_door"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/explanation_txt"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"
+            android:lineSpacingMultiplier="1"
+            android:textSize="18sp"
+            android:fontFamily="@font/the_girl_next_door"
             android:text="Card Back Description"
-            android:textAllCaps="true"
-            android:textColor="#80ffffff"
             android:textStyle="bold" />
 
     </LinearLayout>

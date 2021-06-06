@@ -17,6 +17,9 @@
     <style name="AuthTheme" parent="Theme.ChemistryQuiz">
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 
    <!-- <style name="MyCardViewStyle" parent="CardView">
         <item name="cardBackgroundColor">@android:color/white</item>

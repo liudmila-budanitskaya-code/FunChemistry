@@ -78,7 +78,7 @@
         android:label="CrosswordFragment" />
     <activity
         android:id="@+id/cardsActivity"
-        android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.cardsscreen.CardsActivity"
+        android:name="site.budanitskaya.chemistryquiz.fine.cardsscreen.CardsActivity"
         android:label="activity_cards"
         tools:layout="@layout/activity_cards" >
         <argument

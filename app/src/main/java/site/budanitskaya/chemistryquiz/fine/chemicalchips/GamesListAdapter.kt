@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import de.hdodenhof.circleimageview.CircleImageView
+import com.google.android.material.imageview.ShapeableImageView
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.domain.Game
 
@@ -31,7 +31,7 @@ class GamesListAdapter(
     ) : RecyclerView.ViewHolder(view) {
 
         private var root: View = view.rootView
-        private val itemButton: CircleImageView = root.findViewById(R.id.game_item)
+        private val itemButton: ShapeableImageView = root.findViewById(R.id.game_item)
         private val textView = root.findViewById<TextView>(R.id.game_name)
 
         fun bind(position: Int) {

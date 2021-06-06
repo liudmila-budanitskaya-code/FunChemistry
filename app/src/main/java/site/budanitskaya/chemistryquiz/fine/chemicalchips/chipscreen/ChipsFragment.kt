@@ -95,18 +95,16 @@ class ChipsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             if (view is Chip) {
                 val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
-                Log.d("onCreateView", "onCreateView: ${values[0]}")
-                Log.d("onCreateView", "onCreateView: ${viewModel.rawCorrectProducts}")
                 if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size > 1) {
-/*                view.animate().alpha(
+                view.animate().alpha(
                     0.0F
-                ).duration = 3000*/
+                ).duration = 3000
+                    view.visibility = View.GONE
                     viewModel.rawReagentsString.append(("${values[0]} + "))
                     with(binding) {
                         txtChemReaction.invalidate()
 
-                        txtChemReaction.animate().rotation(360F)
-                        delay(1000)
+                        txtChemReaction.animate().rotation(360F).duration = 2700
 
                         txtChemReaction.setText(
                             formatFormula(viewModel.rawReagentsString.toString()),
@@ -115,19 +113,19 @@ class ChipsFragment : Fragment() {
                     }
                     viewModel.rawCorrectProducts.remove(values[0])
                 } else if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size == 1) {
-/*                view.animate().alpha(
+                    Log.d("onChipClick", "onChipClick: i am here!")
+                view.animate().alpha(
                     0.0F
-                ).duration = 300*/
+                ).duration = 3000
+                    view.visibility = View.GONE
+                    viewModel.rawReagentsString.append(viewModel.rawCorrectProducts[0])
                     binding.txtChemReaction.setText(
                         formatFormula(viewModel.rawReagentsString.toString()),
                         TextView.BufferType.SPANNABLE
                     )
-                    Log.d("onChipClick", "onChipClick: ${"I am here!"}")
-                    Log.d("onChipClick", "onChipClick: ${viewModel.reactionNumber.value}")
-                    viewModel.rawReagentsString.append(values[0])
+                    delay(4000)
                     with(binding) {
                         txtChemReaction.invalidate()
-
                     }
                     viewModel.rawCorrectProducts.remove(values[0])
                     viewModel.setNewReaction()
@@ -141,12 +139,24 @@ class ChipsFragment : Fragment() {
 
     }
 
+    private fun setChipsVisible() {
+        with(binding){
+            chipGroup.alpha = 1F
+            chipOne.visibility = View.VISIBLE
+            chipTwo.visibility = View.VISIBLE
+            chipThree.visibility = View.VISIBLE
+            chipFour.visibility = View.VISIBLE
+            chipFive.visibility = View.VISIBLE
+        }
+    }
+
     private fun setNewReactionView() {
 
         with(binding) {
             invalidateAll()
 
             txtChemReaction.alpha = 1F
+            setChipsVisible()
             txtChemReaction.text = formatFormula(viewModel.rawReagentsString.toString())
             chipOne.text = formatFormula(viewModel.shuffledRawProducts[0])
             chipTwo.text = formatFormula(viewModel.shuffledRawProducts[1])
@@ -169,6 +179,12 @@ class ChipsFragment : Fragment() {
             chipThree.alpha = 1F
             chipFour.alpha = 1F
             chipFive.alpha = 1F
+            chipOne.visibility = View.VISIBLE
+            chipTwo.visibility = View.VISIBLE
+            chipThree.visibility = View.VISIBLE
+            chipFour.visibility = View.VISIBLE
+            chipFive.visibility = View.VISIBLE
+
 
         }
     }

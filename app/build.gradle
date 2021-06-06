@@ -102,9 +102,8 @@ dependencies {
     // Preferences
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation project(':library')
+    implementation 'com.github.anastr:flattimelib:1.0.3'
 }
 
