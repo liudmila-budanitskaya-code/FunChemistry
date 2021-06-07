@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.ui.testresult
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestResultBinding
 
 class TestResultFragment : Fragment() {
@@ -27,7 +28,8 @@ class TestResultFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentTestResultBinding>(
             inflater, R.layout.fragment_test_result, container, false
         )
-        args = TestResultFragmentArgs.fromBundle(requireArguments())
+        args =
+            TestResultFragmentArgs.fromBundle(requireArguments())
         /*if(activity != null && activity is MainActivity)
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
 */
