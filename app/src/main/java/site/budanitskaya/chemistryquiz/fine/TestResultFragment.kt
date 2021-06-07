@@ -14,9 +14,9 @@ import com.github.mikephil.charting.data.BarEntry
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentGameOverBinding
 
-class GameOverFragment : Fragment() {
+class TestResultFragment : Fragment() {
 
-    private lateinit var args: GameOverFragmentArgs
+    private lateinit var args: TestResultFragmentArgs
 
     private lateinit var binding: FragmentGameOverBinding
 
@@ -28,7 +28,7 @@ class GameOverFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentGameOverBinding>(
             inflater, R.layout.fragment_game_over, container, false
         )
-        args = GameOverFragmentArgs.fromBundle(requireArguments())
+        args = TestResultFragmentArgs.fromBundle(requireArguments())
         /*if(activity != null && activity is MainActivity)
             (activity as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
 */
@@ -39,7 +39,7 @@ class GameOverFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.returnBtn.setOnClickListener {
-            findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToQuizListFragment())
+            findNavController().navigate(TestResultFragmentDirections.actionGameOverFragmentToQuizListFragment())
         }
     }
 
