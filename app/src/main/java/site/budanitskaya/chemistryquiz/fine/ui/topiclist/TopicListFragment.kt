@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.ui.topiclist
 
 import android.app.AlertDialog
 import android.content.Context
@@ -12,17 +12,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
+import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.topics.topics
-import site.budanitskaya.chemistryquiz.fine.ui.topiclist.SpacesItemDecoration
 
 
-class QuizListFragment : Fragment() {
+class TopicListFragment : Fragment() {
 
     private lateinit var circleRecycler: RecyclerView
 
-    val adapter: QuizListAdapter by lazy {
-        QuizListAdapter(topics) {
+    val adapter: TopicListAdapter by lazy {
+        TopicListAdapter(topics) {
             showAlertDialog(it)
         }
     }
@@ -38,7 +38,7 @@ class QuizListFragment : Fragment() {
                 0 -> {
                     dialog.dismiss()
                     findNavController().navigate(
-                        QuizListFragmentDirections.actionQuizListFragmentToQuestionFragment(
+                        TopicListFragmentDirections.actionQuizListFragmentToQuestionFragment(
                             topic
                         )
                     )
@@ -46,7 +46,9 @@ class QuizListFragment : Fragment() {
 
             1 -> {
                 val action =
-                QuizListFragmentDirections.actionQuizListFragmentToCardsActivity(topic)
+                    TopicListFragmentDirections.actionQuizListFragmentToCardsActivity(
+                        topic
+                    )
 
                 findNavController().navigate(action)
                 dialog.dismiss()

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/quizListFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.QuizListFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.topiclist.TopicListFragment"
         tools:layout="@layout/fragment_quiz_list" >
         <action
             android:id="@+id/action_quizListFragment_to_questionFragment"

@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.ui.topiclist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
+import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 
-class QuizListAdapter(
+class TopicListAdapter(
     private val topics: List<Topic>,
     private val onItemClick: (Topic) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

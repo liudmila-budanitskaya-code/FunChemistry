@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/back"
     android:scaleX="2"
-    tools:context=".QuizListFragment">
+    tools:context=".ui.topiclist.TopicListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/game_recycler"

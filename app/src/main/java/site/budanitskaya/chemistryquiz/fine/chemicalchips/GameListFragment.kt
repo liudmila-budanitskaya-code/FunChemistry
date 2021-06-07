@@ -9,10 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import site.budanitskaya.chemistryquiz.fine.QuizListAdapter
-import site.budanitskaya.chemistryquiz.fine.QuizListFragmentDirections
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.topics.topics
 
 class GameListFragment : Fragment() {
 
