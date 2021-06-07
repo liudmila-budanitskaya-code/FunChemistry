@@ -7,7 +7,7 @@
 
         <variable
             name="game"
-            type="site.budanitskaya.chemistryquiz.fine.testscreen.QuestionFragment" />
+            type="site.budanitskaya.chemistryquiz.fine.testscreen.TestFragment" />
 
         <variable
             name="viewModel"
@@ -18,24 +18,25 @@
         android:id="@+id/db1_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="0dp"
+        android:background="@drawable/one"
         android:orientation="vertical">
         <com.github.anastr.flattimelib.CountDownTimerView
             android:id="@+id/mCountDownTimer"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
             app:remainingTimeColor="@color/white"
             app:elapsedTimeColor="#B1FBB4"
             app:indicatorColor="@color/black"
             android:layout_width="150dp"
             android:layout_height="150dp" />
 
-
-
         <LinearLayout
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:gravity="center"
             android:orientation="vertical"
             android:textAppearance="?android:attr/textAppearanceLarge">
@@ -46,7 +47,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="10dp"
-                tools:context=".testscreen.QuestionFragment">
+                tools:context=".testscreen.TestFragment">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,27 +79,32 @@
 
                 <RadioGroup
                     android:id="@+id/rg"
+                    android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <RadioButton
                         android:id="@+id/btn_opt_one"
+                        android:textSize="20sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                     <RadioButton
                         android:id="@+id/btn_opt_two"
                         android:layout_width="match_parent"
+                        android:textSize="20sp"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
                         android:id="@+id/btn_opt_three"
                         android:layout_width="match_parent"
+                        android:textSize="20sp"
                         android:layout_height="wrap_content"/>
 
                     <RadioButton
                         android:id="@+id/btn_opt_four"
                         android:layout_width="match_parent"
+                        android:textSize="20sp"
                         android:layout_height="wrap_content" />
 
 
@@ -111,8 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/rationale"
@@ -120,7 +125,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:gravity="start"
-                    android:textStyle="bold"
                     android:visibility="gone" />
 
             </LinearLayout>
@@ -133,25 +137,19 @@
             android:gravity="center|bottom"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_quit"
-                style="?android:attr/buttonStyleSmall"
-                android:drawableStart="@drawable/ic_baseline_keyboard_arrow_left_24"
-                android:layout_width="0dp"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center"
-                android:layout_weight="1"
-                android:text="Quit" />
+                android:text="Back"
+                android:background="@drawable/answer_button" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_next"
-                style="?android:attr/buttonStyleSmall"
-                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center"
-                android:layout_weight="1"
-                android:text="Skip" />
+                android:text="Next"
+                android:background="@drawable/answer_button" />
         </LinearLayout>
     </LinearLayout>
 </layout>

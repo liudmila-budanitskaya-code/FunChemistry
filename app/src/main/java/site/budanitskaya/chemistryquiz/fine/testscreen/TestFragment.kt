@@ -1,6 +1,5 @@
 package site.budanitskaya.chemistryquiz.fine.testscreen
 
-import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -8,10 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.LinearInterpolator
 import android.widget.RadioButton
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -20,12 +17,12 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuestionBinding
+import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
 
 
-class QuestionFragment : Fragment(), INavigate {
+class TestFragment : Fragment(), INavigate {
 
-    private lateinit var args: QuestionFragmentArgs
+    private lateinit var args: TestFragmentArgs
     lateinit var dialog: Dialog
     var startTime: Long = 0
     val spentTimes by lazy {
@@ -44,16 +41,16 @@ class QuestionFragment : Fragment(), INavigate {
     private var currentQuizItem = 0
 
     var navigateFlag = 0
-    private lateinit var binding: FragmentQuestionBinding
+    private lateinit var binding: FragmentTestBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate<FragmentQuestionBinding>(
+        binding = DataBindingUtil.inflate<FragmentTestBinding>(
             inflater,
-            R.layout.fragment_question, container, false
+            R.layout.fragment_test, container, false
         )
         binding.game = this
 
@@ -66,7 +63,7 @@ class QuestionFragment : Fragment(), INavigate {
         viewModel.shuffleQuestions()
         Timer(this).start()
 
-        args = QuestionFragmentArgs.fromBundle(requireArguments())
+        args = TestFragmentArgs.fromBundle(requireArguments())
         viewModel.setQuestion(args.topic.name)
 
         Log.d("12345678", "onCreateView: ${viewModel.getRandomQuestionByTopic(args.topic.name)}")
@@ -78,7 +75,7 @@ class QuestionFragment : Fragment(), INavigate {
         setContentView()
         binding.btnOptOne.setOnClickListener { view: View ->
             onOptionBtnClicked(view)
-            createDialog()
+
         }
 
         binding.btnOptTwo.setOnClickListener { view: View ->
@@ -146,7 +143,7 @@ class QuestionFragment : Fragment(), INavigate {
         binding.btnNext.text = "Skip"
     }
 
-    inner class Timer(val fragment: QuestionFragment) : CountDownTimer(30000, 1000) {
+    inner class Timer(val fragment: TestFragment) : CountDownTimer(30000, 1000) {
         override fun onTick(millisUntilFinished: Long) {
             binding.timer.text = "seconds remaining: " + millisUntilFinished / 1000
         }
@@ -187,7 +184,7 @@ class QuestionFragment : Fragment(), INavigate {
         spentTimes.add((endTime - startTime) / 1000)
         startTime = endTime
         findNavController().navigate(
-            QuestionFragmentDirections.actionQuestionFragmentToGameOverFragment(
+            TestFragmentDirections.actionQuestionFragmentToGameOverFragment(
                 spentTimes.toLongArray(), areCorrect.toBooleanArray()
             )
         )

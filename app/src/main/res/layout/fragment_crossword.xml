@@ -12,6 +12,19 @@
         android:background="#FFFFFF"
         android:orientation="vertical">
 
+
+        <org.akop.ararat.view.CrosswordView
+            android:id="@+id/crossword"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="3"
+            android:maxLines="3"
+            android:background="#FFFFFF"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,17 +72,5 @@
                 android:src="@drawable/restart"
                 android:contentDescription="@string/play_again_button" />
         </LinearLayout>
-        <org.akop.ararat.view.CrosswordView
-            android:id="@+id/crossword"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-        <TextView
-            android:id="@+id/hint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minLines="3"
-            android:maxLines="3"
-            android:background="#FFFFFF"/>
     </LinearLayout>
 </layout>
