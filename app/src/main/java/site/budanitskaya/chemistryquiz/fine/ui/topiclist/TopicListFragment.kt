@@ -33,7 +33,6 @@ class TopicListFragment : Fragment() {
         val items = arrayOf("Test Mode", "FlashCard Mode")
         val checkedItem = 1
         alertDialog.setSingleChoiceItems(items, checkedItem) { dialog, which ->
-
             when (which) {
                 0 -> {
                     dialog.dismiss()
@@ -43,68 +42,51 @@ class TopicListFragment : Fragment() {
                         )
                     )
                 }
+                1 -> {
+                    val action =
+                        TopicListFragmentDirections.actionQuizListFragmentToCardsActivity(
+                            topic
+                        )
 
-            1 -> {
-                val action =
-                    TopicListFragmentDirections.actionQuizListFragmentToCardsActivity(
-                        topic
-                    )
-
-                findNavController().navigate(action)
-                dialog.dismiss()
-            }
-        }
-    }
-
-    val alert = alertDialog.create()
-    alert.setCanceledOnTouchOutside(true)
-    alert.show()
-}
-
-override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
-): View? {
-    // Inflate the layout for this fragment
-    val view = inflater.inflate(R.layout.fragment_quiz_list, container, false)
-    circleRecycler = view.findViewById(R.id.game_recycler)
-
-    circleRecycler.adapter = adapter
-    val layoutManager = GridLayoutManager(requireContext(), 2)
-
-
-    circleRecycler.smoothScrollToPosition(0)
-    circleRecycler.layoutManager = layoutManager
-
-    viewLifecycleOwner.lifecycleScope.launch {
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-
-                return when (position % 3) {
-                    0 -> 2
-                    1, 2 -> 1
-                    else -> throw Exception()
+                    findNavController().navigate(action)
+                    dialog.dismiss()
                 }
             }
         }
-
-        circleRecycler.addItemDecoration(SpacesItemDecoration(230))
-        circleRecycler.setHasFixedSize(true)
-
-
+        val alert = alertDialog.create()
+        alert.setCanceledOnTouchOutside(true)
+        alert.show()
     }
 
-    adapter.notifyDataSetChanged()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_quiz_list, container, false)
+        circleRecycler = view.findViewById(R.id.game_recycler)
 
+        circleRecycler.adapter = adapter
+        val layoutManager = GridLayoutManager(requireContext(), 2)
 
-    /*activity?.startActivity(Intent(requireContext(), MainActivity::class.java))*/
+        circleRecycler.smoothScrollToPosition(0)
+        circleRecycler.layoutManager = layoutManager
 
-    return view
-}
+        viewLifecycleOwner.lifecycleScope.launch {
+            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return when (position % 3) {
+                        0 -> 2
+                        1, 2 -> 1
+                        else -> throw Exception()
+                    }
+                }
+            }
+            circleRecycler.addItemDecoration(SpacesItemDecoration(230))
+            circleRecycler.setHasFixedSize(true)
+        }
 
-override fun onAttach(context: Context) {
-    super.onAttach(context)
-}
+        adapter.notifyDataSetChanged()
 
-
+        return view
+    }
 }

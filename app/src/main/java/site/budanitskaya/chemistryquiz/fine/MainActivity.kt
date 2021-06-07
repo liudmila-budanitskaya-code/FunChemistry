@@ -1,13 +1,11 @@
 package site.budanitskaya.chemistryquiz.fine
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -25,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navView: BottomNavigationView
 
-    lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     private val navController by lazy {
         this.findNavController(R.id.nav_host_fragment_activity_main)
@@ -39,14 +37,11 @@ class MainActivity : AppCompatActivity() {
         navView.itemRippleColor = getColorStateList(R.color.colorPrimary)
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.quizListFragment, R.id.navigation_game, R.id.navigation_notifications
             )
-
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -63,12 +58,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         navView.setupWithNavController(navController)
-/*        this.window.apply {
-            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            statusBarColor = Color.TRANSPARENT
-        }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -89,7 +78,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
-        // [START auth_fui_signout]
         AuthUI.getInstance()
             .signOut(this)
             .addOnCompleteListener {
@@ -111,7 +99,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun createUI() {
-
         val list = auth?.providerData
         var providerData: String = ""
         list?.let {
@@ -125,9 +112,6 @@ class MainActivity : AppCompatActivity() {
         super.onBackPressed()
         finishAffinity()
     }
-
-
-
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)

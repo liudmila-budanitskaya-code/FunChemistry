@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.runBlocking
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.ChipsDatasource
+import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter
 import site.budanitskaya.chemistryquiz.fine.domain.mapReactionEntitiesToReactions
 import site.budanitskaya.chemistryquiz.fine.models.Reaction
