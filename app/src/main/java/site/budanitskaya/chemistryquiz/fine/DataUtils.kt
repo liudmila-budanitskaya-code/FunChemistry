@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine
 
 import android.graphics.Color
+import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import java.util.*
 
 fun generateQuizItems(): MutableList<QuizItem> {

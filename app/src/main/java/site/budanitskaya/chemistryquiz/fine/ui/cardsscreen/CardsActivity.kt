@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.ActivityNavigator
 import com.firebase.ui.auth.AuthUI
 import site.budanitskaya.chemistryquiz.fine.MainActivity
-import site.budanitskaya.chemistryquiz.fine.QuizItem
+import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem

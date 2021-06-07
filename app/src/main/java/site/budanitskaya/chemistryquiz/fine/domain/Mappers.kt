@@ -1,6 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.domain
 
-import site.budanitskaya.chemistryquiz.fine.QuizItem
+import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.Question
 import site.budanitskaya.chemistryquiz.fine.generateQuizItems
 
