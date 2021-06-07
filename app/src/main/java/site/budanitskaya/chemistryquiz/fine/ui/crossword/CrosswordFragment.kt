@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.crossword
+package site.budanitskaya.chemistryquiz.fine.ui.crossword
 
 import android.os.Bundle
 import android.view.*
@@ -12,7 +12,6 @@ import org.akop.ararat.core.buildCrossword
 import org.akop.ararat.io.PuzFormatter
 import org.akop.ararat.view.CrosswordView
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentCrosswordBinding
 
 class CrosswordFragment : Fragment(), CrosswordView.OnLongPressListener, CrosswordView.OnStateChangeListener, CrosswordView.OnSelectionChangeListener {

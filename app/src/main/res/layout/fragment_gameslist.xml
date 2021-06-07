@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/back"
     android:scaleX="2"
-    tools:context=".chemicalchips.GameListFragment">
+    tools:context=".ui.gamelist.GameListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/game_recycler"

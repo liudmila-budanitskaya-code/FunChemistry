@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/container"
     android:background="@drawable/one"
-    tools:context=".cardsscreen.CardsActivity">
+    tools:context=".ui.cardsscreen.CardsActivity">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back_btn"

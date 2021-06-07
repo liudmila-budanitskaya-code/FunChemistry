@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.chemicalchips
+package site.budanitskaya.chemistryquiz.fine.ui.gamelist
 
 import android.view.LayoutInflater
 import android.view.View

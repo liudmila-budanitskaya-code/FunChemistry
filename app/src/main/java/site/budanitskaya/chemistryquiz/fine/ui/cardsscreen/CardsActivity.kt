@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.cardsscreen
+package site.budanitskaya.chemistryquiz.fine.ui.cardsscreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +44,8 @@ class CardsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cards)
 
-        args = CardsActivityArgs.fromBundle(intent.extras!!)
+        args =
+            CardsActivityArgs.fromBundle(intent.extras!!)
         topic = args.topic
         card = viewModel.getRandomQuestionByTopic(topic.name).toQuizItem()
         color_back = generateRandomColor()

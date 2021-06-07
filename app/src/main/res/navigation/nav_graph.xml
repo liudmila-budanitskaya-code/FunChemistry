@@ -53,7 +53,7 @@
 
     <fragment
         android:id="@+id/navigation_game"
-        android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.GameListFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.gamelist.GameListFragment"
         tools:layout="@layout/fragment_gameslist" >
         <action
             android:id="@+id/action_navigation_game_to_chemChipsQuestionFragment"
@@ -68,10 +68,10 @@
         tools:layout="@layout/fragment_chem_chips_question" />
     <fragment
         android:id="@+id/crosswordFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.crossword.CrosswordFragment" />
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.crossword.CrosswordFragment" />
     <activity
         android:id="@+id/cardsActivity"
-        android:name="site.budanitskaya.chemistryquiz.fine.cardsscreen.CardsActivity"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.cardsscreen.CardsActivity"
         tools:layout="@layout/activity_cards" >
         <argument
             android:name="topic"
