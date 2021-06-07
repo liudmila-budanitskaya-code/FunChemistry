@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/gameOverFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.TestResultFragment"
-        tools:layout="@layout/fragment_game_over" >
+        tools:layout="@layout/fragment_test_result" >
         <action
             android:id="@+id/action_gameOverFragment_to_quizListFragment"
             app:destination="@id/quizListFragment" />

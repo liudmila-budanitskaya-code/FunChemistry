@@ -11,22 +11,21 @@ import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import site.budanitskaya.chemistryquiz.fine.databinding.FragmentGameOverBinding
+import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestResultBinding
 
 class TestResultFragment : Fragment() {
 
     private lateinit var args: TestResultFragmentArgs
 
-    private lateinit var binding: FragmentGameOverBinding
+    private lateinit var binding: FragmentTestResultBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate<FragmentGameOverBinding>(
-            inflater, R.layout.fragment_game_over, container, false
+        binding = DataBindingUtil.inflate<FragmentTestResultBinding>(
+            inflater, R.layout.fragment_test_result, container, false
         )
         args = TestResultFragmentArgs.fromBundle(requireArguments())
         /*if(activity != null && activity is MainActivity)
