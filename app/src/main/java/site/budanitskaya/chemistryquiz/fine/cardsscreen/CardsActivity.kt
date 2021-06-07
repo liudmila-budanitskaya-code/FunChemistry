@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.cardsscreen
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
@@ -23,8 +22,8 @@ import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.generateRandomColor
-import site.budanitskaya.chemistryquiz.fine.testscreen.TestViewModel
-import site.budanitskaya.chemistryquiz.fine.testscreen.TestViewModelFactory
+import site.budanitskaya.chemistryquiz.fine.ui.test.TestViewModel
+import site.budanitskaya.chemistryquiz.fine.ui.test.TestViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 
 class CardsActivity : AppCompatActivity() {

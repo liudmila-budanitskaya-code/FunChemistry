@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/questionFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.testscreen.TestFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.test.TestFragment"
         tools:layout="@layout/fragment_test" >
         <action
             android:id="@+id/action_questionFragment_to_gameOverFragment"
@@ -48,7 +48,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="site.budanitskaya.chemistryquiz.fine.notifications.NotificationsFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment

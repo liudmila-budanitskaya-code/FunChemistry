@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.testscreen
+package site.budanitskaya.chemistryquiz.fine.ui.test
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.delay

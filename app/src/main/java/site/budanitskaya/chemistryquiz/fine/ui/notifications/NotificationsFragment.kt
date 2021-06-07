@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.notifications
+package site.budanitskaya.chemistryquiz.fine.ui.notifications
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

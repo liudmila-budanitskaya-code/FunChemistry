@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.testscreen
+package site.budanitskaya.chemistryquiz.fine.ui.test
 
 import android.app.Dialog
 import android.os.Bundle
@@ -63,7 +63,9 @@ class TestFragment : Fragment(), INavigate {
         viewModel.shuffleQuestions()
         Timer(this).start()
 
-        args = TestFragmentArgs.fromBundle(requireArguments())
+        args = TestFragmentArgs.fromBundle(
+            requireArguments()
+        )
         viewModel.setQuestion(args.topic.name)
 
         Log.d("12345678", "onCreateView: ${viewModel.getRandomQuestionByTopic(args.topic.name)}")
