@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.chemicalchips.chipscreen
+package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.R

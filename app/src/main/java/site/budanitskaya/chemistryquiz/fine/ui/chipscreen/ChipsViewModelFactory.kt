@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.chemicalchips.chipscreen
+package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

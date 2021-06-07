@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/chemChipsQuestionFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.chipscreen.ChipsFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsFragment"
         tools:layout="@layout/fragment_chem_chips_question" />
     <fragment
         android:id="@+id/crosswordFragment"
