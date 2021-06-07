@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.chemicalchips
+package site.budanitskaya.chemistryquiz.fine.lists
 
 import site.budanitskaya.chemistryquiz.fine.domain.Reaction
 

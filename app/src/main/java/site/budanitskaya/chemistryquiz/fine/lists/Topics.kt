@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.topics
+package site.budanitskaya.chemistryquiz.fine.lists
 
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
