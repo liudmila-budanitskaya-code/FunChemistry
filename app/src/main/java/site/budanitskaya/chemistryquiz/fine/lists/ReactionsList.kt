@@ -26,12 +26,12 @@ fun generateReactionsList(): MutableList<Reaction> {
         ),
 
         Reaction(
-            listOf("KCl", "AgNO>3</sub>"),
+            listOf("KCl", "AgNO<sub>3</sub>"),
             listOf(
                 "AgCl",
-                "KNO>3</sub>",
-                "AgClO>3</sub>",
-                "KNO>2</sub>",
+                "KNO<sub>3</sub>",
+                "AgClO<sub>3</sub>",
+                "KNO<sub>2</sub>",
                 "KClO<sub>3</sub>"
             )
         ),

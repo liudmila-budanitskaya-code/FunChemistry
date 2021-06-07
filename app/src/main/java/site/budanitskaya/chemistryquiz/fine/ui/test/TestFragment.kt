@@ -20,7 +20,7 @@ import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
 
 
-class TestFragment : Fragment(), INavigate {
+class TestFragment : Fragment() {
 
     private lateinit var args: TestFragmentArgs
     lateinit var dialog: Dialog
@@ -48,7 +48,7 @@ class TestFragment : Fragment(), INavigate {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate<FragmentTestBinding>(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_test, container, false
         )
@@ -67,17 +67,12 @@ class TestFragment : Fragment(), INavigate {
             requireArguments()
         )
         viewModel.setQuestion(args.topic.name)
-
-        Log.d("12345678", "onCreateView: ${viewModel.getRandomQuestionByTopic(args.topic.name)}")
         viewModel.getRandomQuestionByTopic(args.topic.name)
-
-
         binding.questionText.text = args.topic.name
 
         setContentView()
         binding.btnOptOne.setOnClickListener { view: View ->
             onOptionBtnClicked(view)
-
         }
 
         binding.btnOptTwo.setOnClickListener { view: View ->
@@ -92,15 +87,11 @@ class TestFragment : Fragment(), INavigate {
             onOptionBtnClicked(view)
         }
 
-
         binding.btnNext.setOnClickListener {
             onNextBtnClicked()
         }
         currentQuizItem++
-
         startTime = System.currentTimeMillis()
-
-        Log.d("onCreateView: ", "onCreateView: ${viewModel.getRowCount()}")
         return binding.root
     }
 
@@ -175,7 +166,7 @@ class TestFragment : Fragment(), INavigate {
         startTime = endTime
     }
 
-    override fun navigateToGameOverScreen() {
+    fun navigateToGameOverScreen() {
         navigateFlag = 1
         val endTime = System.currentTimeMillis()
         Toast.makeText(
@@ -199,12 +190,4 @@ class TestFragment : Fragment(), INavigate {
         dialog.show()
 
     }
-
-    override fun onPause() {
-        super.onPause()
-    }
-}
-
-interface INavigate {
-    fun navigateToGameOverScreen()
 }

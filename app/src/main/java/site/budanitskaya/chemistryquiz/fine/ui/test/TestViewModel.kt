@@ -31,7 +31,6 @@ class TestViewModel : ViewModel() {
     lateinit var currentQuestion: QuizItem
     lateinit var answers: MutableList<String>
 
-
     private var _questionIndex = MutableLiveData<Int>(0)
     val questionIndex: LiveData<Int>
         get() = _questionIndex
@@ -60,14 +59,6 @@ class TestViewModel : ViewModel() {
     fun questionIncremented(currentTopic: String) {
         _questionIndex.value = _questionIndex.value?.plus(1)
         setQuestion(currentTopic)
-    }
-
-    fun getRowCount(): Int {
-        var rowCount: Int
-        runBlocking {
-            rowCount = questionRepository.getRowCount()
-        }
-        return rowCount
     }
 
     fun getRandomQuestionByTopic(currentTopic: String): Question {

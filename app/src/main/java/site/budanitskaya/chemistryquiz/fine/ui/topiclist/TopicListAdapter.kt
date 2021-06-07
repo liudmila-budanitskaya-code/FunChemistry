@@ -39,11 +39,10 @@ class TopicListAdapter(
             itemButton.setOnClickListener {
                 onItemClick(topics[position])
             }
-
             root.findViewById<TextView>(R.id.topic_name).text = topics[position].name
-            root.findViewById<ShapeableImageView>(R.id.game_item).setImageResource(topics[position].drawable)
+            root.findViewById<ShapeableImageView>(R.id.game_item)
+                .setImageResource(topics[position].drawable)
         }
-
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

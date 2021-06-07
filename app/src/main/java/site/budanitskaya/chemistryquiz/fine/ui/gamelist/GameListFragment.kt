@@ -36,7 +36,7 @@ class GameListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_gameslist, container, false)
         val gameRecycler = view.findViewById<RecyclerView>(R.id.game_recycler)
         gameRecycler.adapter = adapter

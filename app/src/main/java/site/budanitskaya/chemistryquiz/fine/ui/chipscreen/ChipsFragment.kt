@@ -25,7 +25,6 @@ class ChipsFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentChemChipsQuestionBinding
-
     lateinit var chipHashMap: Map<Chip, String>
 
 
@@ -42,23 +41,15 @@ class ChipsFragment : Fragment() {
         binding.textGame.text =
             "What is the most appropriate products for this chemical reaction?"
 
-// raw - unprocessed html string
-        // spannable - formula with indices
-
-
         chipHashMap = hashMapOf(
             binding.chipOne to viewModel.shuffledRawProducts[0],
             binding.chipTwo to viewModel.shuffledRawProducts[1],
             binding.chipThree to viewModel.shuffledRawProducts[2],
             binding.chipFour to viewModel.shuffledRawProducts[3],
             binding.chipFive to viewModel.shuffledRawProducts[4]
-
         )
 
         viewModel.superFunction()
-
-
-
         with(binding) {
             chipOne.text = formatFormula(viewModel.shuffledRawProducts[0])
             chipTwo.text = formatFormula(viewModel.shuffledRawProducts[1])
@@ -95,9 +86,9 @@ class ChipsFragment : Fragment() {
             if (view is Chip) {
                 val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
                 if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size > 1) {
-                view.animate().alpha(
-                    0.0F
-                ).duration = 3000
+                    view.animate().alpha(
+                        0.0F
+                    ).duration = 3000
                     view.visibility = View.GONE
                     viewModel.rawReagentsString.append(("${values[0]} + "))
                     with(binding) {
@@ -113,9 +104,9 @@ class ChipsFragment : Fragment() {
                     viewModel.rawCorrectProducts.remove(values[0])
                 } else if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size == 1) {
                     Log.d("onChipClick", "onChipClick: i am here!")
-                view.animate().alpha(
-                    0.0F
-                ).duration = 3000
+                    view.animate().alpha(
+                        0.0F
+                    ).duration = 3000
                     view.visibility = View.GONE
                     viewModel.rawReagentsString.append(viewModel.rawCorrectProducts[0])
                     binding.txtChemReaction.setText(
@@ -130,16 +121,13 @@ class ChipsFragment : Fragment() {
                     viewModel.setNewReaction()
                     setNewReactionView()
 
-                } else {
-
                 }
             }
         }
-
     }
 
     private fun setChipsVisible() {
-        with(binding){
+        with(binding) {
             chipGroup.alpha = 1F
             chipOne.visibility = View.VISIBLE
             chipTwo.visibility = View.VISIBLE
@@ -183,9 +171,6 @@ class ChipsFragment : Fragment() {
             chipThree.visibility = View.VISIBLE
             chipFour.visibility = View.VISIBLE
             chipFive.visibility = View.VISIBLE
-
-
         }
     }
-
 }

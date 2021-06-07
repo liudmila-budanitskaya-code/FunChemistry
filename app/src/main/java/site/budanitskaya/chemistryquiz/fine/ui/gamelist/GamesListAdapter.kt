@@ -42,10 +42,7 @@ class GamesListAdapter(
 
             itemButton.setImageResource(games[position].drawable)
             textView.text = games[position].name
-
-
         }
-
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

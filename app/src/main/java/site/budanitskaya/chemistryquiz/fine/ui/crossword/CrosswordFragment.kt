@@ -46,7 +46,6 @@ class CrosswordFragment : Fragment(), CrosswordView.OnLongPressListener, Crosswo
         }
 
         onSelectionChanged(crosswordView!!, crosswordView!!.selectedWord, crosswordView!!.selectedCell)
-
         return binding.root
     }
 
@@ -84,11 +83,8 @@ class CrosswordFragment : Fragment(), CrosswordView.OnLongPressListener, Crosswo
         crosswordView!!.solveWord(crosswordView!!.selectedWord!!)
     }
 
-
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-
         outState.putParcelable("state", crosswordView!!.state)
     }
 

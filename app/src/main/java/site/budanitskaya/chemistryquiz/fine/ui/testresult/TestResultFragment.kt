@@ -24,15 +24,11 @@ class TestResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate<FragmentTestResultBinding>(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_test_result, container, false
         )
         args =
             TestResultFragmentArgs.fromBundle(requireArguments())
-        /*if(activity != null && activity is MainActivity)
-            (activity as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
-*/
         setBarChart(args.spentTimes.toList(), args.areCorrect.toList())
         return binding.root
     }
@@ -47,7 +43,6 @@ class TestResultFragment : Fragment() {
     private fun setBarChart(list: List<Long>, areCorrect: List<Boolean>) {
         val true_entries = ArrayList<BarEntry>()
         val false_entries = ArrayList<BarEntry>()
-        Log.d("setBarChart", "setBarChart: ${list.size}")
         for (i in list.indices){
             if(areCorrect[i]){
                 true_entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
@@ -55,21 +50,14 @@ class TestResultFragment : Fragment() {
                 false_entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
             }
         }
-
         val barDataSet = BarDataSet(true_entries, "True")
-        barDataSet.color = R.color.colorPrimary
+        barDataSet.color = R.color.red
         val falSet = BarDataSet(false_entries, "False")
-        falSet.color = R.color.colorAccent
 
         val data = BarData(barDataSet, falSet)
-
         val barChart = binding.barChart
-        barChart.data = data // set the data and list of lables into chart
-        // set the description
-
-        //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
-        barDataSet.color = resources.getColor(R.color.colorAccent)
-
+        barChart.data = data
+        barDataSet.color = resources.getColor(R.color.green)
         barChart.animateY(3000)
     }
 }
