@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.ui.topiclist
 
 import android.graphics.Rect
 import android.view.View
