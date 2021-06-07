@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.ui.login
 
 import android.app.Activity
 import android.content.Intent
@@ -10,6 +10,9 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import site.budanitskaya.chemistryquiz.fine.MainActivity
+import site.budanitskaya.chemistryquiz.fine.R
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,15 +23,13 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        if(FirebaseAuth.getInstance().currentUser == null){
+        if (FirebaseAuth.getInstance().currentUser == null) {
             createSignInIntent()
         } else {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
     }
-
 
     private fun createSignInIntent() {
         val providers = arrayListOf<AuthUI.IdpConfig>(
@@ -42,11 +43,12 @@ class LoginActivity : AppCompatActivity() {
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
                 .setIsSmartLockEnabled(false)
+                .setLogo(R.drawable.chemistry_logo)
                 .setTheme(R.style.AuthTheme)
-                .setLogo(R.drawable.tubes)
                 .setTosAndPrivacyPolicyUrls(
-                    "https://example.com/terms.html",
-                    "https://example.com/privacy.html")
+                    getString(R.string.tos_url),
+                    getString(R.string.privacy_policy)
+                )
                 .build(),
             RC_SIGN_IN
         )
@@ -57,31 +59,19 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == RC_SIGN_IN) {
             var response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
-                val user = FirebaseAuth.getInstance().currentUser
                 val intent = Intent(this, MainActivity::class.java)
-//                val image = user?.photoUrl
-//
-//                intent.putExtra("USERNAME", user?.displayName)
-//                intent.putExtra("USEREMAIL",user?.email)
-//                intent.putExtra("USERPHONE",user?.phoneNumber)
-//                intent.putExtra("USERPROVIDER",user?.providerId)
-//                intent.putExtra("USERIMAGE",user?.photoUrl)
                 startActivity(intent)
-
             } else {
-
                 if (response == null) {
                     finish()
                 }
-                if (response?.getError()?.getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    //Show No Internet Notification
+                if (response?.error?.errorCode == ErrorCodes.NO_NETWORK) {
                     return
                 }
-
-                if (response?.getError()?.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                    Toast.makeText(this, response?.error?.errorCode.toString(), Toast.LENGTH_LONG)
+                if (response?.error?.errorCode == ErrorCodes.UNKNOWN_ERROR) {
+                    Toast.makeText(this, response.error?.errorCode.toString(), Toast.LENGTH_LONG)
                         .show()
-                    Log.d("ERRORCODE", response?.error?.errorCode.toString())
+                    Log.d(getString(R.string.error_code), response.error?.errorCode.toString())
                     return
                 }
             }

@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/quizListFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.QuizListFragment"
-        android:label="fragment_quiz_list"
         tools:layout="@layout/fragment_quiz_list" >
         <action
             android:id="@+id/action_quizListFragment_to_questionFragment"
@@ -21,7 +20,6 @@
     <fragment
         android:id="@+id/questionFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.testscreen.QuestionFragment"
-        android:label="fragment_question"
         tools:layout="@layout/fragment_question" >
         <action
             android:id="@+id/action_questionFragment_to_gameOverFragment"
@@ -36,7 +34,6 @@
     <fragment
         android:id="@+id/gameOverFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.GameOverFragment"
-        android:label="fragment_game_over"
         tools:layout="@layout/fragment_game_over" >
         <action
             android:id="@+id/action_gameOverFragment_to_quizListFragment"
@@ -52,13 +49,11 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="site.budanitskaya.chemistryquiz.fine.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_game"
         android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.GameListFragment"
-        android:label="@string/title_game"
         tools:layout="@layout/fragment_gameslist" >
         <action
             android:id="@+id/action_navigation_game_to_chemChipsQuestionFragment"
@@ -70,16 +65,13 @@
     <fragment
         android:id="@+id/chemChipsQuestionFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.chemicalchips.chipscreen.ChipsFragment"
-        android:label="fragment_chem_chips_question"
         tools:layout="@layout/fragment_chem_chips_question" />
     <fragment
         android:id="@+id/crosswordFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.crossword.CrosswordFragment"
-        android:label="CrosswordFragment" />
+        android:name="site.budanitskaya.chemistryquiz.fine.crossword.CrosswordFragment" />
     <activity
         android:id="@+id/cardsActivity"
         android:name="site.budanitskaya.chemistryquiz.fine.cardsscreen.CardsActivity"
-        android:label="activity_cards"
         tools:layout="@layout/activity_cards" >
         <argument
             android:name="topic"

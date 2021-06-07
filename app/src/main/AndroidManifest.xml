@@ -12,22 +12,20 @@
         android:theme="@style/Theme.ChemistryQuiz">
         <activity
             android:name="site.budanitskaya.chemistryquiz.fine.cardsscreen.CardsActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+            android:theme="@style/Theme.MainActivity" />
         <activity android:name=".crossword.CrosswordActivity" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
             <intent-filter>
-                <action android:name="site.budanitskaya.chemistryquiz.fine.LoginActivity" />
+                <action android:name="site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".splash.SplashActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+            android:name="site.budanitskaya.chemistryquiz.fine.ui.splash.SplashActivity"
+            android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +35,7 @@
         <activity
             android:name=".MainActivity"
             android:parentActivityName="site.budanitskaya.chemistryquiz.fine.MainActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+            android:theme="@style/Theme.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,25 +1,25 @@
 package site.budanitskaya.chemistryquiz.fine
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.preference.PreferenceManager
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
-
 
     val auth = FirebaseAuth.getInstance().currentUser
 
@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        NavigationUI.setupActionBarWithNavController(this, navController)
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -64,6 +63,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
         navView.setupWithNavController(navController)
+        this.window.apply {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            statusBarColor = Color.TRANSPARENT
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -79,16 +84,23 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 true
             }
-            R.id.settings -> {
-                startActivity(Intent(this, SettingsActivity::class.java))
-                true
-            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    private fun signOut() {
+        // [START auth_fui_signout]
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                this.finish()
+                Toast.makeText(this, "Successfully Log Out", Toast.LENGTH_SHORT).show()
+            }
+    }
+
     override fun onResume() {
-        setBackgroundColorFromSettingsActivity();
         super.onResume()
         if (auth != null && intent != null) {
             createUI()
@@ -114,31 +126,8 @@ class MainActivity : AppCompatActivity() {
         finishAffinity()
     }
 
-    private fun signOut() {
-        // [START auth_fui_signout]
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                this.finish()
-                Toast.makeText(this, "Successfully Log Out", Toast.LENGTH_SHORT).show()
-            }
-    }
 
-    private fun setBackgroundColorFromSettingsActivity() {
-        val sp = PreferenceManager.getDefaultSharedPreferences(this)
-/*        //SharedPreferences используется для сохранения настроек
-        //Подробнее - тут:
-        //https://developer.android.com/reference/android/content/SharedPreferences?hl=ru
-        val color = sp.getInt("color_picker", Color.GREEN)
-        val layout = findViewById<RelativeLayout>(R.id.activityMain)
-        layout.setBackgroundColor(color)*/
-    }
 
-    fun openSettingsActivity(view: View?) {
-        startActivity(Intent(this, SettingsActivity::class.java))
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)

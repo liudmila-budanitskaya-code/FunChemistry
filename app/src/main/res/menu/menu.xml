@@ -4,6 +4,4 @@
 
     <item android:title="Sign out"
         android:id="@+id/signout"/>
-    <item android:title="Settings"
-        android:id="@+id/settings"/>
 </menu>

@@ -4,6 +4,7 @@
     android:id="@+id/constr"
     android:layout_width="205dp"
     android:layout_height="205dp"
+    android:layout_marginTop="55dp"
     android:backgroundTint="@android:color/transparent"
     xmlns:tools="http://schemas.android.com/tools">
 

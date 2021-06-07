@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.splash
+package site.budanitskaya.chemistryquiz.fine.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,23 +8,16 @@ import site.budanitskaya.chemistryquiz.fine.R
 
 class SplashActivity : AppCompatActivity() {
 
+    val splashScope = CoroutineScope(Dispatchers.Main)
 
-    val activityScope = CoroutineScope(Dispatchers.Main)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        activityScope.launch {
-            delay(5000)
-
-            val intent = Intent("site.budanitskaya.chemistryquiz.fine.LoginActivity")
+        splashScope.launch {
+            delay(6480)
+            val intent = Intent("site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity")
             startActivity(intent)
             finish()
         }
-
-    }
-
-    override fun onPause() {
-        activityScope.cancel()
-        super.onPause()
     }
 }
