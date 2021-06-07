@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.chemicalchips
+package site.budanitskaya.chemistryquiz.fine.database
 
 import androidx.room.*
 

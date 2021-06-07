@@ -2,7 +2,7 @@ package site.budanitskaya.chemistryquiz.fine.domain
 
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.Question
-import site.budanitskaya.chemistryquiz.fine.generateQuizItems
+import site.budanitskaya.chemistryquiz.fine.utils.generateQuizItems
 
 
 fun Question.toQuizItem() = QuizItem(text = questionTitle, answers = answers, topic = topic, explanation = explanation)

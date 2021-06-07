@@ -7,8 +7,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.*
 import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
+import site.budanitskaya.chemistryquiz.fine.domain.generateReactionEntitiesList
 
 @Database(entities = [Question::class, ReactionEntity::class], version = 1)
 abstract class QuestionDatabase : RoomDatabase() {

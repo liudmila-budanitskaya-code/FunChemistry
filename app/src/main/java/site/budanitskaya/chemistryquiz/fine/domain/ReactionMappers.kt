@@ -1,6 +1,7 @@
-package site.budanitskaya.chemistryquiz.fine.chemicalchips
+package site.budanitskaya.chemistryquiz.fine.domain
 
-import site.budanitskaya.chemistryquiz.fine.domain.Reaction
+import site.budanitskaya.chemistryquiz.fine.database.ReactionEntity
+import site.budanitskaya.chemistryquiz.fine.models.Reaction
 import site.budanitskaya.chemistryquiz.fine.lists.generateReactionsList
 
 fun ReactionEntity.toReaction() = Reaction(reagents = reagents, products = products)

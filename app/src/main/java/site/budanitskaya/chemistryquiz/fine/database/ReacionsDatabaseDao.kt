@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.database
 
 import androidx.room.*
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.ReactionEntity
 
 @Dao
 interface ReactionsDatabaseDao {

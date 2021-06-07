@@ -1,6 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.lists
 
-import site.budanitskaya.chemistryquiz.fine.domain.Reaction
+import site.budanitskaya.chemistryquiz.fine.models.Reaction
 
 fun generateReactionsList(): MutableList<Reaction> {
     return mutableListOf(

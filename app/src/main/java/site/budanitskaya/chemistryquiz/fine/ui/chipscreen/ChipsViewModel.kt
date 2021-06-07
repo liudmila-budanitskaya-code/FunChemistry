@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.runBlocking
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.ChipsDatasource
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.StringFormatter
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.mapReactionEntitiesToReactions
-import site.budanitskaya.chemistryquiz.fine.domain.Reaction
+import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter
+import site.budanitskaya.chemistryquiz.fine.domain.mapReactionEntitiesToReactions
+import site.budanitskaya.chemistryquiz.fine.models.Reaction
 import java.lang.StringBuilder
 
 class ChipsViewModel : ViewModel() {

@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.chemicalchips
+package site.budanitskaya.chemistryquiz.fine.utils
 
 import android.text.Html
 import android.text.SpannableString

@@ -1,6 +1,8 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.utils
 
 import android.graphics.Color
+import site.budanitskaya.chemistryquiz.fine.MainApplication
+import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import java.util.*
 

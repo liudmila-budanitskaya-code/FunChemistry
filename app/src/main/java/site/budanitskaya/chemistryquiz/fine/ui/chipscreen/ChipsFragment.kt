@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.StringFormatter.Companion.formatFormula
+import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
 
 

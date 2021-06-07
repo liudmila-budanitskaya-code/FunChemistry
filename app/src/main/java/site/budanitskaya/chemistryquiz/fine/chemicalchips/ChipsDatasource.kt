@@ -2,6 +2,7 @@ package site.budanitskaya.chemistryquiz.fine.chemicalchips
 
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
+import site.budanitskaya.chemistryquiz.fine.database.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.database.ReactionsDatabaseDao
 
 class ChipsDatasource : ReactionsDatabaseDao {

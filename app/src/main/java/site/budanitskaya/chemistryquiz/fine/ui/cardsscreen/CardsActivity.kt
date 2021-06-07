@@ -21,7 +21,7 @@ import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
-import site.budanitskaya.chemistryquiz.fine.generateRandomColor
+import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
 import site.budanitskaya.chemistryquiz.fine.ui.test.TestViewModel
 import site.budanitskaya.chemistryquiz.fine.ui.test.TestViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity

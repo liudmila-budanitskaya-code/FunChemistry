@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.database
 
 import androidx.room.*
-import java.util.stream.Collectors
 
 
 @Entity(tableName = "question_table")
