@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.testresult
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +16,6 @@ import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestResultBindin
 class TestResultFragment : Fragment() {
 
     private lateinit var args: TestResultFragmentArgs
-
     private lateinit var binding: FragmentTestResultBinding
 
     override fun onCreateView(
@@ -29,7 +27,9 @@ class TestResultFragment : Fragment() {
         )
         args =
             TestResultFragmentArgs.fromBundle(requireArguments())
-        setBarChart(args.spentTimes.toList(), args.areCorrect.toList())
+        if (args.spentTimes.toList().isNotEmpty() && args.areCorrect.toList().isNotEmpty()) {
+            setBarChart(args.spentTimes.toList(), args.areCorrect.toList())
+        }
         return binding.root
     }
 
@@ -43,17 +43,19 @@ class TestResultFragment : Fragment() {
     private fun setBarChart(list: List<Long>, areCorrect: List<Boolean>) {
         val true_entries = ArrayList<BarEntry>()
         val false_entries = ArrayList<BarEntry>()
-        for (i in list.indices){
-            if(areCorrect[i]){
-                true_entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
-            } else {
-                false_entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
+        if (list.isNotEmpty() && areCorrect.isNotEmpty()) {
+            for (i in areCorrect.indices) {
+                if (areCorrect[i]) {
+                    true_entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
+                } else {
+                    false_entries.add(BarEntry(i.toFloat(), list[i].toFloat()))
+                }
             }
         }
         val barDataSet = BarDataSet(true_entries, "True")
-        barDataSet.color = R.color.red
-        val falSet = BarDataSet(false_entries, "False")
 
+        val falSet = BarDataSet(false_entries, "False")
+        falSet.color = resources.getColor(R.color.red)
         val data = BarData(barDataSet, falSet)
         val barChart = binding.barChart
         barChart.data = data

@@ -37,7 +37,8 @@
         tools:layout="@layout/fragment_test_result" >
         <action
             android:id="@+id/action_gameOverFragment_to_quizListFragment"
-            app:destination="@id/quizListFragment" />
+            app:destination="@id/quizListFragment"
+            app:popUpToInclusive="false" />
         <argument
             android:name="spent_times"
             app:argType="long[]" />

@@ -1,92 +1,67 @@
 package site.budanitskaya.chemistryquiz.fine.ui.topiclist
 
-import android.app.AlertDialog
-import android.content.Context
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.launch
 import site.budanitskaya.chemistryquiz.fine.R
+import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuizListBinding
+import site.budanitskaya.chemistryquiz.fine.dialogs.showAlertDialog
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 
 
 class TopicListFragment : Fragment() {
 
-    private lateinit var circleRecycler: RecyclerView
+    private lateinit var binding: FragmentQuizListBinding
 
     val adapter: TopicListAdapter by lazy {
         TopicListAdapter(topics) {
-            showAlertDialog(it)
+            showAlertDialog(it, this)
         }
-    }
-
-    private fun showAlertDialog(topic: Topic) {
-        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("AlertDialog")
-        val items = arrayOf("Test Mode", "FlashCard Mode")
-        val checkedItem = 1
-        alertDialog.setSingleChoiceItems(items, checkedItem) { dialog, which ->
-            when (which) {
-                0 -> {
-                    dialog.dismiss()
-                    findNavController().navigate(
-                        TopicListFragmentDirections.actionQuizListFragmentToQuestionFragment(
-                            topic
-                        )
-                    )
-                }
-                1 -> {
-                    val action =
-                        TopicListFragmentDirections.actionQuizListFragmentToCardsActivity(
-                            topic
-                        )
-
-                    findNavController().navigate(action)
-                    dialog.dismiss()
-                }
-            }
-        }
-        val alert = alertDialog.create()
-        alert.setCanceledOnTouchOutside(true)
-        alert.show()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_quiz_list, container, false)
-        circleRecycler = view.findViewById(R.id.game_recycler)
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_quiz_list, container, false
+        )
+        showRecyclerView()
+        return binding.root
+    }
 
-        circleRecycler.adapter = adapter
+    private fun showRecyclerView() {
         val layoutManager = GridLayoutManager(requireContext(), 2)
-
-        circleRecycler.smoothScrollToPosition(0)
-        circleRecycler.layoutManager = layoutManager
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    return when (position % 3) {
-                        0 -> 2
-                        1, 2 -> 1
-                        else -> throw Exception()
-                    }
-                }
-            }
-            circleRecycler.addItemDecoration(SpacesItemDecoration(230))
-            circleRecycler.setHasFixedSize(true)
+        layoutManager.spanSizeLookup = IntermittentSpan()
+        with(binding) {
+            gameRecycler.adapter = adapter
+            gameRecycler.layoutManager = layoutManager
+            gameRecycler.addItemDecoration(SpacesItemDecoration(230))
         }
+    }
 
-        adapter.notifyDataSetChanged()
+    fun navigateToTest(topic: Topic) {
+        findNavController().navigate(
+            TopicListFragmentDirections.actionQuizListFragmentToQuestionFragment(
+                topic
+            )
+        )
+    }
 
-        return view
+    fun navigateToCards(topic: Topic) {
+        val action =
+            TopicListFragmentDirections.actionQuizListFragmentToCardsActivity(
+                topic
+            )
+
+        findNavController().navigate(action)
     }
 }

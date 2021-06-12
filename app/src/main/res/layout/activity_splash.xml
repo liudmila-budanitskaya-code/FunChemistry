@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#F19FFF"
     tools:context=".ui.splash.SplashActivity">
 
     <TextView
@@ -24,6 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="true"
+        android:background="#F19FFF"
         app:lottie_rawRes="@raw/chemicals"
         app:lottie_repeatCount="1"
         app:lottie_speed="0.7"

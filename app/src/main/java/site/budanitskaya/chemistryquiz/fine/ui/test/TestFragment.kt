@@ -182,12 +182,4 @@ class TestFragment : Fragment() {
             )
         )
     }
-
-    fun createDialog() {
-        dialog = Dialog(requireContext())
-        dialog.setTitle("Player")
-        dialog.setContentView(R.layout.activity_splash)
-        dialog.show()
-
-    }
 }
