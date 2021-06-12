@@ -10,8 +10,8 @@ import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
 
 class AlarmReceiver : BroadcastReceiver() {
-
     private var mNotificationManager: NotificationManager? = null
+
 
     /**
      * Called when the BroadcastReceiver receives an Intent broadcast.

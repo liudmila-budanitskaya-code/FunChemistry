@@ -9,9 +9,6 @@ import androidx.preference.PreferenceManager
 import java.util.*
 
 
-/**
- * TimePickerFragment to allow user to set time at which notification will be shown
- */
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

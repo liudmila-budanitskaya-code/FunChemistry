@@ -7,12 +7,12 @@ import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import site.budanitskaya.chemistryquiz.fine.R
 
 class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClickListener,
     SharedPreferences.OnSharedPreferenceChangeListener {
+
 
     companion object {
         const val NOTIFICATION_ON_PREFERENCE_KEY = "preference_notification"

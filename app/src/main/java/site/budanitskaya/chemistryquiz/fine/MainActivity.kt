@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -23,9 +24,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.AlarmReceiver
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
     private var mNotificationManager: NotificationManager? = null
+    private var alarmMgr: AlarmManager? = null
+    private lateinit var alarmIntent: PendingIntent
+
 
     val auth = FirebaseAuth.getInstance().currentUser
 
@@ -42,26 +48,45 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         setContentView(R.layout.activity_main)
-        val notifyIntent = Intent(this, AlarmReceiver::class.java)
-        val alarmUp = PendingIntent.getBroadcast(
-            this, NOTIFICATION_ID,
-            notifyIntent, PendingIntent.FLAG_NO_CREATE
-        ) != null
-        val notifyPendingIntent = PendingIntent.getBroadcast(
-            this, NOTIFICATION_ID, notifyIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+
+        mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        // Set up the Notification Broadcast Intent.
+
+
+        alarmMgr = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
+            PendingIntent.getBroadcast(this, 436, intent, 0)
+        }
+
+// Set the alarm to start at 8:30 a.m.
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 18)
+            set(Calendar.MINUTE, 54)
+        }
+
+
+        // Set the click listener for the toggle button.
+
+        alarmMgr?.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * 60 *24,
+            alarmIntent
         )
-        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-        val repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES
-        val triggerTime = (SystemClock.elapsedRealtime())
+
 
         // If the Toggle is turned on, set the repeating alarm with
         // a 15 minute interval.
-        alarmManager.setInexactRepeating(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            triggerTime, repeatInterval,
-            notifyPendingIntent
-        )
+
+        // Set the toast message for the "on" case.
+
+
+        // Create the notification channel.
+        createNotificationChannel()
+
+
         navView = findViewById(R.id.nav_view)
         navView.itemRippleColor = getColorStateList(R.color.colorPrimary)
 
@@ -89,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         createNotificationChannel()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
