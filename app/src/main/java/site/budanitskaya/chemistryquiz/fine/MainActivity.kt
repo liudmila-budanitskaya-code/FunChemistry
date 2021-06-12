@@ -1,8 +1,14 @@
 package site.budanitskaya.chemistryquiz.fine
 
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -16,8 +22,10 @@ import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
+import site.budanitskaya.chemistryquiz.fine.ui.notifications.AlarmReceiver
 
 class MainActivity : AppCompatActivity() {
+    private var mNotificationManager: NotificationManager? = null
 
     val auth = FirebaseAuth.getInstance().currentUser
 
@@ -32,7 +40,28 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         actionBar?.show()
         super.onCreate(savedInstanceState)
+        mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         setContentView(R.layout.activity_main)
+        val notifyIntent = Intent(this, AlarmReceiver::class.java)
+        val alarmUp = PendingIntent.getBroadcast(
+            this, NOTIFICATION_ID,
+            notifyIntent, PendingIntent.FLAG_NO_CREATE
+        ) != null
+        val notifyPendingIntent = PendingIntent.getBroadcast(
+            this, NOTIFICATION_ID, notifyIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        val repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES
+        val triggerTime = (SystemClock.elapsedRealtime())
+
+        // If the Toggle is turned on, set the repeating alarm with
+        // a 15 minute interval.
+        alarmManager.setInexactRepeating(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            triggerTime, repeatInterval,
+            notifyPendingIntent
+        )
         navView = findViewById(R.id.nav_view)
         navView.itemRippleColor = getColorStateList(R.color.colorPrimary)
 
@@ -58,6 +87,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         navView.setupWithNavController(navController)
+
+        createNotificationChannel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -115,5 +146,35 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
+    }
+
+    companion object {
+        // Notification ID.
+        private const val NOTIFICATION_ID = 0
+
+        // Notification channel ID.
+        private const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
+    }
+
+    fun createNotificationChannel() {
+
+        // Create a notification manager object.
+        mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        // Notification channels are only available in OREO and higher.
+        // So, add a check on SDK version.
+
+        // Create the NotificationChannel with all the parameters.
+        val notificationChannel = NotificationChannel(
+            PRIMARY_CHANNEL_ID,
+            "Stand up notification",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        notificationChannel.enableLights(true)
+        notificationChannel.lightColor = Color.RED
+        notificationChannel.enableVibration(true)
+        notificationChannel.description = "Notifies every 15 minutes to " +
+                "stand up and walk"
+        mNotificationManager!!.createNotificationChannel(notificationChannel)
     }
 }
