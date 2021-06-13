@@ -42,13 +42,7 @@ class ChipsFragment : Fragment() {
         binding.textGame.text =
             "Select the products of this chemical reaction: "
 
-        chipHashMap = hashMapOf(
-            binding.chipOne to viewModel.shuffledRawProducts[0],
-            binding.chipTwo to viewModel.shuffledRawProducts[1],
-            binding.chipThree to viewModel.shuffledRawProducts[2],
-            binding.chipFour to viewModel.shuffledRawProducts[3],
-            binding.chipFive to viewModel.shuffledRawProducts[4]
-        )
+        setChipHashMap()
 
         viewModel.superFunction()
         return binding.root
@@ -59,17 +53,14 @@ class ChipsFragment : Fragment() {
             if (view is Chip) {
                 val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
                 if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == 0) {
-                    view.animate().alpha(
-                        0.0F
-                    ).duration = 3000
+
                     view.visibility = View.GONE
                     viewModel.rawReagentsString.append(("${values[0]} + "))
                     with(binding) {
-                        txtChemReaction.invalidate()
 
                         txtChemReaction.animate().rotation(360F).duration = 2700
 
-                        txtChemReaction.setText(
+                       txtChemReaction.setText(
                             formatFormula(viewModel.rawReagentsString.toString()),
                             TextView.BufferType.SPANNABLE
                         )
@@ -82,19 +73,16 @@ class ChipsFragment : Fragment() {
                     Log.d("onChipClick", "onChipClick: ${viewModel.reaction.correctProducts.size - 1}")
                 } else if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == viewModel.reaction.correctProducts.size - 1) {
                     Log.d("onChipClick", "onChipClick: i am here!")
-                    view.animate().alpha(
+/*                    view.animate().alpha(
                         0.0F
-                    ).duration = 3000
+                    ).duration = 3000*/
                     view.visibility = View.GONE
-                    viewModel.rawReagentsString.append(viewModel.reaction.correctProducts[0])
+                    viewModel.rawReagentsString.append(values[0])
                     binding.txtChemReaction.setText(
                         formatFormula(viewModel.rawReagentsString.toString()),
                         TextView.BufferType.SPANNABLE
                     )
                     delay(4000)
-                    with(binding) {
-                        txtChemReaction.invalidate()
-                    }
                     viewModel.guessProduct()
                     viewModel.setNewReaction()
                     setNewReactionView()
@@ -107,13 +95,17 @@ class ChipsFragment : Fragment() {
     private fun setNewReactionView() {
         with(binding) {
             invalidateAll()
-            chipHashMap = hashMapOf(
-                binding.chipOne to viewModel.shuffledRawProducts[0],
-                binding.chipTwo to viewModel.shuffledRawProducts[1],
-                binding.chipThree to viewModel.shuffledRawProducts[2],
-                binding.chipFour to viewModel.shuffledRawProducts[3],
-                binding.chipFive to viewModel.shuffledRawProducts[4]
-            )
+            setChipHashMap()
         }
+    }
+
+    fun setChipHashMap(){
+        chipHashMap = hashMapOf(
+            binding.chipOne to viewModel.shuffledRawProducts[0],
+            binding.chipTwo to viewModel.shuffledRawProducts[1],
+            binding.chipThree to viewModel.shuffledRawProducts[2],
+            binding.chipFour to viewModel.shuffledRawProducts[3],
+            binding.chipFive to viewModel.shuffledRawProducts[4]
+        )
     }
 }
