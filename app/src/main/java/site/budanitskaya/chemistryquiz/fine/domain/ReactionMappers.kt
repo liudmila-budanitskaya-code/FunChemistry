@@ -4,9 +4,9 @@ import site.budanitskaya.chemistryquiz.fine.database.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.models.Reaction
 import site.budanitskaya.chemistryquiz.fine.lists.generateReactionsList
 
-fun ReactionEntity.toReaction() = Reaction(reagents = reagents, products = products)
+fun ReactionEntity.toReaction() = Reaction(reagents = reagents, answers = products, correctProducts = products.subList(0, 2))
 
-fun Reaction.toReactionEntity() = ReactionEntity(reagents = reagents, products = products)
+fun Reaction.toReactionEntity() = ReactionEntity(reagents = reagents, products = answers)
 
 fun mapReactionsToReactionEntities(reactions: List<Reaction>): List<ReactionEntity> {
     val reactionEntities = mutableListOf<ReactionEntity>()

@@ -22,10 +22,10 @@ class ChipsViewModel : ViewModel() {
     // и количество угаданных продуктов
 
 
-    var shuffledRawProducts = reaction.products.shuffled()
+    var shuffledRawProducts = reaction.answers.shuffled()
 
 
-    var rawCorrectProducts = mutableListOf(reaction.products[0], reaction.products[1])
+    var rawCorrectProducts = mutableListOf(reaction.correctProducts[0], reaction.correctProducts[1])
     lateinit var rawReagentsString: StringBuilder
 
 
@@ -39,9 +39,9 @@ class ChipsViewModel : ViewModel() {
 
         reaction = getReaction(allReactionsList)
 
-        shuffledRawProducts = reaction.products.shuffled()
+        shuffledRawProducts = reaction.answers.shuffled()
 
-        rawCorrectProducts = mutableListOf(reaction.products[0], reaction.products[1])
+        rawCorrectProducts = mutableListOf(reaction.correctProducts[0], reaction.correctProducts[1])
 
         superFunction()
 
