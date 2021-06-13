@@ -14,7 +14,6 @@ import site.budanitskaya.chemistryquiz.fine.R
 class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClickListener,
     SharedPreferences.OnSharedPreferenceChangeListener {
 
-
     companion object {
         const val NOTIFICATION_ON_PREFERENCE_KEY = "preference_notification"
         const val NOTIFICATION_TIME_PREFERENCE_KEY = "preference_notification_time"
@@ -28,6 +27,13 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
         setPreferencesFromResource(R.xml.app_settings, rootKey)
         init()
         setupClickListeners()
+        notificationTimePreference?.summary =
+            TimeUtils.formatTimeSavedInPreference(
+                PreferenceManager.getDefaultSharedPreferences(context).getString(
+                    NOTIFICATION_TIME_PREFERENCE_KEY,
+                    DEFAULT_NOTIFICATION_TIME
+                )
+            )
     }
 
     override fun onResume() {
@@ -77,7 +83,6 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
                 }
             }
         }
-
     }
 
     private fun init() {

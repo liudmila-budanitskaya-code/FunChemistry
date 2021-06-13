@@ -19,32 +19,25 @@ object NotificationUtil {
     private const val NOTIFICATION_ID: Int = 22
     private const val CHANNEL_ID: String = "com.betatech.learnspanish"
 
-    /**
-     * Called at app start, to create notification channel,
-     * required for API 26+
-     */
     fun createNotificationChannel(context: Context) {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
         val name = context.getString(R.string.notification_channel_name)
         val descriptionText = context.getString(R.string.notification_channel_description)
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
             description = descriptionText
         }
-        // Register the channel with the system
         val notificationManager: NotificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
     fun toggleNotificationRestartAfterBoot(context: Context, status: Boolean) {
-        /*val receiver = ComponentName(context, RescheduleNotificationAfterBoot::class.java)
+        val receiver = ComponentName(context, RescheduleNotificationAfterBoot::class.java)
 
         context.packageManager.setComponentEnabledSetting(
             receiver,
             if (status) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
             PackageManager.DONT_KILL_APP
-        )*/
+        )
 
     }
 

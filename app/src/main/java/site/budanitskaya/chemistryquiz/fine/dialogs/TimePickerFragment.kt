@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.notifications
+package site.budanitskaya.chemistryquiz.fine.dialogs
 
 import android.app.Dialog
 import android.app.TimePickerDialog
@@ -6,21 +6,18 @@ import android.os.Bundle
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import androidx.preference.PreferenceManager
+import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
 import java.util.*
 
 
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        // Use the current time as the default values for the picker
         val c: Calendar = Calendar.getInstance()
         setupInitialTime(c)
-
-        // Create a new instance of TimePickerDialog and return it
         return TimePickerDialog(
             activity, this, c[Calendar.HOUR_OF_DAY], c[Calendar.MINUTE], true
         )
-
     }
 
     private fun setupInitialTime(c: Calendar) {
