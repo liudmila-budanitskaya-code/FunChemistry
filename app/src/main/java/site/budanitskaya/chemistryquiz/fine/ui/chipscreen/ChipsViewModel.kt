@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,29 +20,21 @@ class ChipsViewModel : ViewModel() {
     private val allReactionsList = getAllReactionsList()
 
     var reaction = getReaction(allReactionsList)
-    // и количество угаданных продуктов
 
+    private var _numOfGuessedProducts = MutableLiveData(0)
+    val numOfGuessedProducts: LiveData<Int>
+        get() = _numOfGuessedProducts
 
     var shuffledRawProducts = reaction.answers.shuffled()
 
-
-    var rawCorrectProducts = mutableListOf(reaction.correctProducts[0], reaction.correctProducts[1])
     lateinit var rawReagentsString: StringBuilder
 
 
-    private var _reactionNumber = MutableLiveData(1)
-    val reactionNumber: LiveData<Int>
-        get() = _reactionNumber /**/
-
     fun setNewReaction() {
-
-        _reactionNumber.value = _reactionNumber.value?.plus(1)
 
         reaction = getReaction(allReactionsList)
 
         shuffledRawProducts = reaction.answers.shuffled()
-
-        rawCorrectProducts = mutableListOf(reaction.correctProducts[0], reaction.correctProducts[1])
 
         superFunction()
 
@@ -66,6 +59,14 @@ class ChipsViewModel : ViewModel() {
 
     fun getReaction(allReactions: List<Reaction>): Reaction{
         return allReactions.shuffled()[0]
+    }
+
+    fun guessProduct(){
+        _numOfGuessedProducts.value = _numOfGuessedProducts.value?.plus(1)
+    }
+
+    fun unGuessProduct(){
+        _numOfGuessedProducts.value = 0
     }
 
 }

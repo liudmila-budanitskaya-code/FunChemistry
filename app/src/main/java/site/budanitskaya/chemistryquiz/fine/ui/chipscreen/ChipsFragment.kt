@@ -58,7 +58,7 @@ class ChipsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             if (view is Chip) {
                 val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
-                if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size > 1) {
+                if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == 0) {
                     view.animate().alpha(
                         0.0F
                     ).duration = 3000
@@ -74,14 +74,19 @@ class ChipsFragment : Fragment() {
                             TextView.BufferType.SPANNABLE
                         )
                     }
-                    viewModel.rawCorrectProducts.remove(values[0])
-                } else if (viewModel.rawCorrectProducts.contains(values[0]) && viewModel.rawCorrectProducts.size == 1) {
+                    viewModel.guessProduct()
+                    delay(1000)
+
+                    Log.d("onChipClick", "onChipClick: ${viewModel.reaction.correctProducts.contains(values[0])}")
+                    Log.d("onChipClick", "onChipClick: ${viewModel.numOfGuessedProducts.value}")
+                    Log.d("onChipClick", "onChipClick: ${viewModel.reaction.correctProducts.size - 1}")
+                } else if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == viewModel.reaction.correctProducts.size - 1) {
                     Log.d("onChipClick", "onChipClick: i am here!")
                     view.animate().alpha(
                         0.0F
                     ).duration = 3000
                     view.visibility = View.GONE
-                    viewModel.rawReagentsString.append(viewModel.rawCorrectProducts[0])
+                    viewModel.rawReagentsString.append(viewModel.reaction.correctProducts[0])
                     binding.txtChemReaction.setText(
                         formatFormula(viewModel.rawReagentsString.toString()),
                         TextView.BufferType.SPANNABLE
@@ -90,10 +95,10 @@ class ChipsFragment : Fragment() {
                     with(binding) {
                         txtChemReaction.invalidate()
                     }
-                    viewModel.rawCorrectProducts.remove(values[0])
+                    viewModel.guessProduct()
                     viewModel.setNewReaction()
                     setNewReactionView()
-                    delay(2000)
+                    viewModel.unGuessProduct()
                 }
             }
         }
