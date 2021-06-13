@@ -37,13 +37,6 @@ object NotificationUtil {
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
-
-    /**
-     * The broadcast receiver [RescheduleNotificationAfterBoot] for system boot,
-     * is turned off by default in manifest, so that it doesn't turned on unnecessarily
-     * it will be only be turned on, when notification is turned on in Settings
-     * and disabled if user turn off notification
-     */
     fun toggleNotificationRestartAfterBoot(context: Context, status: Boolean) {
         /*val receiver = ComponentName(context, RescheduleNotificationAfterBoot::class.java)
 
@@ -55,13 +48,7 @@ object NotificationUtil {
 
     }
 
-    /**
-     * Schedule a new Alarm that will show a notification,
-     * to remind user to practice, notification will repeat
-     * each day.
-     */
     fun scheduleAlarmToTriggerNotification(context: Context) {
-        // cancel previous alarm if any
         cancelAlarmToTriggerNotification(context)
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -75,12 +62,6 @@ object NotificationUtil {
             createPendingIntentForAlarm(context)
         )
     }
-
-    /**
-     * Cancel alarm which show notification, in case when user
-     * turn off the notification, or is about to create
-     * with new time
-     */
     fun cancelAlarmToTriggerNotification(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(createPendingIntentForAlarm(context))
@@ -101,22 +82,6 @@ object NotificationUtil {
     private fun createPendingIntentForAlarm(context: Context): PendingIntent =
         Intent(context.applicationContext, AlarmReceiver::class.java).let { intent ->
             intent.putExtra(AlarmReceiver.NOTIFICATION_ID_KEY, NOTIFICATION_ID)
-            intent.putExtra(AlarmReceiver.NOTIFICATION_KEY, createNotification(context))
             PendingIntent.getBroadcast(context, PENDING_INTENT_REQUEST_CODE, intent, 0)
         }
-
-    private fun createNotification(context: Context): Notification {
-        val builder = NotificationCompat.Builder(
-            context,
-            CHANNEL_ID
-        )
-            .setSmallIcon(R.drawable.ic_notifications)
-            .setContentTitle(context.getString(R.string.notification_title))
-            .setContentText(context.getString(R.string.notification_message))
-            .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setDefaults(NotificationCompat.DEFAULT_ALL)
-            .setAutoCancel(true)
-
-        return builder.build()
-    }
 }

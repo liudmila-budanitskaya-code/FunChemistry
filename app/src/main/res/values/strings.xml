@@ -87,7 +87,7 @@
 
     <!-- ====================== Notification ========================= -->
     <string name="notification_title">Practice Time</string>
-    <string name="notification_message">It\'s time to brush up your Spanish skills</string>
+
     <string name="notification_channel_name">Learn Spanish</string>
     <string name="notification_channel_description">App that helps you learn Spanish</string>
     <string name="set">Set</string>

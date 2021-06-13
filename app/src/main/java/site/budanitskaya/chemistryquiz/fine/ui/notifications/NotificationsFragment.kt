@@ -88,5 +88,4 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
     private fun setupClickListeners() {
         notificationTimePreference?.onPreferenceClickListener = this
     }
-
 }
