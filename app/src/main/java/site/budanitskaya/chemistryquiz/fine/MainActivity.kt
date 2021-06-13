@@ -19,11 +19,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.AlarmReceiver
+import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     private var mNotificationManager: NotificationManager? = null
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
-
 
     val auth = FirebaseAuth.getInstance().currentUser
 
@@ -46,45 +47,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         actionBar?.show()
         super.onCreate(savedInstanceState)
-        mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         setContentView(R.layout.activity_main)
+        val sharedPreferences =
+            PreferenceManager.getDefaultSharedPreferences(this)
+        val (hour, minute) = sharedPreferences.getString(
+            NotificationsFragment.NOTIFICATION_TIME_PREFERENCE_KEY,
+            NotificationsFragment.DEFAULT_NOTIFICATION_TIME
+        )!!.split(":")
 
-        mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-        // Set up the Notification Broadcast Intent.
-
-
-        alarmMgr = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
-            PendingIntent.getBroadcast(this, 436, intent, 0)
-        }
-
-// Set the alarm to start at 8:30 a.m.
-        val calendar: Calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 18)
-            set(Calendar.MINUTE, 54)
-        }
-
-
-        // Set the click listener for the toggle button.
-
-        alarmMgr?.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            1000 * 60 * 60 *24,
-            alarmIntent
-        )
-
-
-        // If the Toggle is turned on, set the repeating alarm with
-        // a 15 minute interval.
-
-        // Set the toast message for the "on" case.
-
-
-        // Create the notification channel.
-        createNotificationChannel()
+        setupNotification(hour, minute)
 
 
         navView = findViewById(R.id.nav_view)
@@ -202,5 +173,34 @@ class MainActivity : AppCompatActivity() {
         notificationChannel.description = "Notifies every 15 minutes to " +
                 "stand up and walk"
         mNotificationManager!!.createNotificationChannel(notificationChannel)
+    }
+
+    private fun setupNotification(hour: String, minute: String) {
+        mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        // Set up the Notification Broadcast Intent.
+
+        alarmMgr = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
+            PendingIntent.getBroadcast(this, 446, intent, 0)
+        }
+
+/*        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, hour.toInt())
+            set(Calendar.MINUTE, minute.toInt())
+        }
+
+        alarmMgr?.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * 60 * 24,
+            alarmIntent
+        )
+
+        createNotificationChannel()*/
+
+        alarmMgr!!.cancel(PendingIntent.getBroadcast(this, 445, intent, 0))
+
     }
 }

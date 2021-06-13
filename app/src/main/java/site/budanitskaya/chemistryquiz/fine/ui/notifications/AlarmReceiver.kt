@@ -13,6 +13,7 @@ class AlarmReceiver : BroadcastReceiver() {
     private var mNotificationManager: NotificationManager? = null
 
 
+
     /**
      * Called when the BroadcastReceiver receives an Intent broadcast.
      *
@@ -63,5 +64,9 @@ class AlarmReceiver : BroadcastReceiver() {
 
         // Notification channel ID.
         private const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
+
+        const val NOTIFICATION_ID_KEY = "notificationId"
+        const val NOTIFICATION_KEY = "notification"
+
     }
 }

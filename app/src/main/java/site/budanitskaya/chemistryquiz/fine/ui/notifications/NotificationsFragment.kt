@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import site.budanitskaya.chemistryquiz.fine.R
 
@@ -49,10 +50,8 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
         }
 
     override fun onSharedPreferenceChanged(prefs: SharedPreferences?, pref_key: String?) {
-
         when (pref_key) {
             NOTIFICATION_TIME_PREFERENCE_KEY -> {
-                // при изменении времени уведомления мы записываем новое время
                 notificationTimePreference?.summary =
                     TimeUtils.formatTimeSavedInPreference(
                         prefs?.getString(
@@ -60,26 +59,23 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
                             DEFAULT_NOTIFICATION_TIME
                         )
                     )
-
-
-
-
-                Log.d("onSharedPreferenced", "onSharedPreferenced: ${prefs?.getString(NOTIFICATION_TIME_PREFERENCE_KEY, "")}")
                 val isNotificationOn =
                     prefs?.getBoolean(NOTIFICATION_ON_PREFERENCE_KEY, false) ?: false
-
                 if (isNotificationOn) {
-                    Log.d("My_tag", "Notification is on!")
+                    context?.let { NotificationUtil.scheduleAlarmToTriggerNotification(it) }
                 }
-
-                Log.d("My_tag", "${prefs?.getString(NOTIFICATION_TIME_PREFERENCE_KEY, "")}")
-
-
             }
-            NOTIFICATION_ON_PREFERENCE_KEY ->{
-                Log.d("onSharedPreferenceChanged", "onSharedPreferenceChanged: ${prefs?.getBoolean(NOTIFICATION_ON_PREFERENCE_KEY, true)}")
+            NOTIFICATION_ON_PREFERENCE_KEY -> {
+                val value = prefs?.getBoolean(pref_key, false) ?: false
+                context?.let {
+                    NotificationUtil.toggleNotificationRestartAfterBoot(it, value)
+                    if (value) {
+                        NotificationUtil.scheduleAlarmToTriggerNotification(it)
+                    } else {
+                        NotificationUtil.cancelAlarmToTriggerNotification(it)
+                    }
+                }
             }
-
         }
 
     }

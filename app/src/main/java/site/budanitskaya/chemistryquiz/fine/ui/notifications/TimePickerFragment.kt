@@ -18,7 +18,7 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
 
         // Create a new instance of TimePickerDialog and return it
         return TimePickerDialog(
-            activity, this, c[Calendar.HOUR_OF_DAY], c[Calendar.MINUTE], false
+            activity, this, c[Calendar.HOUR_OF_DAY], c[Calendar.MINUTE], true
         )
 
     }
