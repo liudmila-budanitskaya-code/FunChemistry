@@ -8,6 +8,10 @@
             name="viewmodel"
             type="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModel" />
 
+        <variable
+            name="fragment"
+            type="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsFragment" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +64,9 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_one"
                 android:alpha="1"
+                android:onClick="@{(view)-> fragment.onChipClick(view)}"
                 android:visibility="visible"
+                app:chip_visible="@{true}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:spannable_text="@{viewmodel.shuffledRawProducts[0]}"/>
@@ -68,6 +74,9 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_two"
                 android:alpha="1"
+                app:chip_visible="@{true}"
+                android:onClick="@{(view)-> fragment.onChipClick(view)}"
+                app:chip_animate="@{viewmodel.valu}"
                 android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,6 +84,9 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_three"
                 android:alpha="1"
+                android:onClick="@{(view)-> fragment.onChipClick(view)}"
+                app:chip_visible="@{true}"
+                app:chip_animate="@{viewmodel.valu}"
                 android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,6 +94,9 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_four"
                 android:alpha="1"
+                app:chip_visible="@{true}"
+                app:chip_animate="@{viewmodel.valu}"
+                android:onClick="@{(view)-> fragment.onChipClick(view)}"
                 android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,7 +105,9 @@
                 android:id="@+id/chip_five"
                 android:layout_width="wrap_content"
                 android:alpha="1"
-                android:visibility="visible"
+                android:onClick="@{(view)-> fragment.onChipClick(view)}"
+                app:chip_visible="@{true}"
+                app:chip_animate="@{viewmodel.valu}"
                 android:layout_height="wrap_content"
                 app:spannable_text="@{viewmodel.shuffledRawProducts[4]}"/>
         </com.google.android.material.chip.ChipGroup>

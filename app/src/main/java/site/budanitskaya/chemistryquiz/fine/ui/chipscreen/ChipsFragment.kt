@@ -37,6 +37,7 @@ class ChipsFragment : Fragment() {
             R.layout.fragment_chem_chips_question, container, false
         )
         binding.viewmodel = viewModel
+        binding.fragment = this
 
         binding.textGame.text =
             "Select the products of this chemical reaction: "
@@ -50,26 +51,6 @@ class ChipsFragment : Fragment() {
         )
 
         viewModel.superFunction()
-        with(binding) {
-
-            chipOne.setOnClickListener { view ->
-                onChipClick(view)
-            }
-
-            chipTwo.setOnClickListener { view ->
-                onChipClick(view)
-            }
-            chipThree.setOnClickListener { view ->
-                onChipClick(view)
-            }
-            chipFour.setOnClickListener { view ->
-                onChipClick(view)
-            }
-            chipFive.setOnClickListener { view ->
-                onChipClick(view)
-            }
-        }
-
         return binding.root
     }
 
@@ -118,38 +99,16 @@ class ChipsFragment : Fragment() {
         }
     }
 
-    private fun setChipsVisible() {
-        with(binding) {
-            chipGroup.alpha = 1F
-            chipOne.visibility = View.VISIBLE
-            chipTwo.visibility = View.VISIBLE
-            chipThree.visibility = View.VISIBLE
-            chipFour.visibility = View.VISIBLE
-            chipFive.visibility = View.VISIBLE
-        }
-    }
-
     private fun setNewReactionView() {
-
         with(binding) {
             invalidateAll()
-
-            txtChemReaction.alpha = 1F
-            setChipsVisible()
-            invalidateAll()
-
-
-           chipHashMap = hashMapOf(
+            chipHashMap = hashMapOf(
                 binding.chipOne to viewModel.shuffledRawProducts[0],
                 binding.chipTwo to viewModel.shuffledRawProducts[1],
                 binding.chipThree to viewModel.shuffledRawProducts[2],
                 binding.chipFour to viewModel.shuffledRawProducts[3],
                 binding.chipFive to viewModel.shuffledRawProducts[4]
-
             )
-
-            invalidateAll()
-
         }
     }
 }

@@ -14,26 +14,18 @@ class ChipsViewModel : ViewModel() {
         ChipsDatasource()
     }
 
+    var valu = "1"
+
     private val allReactionsList = getAllReactionsList()
 
     var reaction = getReaction(allReactionsList)
     // и количество угаданных продуктов
-    private var rawReagents =
-        reaction.reagents
 
 
-
-    private var rawProducts = reaction.products
-
-    lateinit var currentReaction: Reaction
-
-    var shuffledRawProducts = rawProducts.shuffled()
+    var shuffledRawProducts = reaction.products.shuffled()
 
 
-    var rawCorrectProducts = mutableListOf(rawProducts[0], rawProducts[1])
-
-    var rawFirstReagent = rawReagents[0]
-    var rawSecondReagent = rawReagents[1]
+    var rawCorrectProducts = mutableListOf(reaction.products[0], reaction.products[1])
     lateinit var rawReagentsString: StringBuilder
 
 
@@ -47,15 +39,9 @@ class ChipsViewModel : ViewModel() {
 
         reaction = getReaction(allReactionsList)
 
-        rawReagents = reaction.reagents
+        shuffledRawProducts = reaction.products.shuffled()
 
-        rawProducts = reaction.products
-
-        shuffledRawProducts = rawProducts.shuffled()
-
-        rawCorrectProducts = mutableListOf(rawProducts[0], rawProducts[1])
-        rawFirstReagent = rawReagents[0]
-        rawSecondReagent = rawReagents[1]
+        rawCorrectProducts = mutableListOf(reaction.products[0], reaction.products[1])
 
         superFunction()
 
@@ -64,8 +50,8 @@ class ChipsViewModel : ViewModel() {
 
     fun superFunction() {
         val rawReagentList = mutableListOf<String>()
-        rawReagentList.add(rawFirstReagent)
-        rawReagentList.add(rawSecondReagent)
+        rawReagentList.add(reaction.reagents[0])
+        rawReagentList.add(reaction.reagents[1])
         rawReagentsString = StringBuilder(rawReagentList.joinToString(" + ").plus(" = "))
     }
 
