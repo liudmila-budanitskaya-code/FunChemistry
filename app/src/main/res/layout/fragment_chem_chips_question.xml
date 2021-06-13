@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewmodel"
+            type="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModel" />
 
     </data>
 
@@ -34,8 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleX="0.5"
-            android:text="TextView"
             android:textSize="20sp"
+            app:spannable_text="@{viewmodel.rawReagentsString.toString()}"
             app:layout_constraintBottom_toTopOf="@+id/chipGroup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -57,28 +60,28 @@
                 android:id="@+id/chip_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This"/>
+                app:spannable_text="@{viewmodel.shuffledRawProducts[0]}"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="is"/>
+                app:spannable_text="@{viewmodel.shuffledRawProducts[1]}"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="a"/>
+                app:spannable_text="@{viewmodel.shuffledRawProducts[2]}"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="chip"/>
+                app:spannable_text="@{viewmodel.shuffledRawProducts[3]}"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="group"/>
+                app:spannable_text="@{viewmodel.shuffledRawProducts[4]}"/>
         </com.google.android.material.chip.ChipGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

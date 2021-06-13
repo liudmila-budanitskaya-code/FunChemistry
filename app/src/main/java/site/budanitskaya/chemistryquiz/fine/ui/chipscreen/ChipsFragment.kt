@@ -28,19 +28,18 @@ class ChipsFragment : Fragment() {
     private lateinit var binding: FragmentChemChipsQuestionBinding
     lateinit var chipHashMap: Map<Chip, String>
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_chem_chips_question, container, false
         )
+        binding.viewmodel = viewModel
 
         binding.textGame.text =
-            "What is the most appropriate products for this chemical reaction?"
+            "Select the products of this chemical reaction: "
 
         chipHashMap = hashMapOf(
             binding.chipOne to viewModel.shuffledRawProducts[0],
@@ -52,15 +51,7 @@ class ChipsFragment : Fragment() {
 
         viewModel.superFunction()
         with(binding) {
-            chipOne.text = formatFormula(viewModel.shuffledRawProducts[0])
-            chipTwo.text = formatFormula(viewModel.shuffledRawProducts[1])
-            chipThree.text = formatFormula(viewModel.shuffledRawProducts[2])
-            chipFour.text = formatFormula(viewModel.shuffledRawProducts[3])
-            chipFive.text = formatFormula(viewModel.shuffledRawProducts[4])
-            txtChemReaction.setText(
-                viewModel.spannableReagentsString,
-                TextView.BufferType.SPANNABLE
-            )
+
             chipOne.setOnClickListener { view ->
                 onChipClick(view)
             }
@@ -114,13 +105,6 @@ class ChipsFragment : Fragment() {
                         formatFormula(viewModel.rawReagentsString.toString()),
                         TextView.BufferType.SPANNABLE
                     )
-                    AwesomeDialog.build(requireActivity())
-                        .title("Congratulations")
-                        .body("Your New Account has been created")
-                        .icon(R.drawable.ic_congrts)
-                        .onPositive("Go To My Account") {
-                            Log.d("TAG", "positive ")
-                        }
                     delay(4000)
                     with(binding) {
                         txtChemReaction.invalidate()
