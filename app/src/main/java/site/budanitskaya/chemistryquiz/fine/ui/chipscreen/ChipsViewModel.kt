@@ -36,9 +36,7 @@ class ChipsViewModel : ViewModel() {
     var rawFirstReagent = rawReagents[0]
     var rawSecondReagent = rawReagents[1]
     lateinit var rawReagentsString: StringBuilder
-    lateinit var spannableReagentsString: SpannableString
 
-    val numReactions = 3
 
     private var _reactionNumber = MutableLiveData(1)
     val reactionNumber: LiveData<Int>
@@ -65,12 +63,7 @@ class ChipsViewModel : ViewModel() {
         rawReagentList.add(rawSecondReagent)
         rawReagentsString = StringBuilder(rawReagentList.joinToString(" + ").plus(" = "))
 
-        spannableReagentsString = StringFormatter.formatFormula(rawReagentsString.toString())
 
-        val spannableCorrectProducts = mutableListOf<SpannableString>()
-        rawCorrectProducts.forEach {
-            spannableCorrectProducts.add(StringFormatter.formatFormula(it))
-        }
     }
 
     fun superFunction() {
@@ -78,7 +71,7 @@ class ChipsViewModel : ViewModel() {
         rawReagentList.add(rawFirstReagent)
         rawReagentList.add(rawSecondReagent)
         rawReagentsString = StringBuilder(rawReagentList.joinToString(" + ").plus(" = "))
-        spannableReagentsString = StringFormatter.formatFormula(rawReagentsString.toString())
+
 
         val spannableCorrectProducts = mutableListOf<SpannableString>()
         rawCorrectProducts.forEach {

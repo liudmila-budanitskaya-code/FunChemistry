@@ -112,7 +112,7 @@ class ChipsFragment : Fragment() {
                     viewModel.rawCorrectProducts.remove(values[0])
                     viewModel.setNewReaction()
                     setNewReactionView()
-
+                    delay(2000)
                 }
             }
         }
@@ -136,15 +136,10 @@ class ChipsFragment : Fragment() {
 
             txtChemReaction.alpha = 1F
             setChipsVisible()
-            txtChemReaction.text = formatFormula(viewModel.rawReagentsString.toString())
-            chipOne.text = formatFormula(viewModel.shuffledRawProducts[0])
-            chipTwo.text = formatFormula(viewModel.shuffledRawProducts[1])
-            chipThree.text = formatFormula(viewModel.shuffledRawProducts[2])
-            chipFour.text = formatFormula(viewModel.shuffledRawProducts[3])
-            chipFive.text = formatFormula(viewModel.shuffledRawProducts[4])
+            invalidateAll()
 
 
-            chipHashMap = hashMapOf(
+           chipHashMap = hashMapOf(
                 binding.chipOne to viewModel.shuffledRawProducts[0],
                 binding.chipTwo to viewModel.shuffledRawProducts[1],
                 binding.chipThree to viewModel.shuffledRawProducts[2],
@@ -153,16 +148,8 @@ class ChipsFragment : Fragment() {
 
             )
 
-            chipOne.alpha = 1F
-            chipTwo.alpha = 1F
-            chipThree.alpha = 1F
-            chipFour.alpha = 1F
-            chipFive.alpha = 1F
-            chipOne.visibility = View.VISIBLE
-            chipTwo.visibility = View.VISIBLE
-            chipThree.visibility = View.VISIBLE
-            chipFour.visibility = View.VISIBLE
-            chipFive.visibility = View.VISIBLE
+            invalidateAll()
+
         }
     }
 }
