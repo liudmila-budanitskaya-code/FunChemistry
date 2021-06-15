@@ -11,7 +11,8 @@ import site.budanitskaya.chemistryquiz.fine.domain.Topic
 
 class TopicListAdapter(
     private val topics: List<Topic>,
-    private val onItemClick: (Topic) -> Unit
+    private val onItemClick: (Topic) -> Unit,
+    private val numOpenLevels: Int
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -19,7 +20,7 @@ class TopicListAdapter(
         val childRecyclerView = LayoutInflater.from(parent.context)
             .inflate(R.layout.circle_item, parent, false)
 
-        return ButtonsViewHolder(childRecyclerView, topics, onItemClick)
+        return ButtonsViewHolder(childRecyclerView, topics, onItemClick, numOpenLevels)
     }
 
     override fun getItemCount(): Int = topics.size
@@ -27,7 +28,8 @@ class TopicListAdapter(
     class ButtonsViewHolder(
         view: View,
         private val topics: List<Topic>,
-        private val onItemClick: (Topic) -> Unit
+        private val onItemClick: (Topic) -> Unit,
+        private val numOpenLevels: Int
 
     ) : RecyclerView.ViewHolder(view) {
 
@@ -35,6 +37,9 @@ class TopicListAdapter(
         private val itemButton: ShapeableImageView = root.findViewById(R.id.game_item)
 
         fun bind(position: Int) {
+            if (position >= numOpenLevels) {
+                itemButton.alpha = 0.2F
+            }
 
             itemButton.setOnClickListener {
                 onItemClick(topics[position])
