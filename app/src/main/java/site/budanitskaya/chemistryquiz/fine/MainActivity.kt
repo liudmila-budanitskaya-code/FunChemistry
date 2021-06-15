@@ -25,6 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.AlarmReceiver
+import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
 
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
 import java.util.*
@@ -58,10 +59,10 @@ class MainActivity : AppCompatActivity() {
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, 3)
-            set(Calendar.MINUTE, 37)
+            set(Calendar.MINUTE, 46)
         }
 
-        alarmMgr?.setRepeating(
+        alarmMgr.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
             1000 * 60 * 20,
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         }
         navView.setupWithNavController(navController)
 
-        createNotificationChannel()
+        NotificationUtil.createNotificationChannel(this)
 
     }
 
@@ -163,7 +164,7 @@ class MainActivity : AppCompatActivity() {
         private const val NOTIFICATION_ID = 0
 
         // Notification channel ID.
-        private const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
+        const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
     }
 
     override fun onPause() {
@@ -171,10 +172,10 @@ class MainActivity : AppCompatActivity() {
         alarmMgr.cancel(alarmIntent)
     }
 
-    fun createNotificationChannel() {
+    /*fun createNotificationChannel(context: Context) {
 
         // Create a notification manager object.
-        mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        mNotificationManager = this.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         // Notification channels are only available in OREO and higher.
         // So, add a check on SDK version.
@@ -191,5 +192,5 @@ class MainActivity : AppCompatActivity() {
         notificationChannel.description = "Notifies every 15 minutes to " +
                 "stand up and walk"
         mNotificationManager!!.createNotificationChannel(notificationChannel)
-    }
+    }*/
 }

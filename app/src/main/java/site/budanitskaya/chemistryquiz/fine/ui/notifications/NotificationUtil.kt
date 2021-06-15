@@ -5,7 +5,9 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import site.budanitskaya.chemistryquiz.fine.MainActivity
@@ -15,10 +17,36 @@ import kotlin.random.Random
 
 object NotificationUtil {
 
+    private var mNotificationManager: NotificationManager? = null
+
+    fun createNotificationChannel(context: Context) {
+
+        // Create a notification manager object.
+        mNotificationManager =
+            context.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Notification channels are only available in OREO and higher.
+        // So, add a check on SDK version.
+
+        // Create the NotificationChannel with all the parameters.
+        val notificationChannel = NotificationChannel(
+            PRIMARY_CHANNEL_ID,
+            "Stand up notification",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        notificationChannel.enableLights(true)
+        notificationChannel.lightColor = Color.RED
+        notificationChannel.enableVibration(true)
+        notificationChannel.description = "Notifies every 15 minutes to " +
+                "stand up and walk"
+        mNotificationManager!!.createNotificationChannel(notificationChannel)
+    }
+
+
+    const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
 
 
 }
-
 
 
 /*
