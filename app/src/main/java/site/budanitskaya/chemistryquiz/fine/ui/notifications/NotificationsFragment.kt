@@ -2,8 +2,6 @@ package site.budanitskaya.chemistryquiz.fine.ui.notifications
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -78,7 +76,7 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
                     if (value) {
                         NotificationUtil.scheduleAlarmToTriggerNotification(it)
                     } else {
-                       NotificationUtil.cancelNotification()
+                        NotificationUtil.cancelNotification()
                     }
                 }
             }

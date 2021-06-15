@@ -35,9 +35,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-/*        NotificationUtil.scheduleAlarmToTriggerNotification(this)*/
-
-
         navView = findViewById(R.id.nav_view)
         navView.itemRippleColor = getColorStateList(R.color.colorPrimary)
 
@@ -121,14 +118,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
-    }
-
-    companion object {
-        // Notification ID.
-        private const val NOTIFICATION_ID = 0
-
-        // Notification channel ID.
-        const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
     }
 
     override fun onPause() {
