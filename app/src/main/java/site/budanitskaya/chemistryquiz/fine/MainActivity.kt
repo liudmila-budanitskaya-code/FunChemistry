@@ -25,11 +25,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.AlarmReceiver
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
+
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var mNotificationManager: NotificationManager? = null
+
+    private lateinit var alarmIntent: PendingIntent
+    private lateinit var alarmMgr: AlarmManager
 
     val auth = FirebaseAuth.getInstance().currentUser
 
@@ -45,8 +50,25 @@ class MainActivity : AppCompatActivity() {
         actionBar?.show()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
+            PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+        alarmMgr = getSystemService(ALARM_SERVICE) as AlarmManager
 
-        NotificationUtil.scheduleAlarmToTriggerNotification(this)
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 3)
+            set(Calendar.MINUTE, 37)
+        }
+
+        alarmMgr?.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * 20,
+            alarmIntent
+        )
+
+        /*NotificationUtil.scheduleAlarmToTriggerNotification(this)*/
 
 
         navView = findViewById(R.id.nav_view)
@@ -74,6 +96,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         navView.setupWithNavController(navController)
+
+        createNotificationChannel()
 
     }
 
@@ -132,5 +156,40 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
+    }
+
+    companion object {
+        // Notification ID.
+        private const val NOTIFICATION_ID = 0
+
+        // Notification channel ID.
+        private const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
+    }
+
+    override fun onPause() {
+        super.onPause()
+        alarmMgr.cancel(alarmIntent)
+    }
+
+    fun createNotificationChannel() {
+
+        // Create a notification manager object.
+        mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        // Notification channels are only available in OREO and higher.
+        // So, add a check on SDK version.
+
+        // Create the NotificationChannel with all the parameters.
+        val notificationChannel = NotificationChannel(
+            PRIMARY_CHANNEL_ID,
+            "Stand up notification",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        notificationChannel.enableLights(true)
+        notificationChannel.lightColor = Color.RED
+        notificationChannel.enableVibration(true)
+        notificationChannel.description = "Notifies every 15 minutes to " +
+                "stand up and walk"
+        mNotificationManager!!.createNotificationChannel(notificationChannel)
     }
 }

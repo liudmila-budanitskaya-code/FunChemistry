@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.awesomedialog.*
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.R

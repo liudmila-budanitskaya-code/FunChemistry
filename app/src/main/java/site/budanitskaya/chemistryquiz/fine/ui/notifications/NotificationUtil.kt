@@ -13,11 +13,20 @@ import site.budanitskaya.chemistryquiz.fine.R
 import java.util.*
 import kotlin.random.Random
 
+object NotificationUtil {
+
+
+
+}
+
+
+
+/*
 
 object NotificationUtil {
-    private const val PENDING_INTENT_REQUEST_CODE: Int = 11 // use for cancelling pending intent
-    private const val NOTIFICATION_ID: Int = 22
-    private const val CHANNEL_ID: String = "com.betatech.learnspanish"
+    private const val PENDING_INTENT_REQUEST_CODE: Int = 15 // use for cancelling pending intent
+    private const val NOTIFICATION_ID: Int = 30
+    private const val CHANNEL_ID: String = "site"
 
     fun createNotificationChannel(context: Context) {
         val name = context.getString(R.string.notification_channel_name)
@@ -77,4 +86,6 @@ object NotificationUtil {
             intent.putExtra(AlarmReceiver.NOTIFICATION_ID_KEY, NOTIFICATION_ID)
             PendingIntent.getBroadcast(context, PENDING_INTENT_REQUEST_CODE, intent, 0)
         }
-}
+}*/
+
+

@@ -2,7 +2,6 @@ package site.budanitskaya.chemistryquiz.fine
 
 import android.app.Application
 import android.content.Context
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
 
 class MainApplication : Application() {
     init {
@@ -20,6 +19,6 @@ class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        NotificationUtil.createNotificationChannel(applicationContext())
+
     }
 }

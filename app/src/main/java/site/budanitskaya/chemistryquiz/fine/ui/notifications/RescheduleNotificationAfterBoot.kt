@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.preference.PreferenceManager
 
+/*
 class RescheduleNotificationAfterBoot : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == "android.intent.action.BOOT_COMPLETED") {
@@ -12,8 +13,10 @@ class RescheduleNotificationAfterBoot : BroadcastReceiver() {
                 .getBoolean(NotificationsFragment.NOTIFICATION_ON_PREFERENCE_KEY, false)
 
             if (notificationOn) {
-                NotificationUtil.scheduleAlarmToTriggerNotification(context)
+               */
+/* NotificationUtil.scheduleAlarmToTriggerNotification(context)*//*
+
             }
         }
     }
-}
+}*/

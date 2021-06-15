@@ -37,8 +37,6 @@ class ChipsViewModel : ViewModel() {
         shuffledRawProducts = reaction.answers.shuffled()
 
         superFunction()
-
-
     }
 
     fun superFunction() {

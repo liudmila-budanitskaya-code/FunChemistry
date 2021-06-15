@@ -13,15 +13,15 @@
         <receiver
             android:name=".ui.notifications.AlarmReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
-
+            android:exported="true" />
+<!--
         <receiver
             android:name=".ui.notifications.RescheduleNotificationAfterBoot"
-            android:enabled="true">
+            android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <activity
             android:name=".ui.cardsscreen.CardsActivity"
