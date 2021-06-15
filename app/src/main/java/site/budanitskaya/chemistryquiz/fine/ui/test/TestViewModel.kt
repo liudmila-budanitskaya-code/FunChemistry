@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.ui.test
 
 import androidx.lifecycle.*
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -17,6 +18,37 @@ class TestViewModel : ViewModel() {
     val questionRepository by lazy {
         QuestionRepository(getInstance(MainApplication.getApplication()!!))
     }
+
+    private var _totalScore = MutableLiveData(0)
+    val totalScore: LiveData<Int>
+        get() = _totalScore
+
+    fun resetScoreToZero(){
+        _totalScore.value = 0
+    }
+
+
+    fun updateLevel() {
+        if(totalScore.value == 4){
+            var oldLevel =
+                PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                    .getInt("key_level", 0)
+            PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).edit()
+
+                .putInt("key_level", oldLevel + 1).apply()
+        }
+    }
+
+
+
+    fun addToTotalScore() {
+        _totalScore.value = _totalScore.value?.plus(1)
+    }
+
+    fun subtractFromScore() {
+        _totalScore.value = _totalScore.value?.minus(1)
+    }
+
 
     var quizItems: MutableList<QuizItem>
 

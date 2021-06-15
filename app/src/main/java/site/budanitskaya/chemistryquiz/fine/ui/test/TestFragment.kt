@@ -57,9 +57,6 @@ class TestFragment : Fragment() {
         binding.viewModel = viewModel
         binding.mCountDownTimer.start(30000)
 
-        if(activity != null && activity is MainActivity)
-            (activity as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
-
         viewModel.shuffleQuestions()
         Timer(this).start()
 
@@ -101,6 +98,7 @@ class TestFragment : Fragment() {
             if (view is RadioButton) {
                 binding.btnNext.text = "Next"
                 if (view.text == viewModel.currentQuestion.answers[0]) {
+                    viewModel.addToTotalScore()
                     areCorrect.add(true)
                     binding.bool.text = "True!"
                     binding.bool.setTextColor(getColor(requireContext(), R.color.green))
@@ -143,14 +141,15 @@ class TestFragment : Fragment() {
 
         override fun onFinish() {
             if (navigateFlag != 1) {
-                if(fragment.isAdded){
+                if (fragment.isAdded) {
                     fragment.navigateToGameOverScreen()
+                    viewModel.subtractFromScore()
                 }
             }
         }
     }
 
-    fun moveToQuestionForward(){
+    fun moveToQuestionForward() {
         binding.invalidateAll()
         binding.bool.text = ""
         binding.rationale.text = ""
@@ -174,12 +173,19 @@ class TestFragment : Fragment() {
             ((endTime - startTime) / 1000).toString(),
             Toast.LENGTH_LONG
         ).show()
+        viewModel.addToTotalScore()
+
         spentTimes.add((endTime - startTime) / 1000)
         startTime = endTime
+        viewModel.updateLevel()
+
+        Log.d("navigateToGameOverScreen", "navigateToGameOverScreen: ${viewModel.totalScore.value}")
+        viewModel.resetScoreToZero()
         findNavController().navigate(
             TestFragmentDirections.actionQuestionFragmentToGameOverFragment(
                 spentTimes.toLongArray(), areCorrect.toBooleanArray()
             )
+
         )
     }
 }
