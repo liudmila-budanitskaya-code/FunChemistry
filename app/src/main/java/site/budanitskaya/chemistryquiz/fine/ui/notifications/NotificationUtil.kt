@@ -21,8 +21,10 @@ object NotificationUtil {
     private lateinit var alarmIntent: PendingIntent
     private lateinit var alarmMgr: AlarmManager
 
-    fun cancelNotification(){
-        alarmMgr.cancel(alarmIntent)
+    fun cancelNotification() {
+        if (this::alarmMgr.isInitialized && this::alarmIntent.isInitialized) {
+            alarmMgr.cancel(alarmIntent)
+        }
     }
 
     fun createNotificationChannel(context: Context) {
@@ -48,7 +50,18 @@ object NotificationUtil {
         mNotificationManager!!.createNotificationChannel(notificationChannel)
     }
 
-    fun scheduleAlarmToTriggerNotification(context: Context){
+    fun toggleNotificationRestartAfterBoot(context: Context, status: Boolean) {
+        val receiver = ComponentName(context, RescheduleNotificationAfterBoot::class.java)
+
+        context.packageManager.setComponentEnabledSetting(
+            receiver,
+            if (status) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+            PackageManager.DONT_KILL_APP
+        )
+
+    }
+
+    fun scheduleAlarmToTriggerNotification(context: Context) {
 
         cancelNotification()
         alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->

@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        NotificationUtil.scheduleAlarmToTriggerNotification(this)
+/*        NotificationUtil.scheduleAlarmToTriggerNotification(this)*/
 
 
         navView = findViewById(R.id.nav_view)

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="site.budanitskaya.chemistryquiz.fine">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -14,14 +16,18 @@
             android:name=".ui.notifications.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
-<!--
+
         <receiver
             android:name=".ui.notifications.RescheduleNotificationAfterBoot"
-            android:enabled="false">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+
             </intent-filter>
-        </receiver>-->
+        </receiver>
 
         <activity
             android:name=".ui.cardsscreen.CardsActivity"

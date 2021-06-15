@@ -68,17 +68,17 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
                 val isNotificationOn =
                     prefs?.getBoolean(NOTIFICATION_ON_PREFERENCE_KEY, false) ?: false
                 if (isNotificationOn) {
-                    /*context?.let { NotificationUtil.scheduleAlarmToTriggerNotification(it) }*/
+                    context?.let { NotificationUtil.scheduleAlarmToTriggerNotification(it) }
                 }
             }
             NOTIFICATION_ON_PREFERENCE_KEY -> {
                 val value = prefs?.getBoolean(pref_key, false) ?: false
                 context?.let {
-                    /*NotificationUtil.toggleNotificationRestartAfterBoot(it, value)*/
+                    NotificationUtil.toggleNotificationRestartAfterBoot(it, value)
                     if (value) {
-                        /*NotificationUtil.scheduleAlarmToTriggerNotification(it)*/
+                        NotificationUtil.scheduleAlarmToTriggerNotification(it)
                     } else {
-                       /* NotificationUtil.cancelAlarmToTriggerNotification(it)*/
+                       NotificationUtil.cancelNotification()
                     }
                 }
             }
