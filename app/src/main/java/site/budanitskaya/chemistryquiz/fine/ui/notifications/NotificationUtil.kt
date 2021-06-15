@@ -18,6 +18,12 @@ import kotlin.random.Random
 object NotificationUtil {
 
     private var mNotificationManager: NotificationManager? = null
+    private lateinit var alarmIntent: PendingIntent
+    private lateinit var alarmMgr: AlarmManager
+
+    fun cancelNotification(){
+        alarmMgr.cancel(alarmIntent)
+    }
 
     fun createNotificationChannel(context: Context) {
 
@@ -40,6 +46,26 @@ object NotificationUtil {
         notificationChannel.description = "Notifies every 15 minutes to " +
                 "stand up and walk"
         mNotificationManager!!.createNotificationChannel(notificationChannel)
+    }
+
+    fun scheduleAlarmToTriggerNotification(context: Context){
+        alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->
+            PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+        alarmMgr = context.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
+
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 3)
+            set(Calendar.MINUTE, 56)
+        }
+
+        alarmMgr.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * 20,
+            alarmIntent
+        )
     }
 
 
