@@ -19,6 +19,8 @@ class TestViewModel : ViewModel() {
         QuestionRepository(getInstance(MainApplication.getApplication()!!))
     }
 
+    var numOfOpenLevels = PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).getInt("key_level", 1)
+
     private var _totalScore = MutableLiveData(0)
     val totalScore: LiveData<Int>
         get() = _totalScore

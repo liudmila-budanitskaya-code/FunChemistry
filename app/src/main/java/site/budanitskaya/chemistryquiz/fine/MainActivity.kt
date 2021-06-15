@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         actionBar?.show()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         navView = findViewById(R.id.nav_view)
         navView.itemRippleColor = getColorStateList(R.color.colorPrimary)

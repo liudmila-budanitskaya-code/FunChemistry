@@ -18,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
+import site.budanitskaya.chemistryquiz.fine.domain.Topic
 
 
 class TestFragment : Fragment() {
@@ -28,6 +29,8 @@ class TestFragment : Fragment() {
     val spentTimes by lazy {
         mutableListOf<Long>()
     }
+
+    lateinit var topic: Topic
 
     val areCorrect by lazy {
         mutableListOf<Boolean>()
@@ -63,6 +66,8 @@ class TestFragment : Fragment() {
         args = TestFragmentArgs.fromBundle(
             requireArguments()
         )
+
+        topic = args.topic
         viewModel.setQuestion(args.topic.name)
         viewModel.getRandomQuestionByTopic(args.topic.name)
         binding.questionText.text = args.topic.name
@@ -98,7 +103,9 @@ class TestFragment : Fragment() {
             if (view is RadioButton) {
                 binding.btnNext.text = "Next"
                 if (view.text == viewModel.currentQuestion.answers[0]) {
-                    viewModel.addToTotalScore()
+                    if (viewModel.numOfOpenLevels == topic.id) {
+                        viewModel.addToTotalScore()
+                    }
                     areCorrect.add(true)
                     binding.bool.text = "True!"
                     binding.bool.setTextColor(getColor(requireContext(), R.color.green))
@@ -143,7 +150,10 @@ class TestFragment : Fragment() {
             if (navigateFlag != 1) {
                 if (fragment.isAdded) {
                     fragment.navigateToGameOverScreen()
-                    viewModel.subtractFromScore()
+
+                    if (viewModel.numOfOpenLevels == topic.id) {
+                        viewModel.subtractFromScore()
+                    }
                 }
             }
         }
@@ -173,7 +183,9 @@ class TestFragment : Fragment() {
             ((endTime - startTime) / 1000).toString(),
             Toast.LENGTH_LONG
         ).show()
-        viewModel.addToTotalScore()
+        if (viewModel.numOfOpenLevels == topic.id) {
+            viewModel.addToTotalScore()
+        }
 
         spentTimes.add((endTime - startTime) / 1000)
         startTime = endTime
