@@ -49,16 +49,14 @@ object NotificationUtil {
     }
 
     fun scheduleAlarmToTriggerNotification(context: Context){
+
+        cancelNotification()
         alarmIntent = Intent(context, AlarmReceiver::class.java).let { intent ->
             PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
         alarmMgr = context.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
 
-        val calendar: Calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 3)
-            set(Calendar.MINUTE, 56)
-        }
+        val calendar: Calendar = getNotifyTimeFromPreference(context)
 
         alarmMgr.setRepeating(
             AlarmManager.RTC_WAKEUP,
@@ -66,6 +64,18 @@ object NotificationUtil {
             1000 * 60 * 20,
             alarmIntent
         )
+    }
+
+    private fun getNotifyTimeFromPreference(context: Context): Calendar {
+        val calendar: Calendar = Calendar.getInstance()
+        val scheduleTime: String = PreferenceManager.getDefaultSharedPreferences(context).getString(
+            NotificationsFragment.NOTIFICATION_TIME_PREFERENCE_KEY,
+            NotificationsFragment.DEFAULT_NOTIFICATION_TIME
+        ) ?: NotificationsFragment.DEFAULT_NOTIFICATION_TIME
+        val (hour, minute) = scheduleTime.split(":")
+        calendar.set(Calendar.HOUR_OF_DAY, hour.toInt())
+        calendar.set(Calendar.MINUTE, minute.toInt())
+        return calendar
     }
 
 

@@ -64,8 +64,6 @@ class MainActivity : AppCompatActivity() {
         }
         navView.setupWithNavController(navController)
 
-        NotificationUtil.createNotificationChannel(this)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
