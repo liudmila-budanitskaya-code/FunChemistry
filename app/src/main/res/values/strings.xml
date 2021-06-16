@@ -93,6 +93,7 @@
     <string name="set">Set</string>
     <string name="cancel">Cancel</string>
     <string name="notification_text">Text</string>
+    <string name="preference_sound_title">Sound ON/OFF</string>
 
 
 </resources>

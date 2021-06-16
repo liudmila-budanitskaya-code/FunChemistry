@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -11,10 +12,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.preference.PreferenceManager
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.*
+import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
+import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
+import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
 import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
 
 
@@ -53,17 +58,16 @@ class ChipsFragment : Fragment() {
             if (view is Chip) {
                 val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
                 if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == 0) {
-                    val mPlayer2: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.tada_sound)
-                    mPlayer2.start()
-                    delay(2000)
-                    mPlayer2.stop()
+                    if(PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).getBoolean(NotificationsFragment.SOUND_PREFERENCE_KEY, false)){
+                        callService(R.raw.tada_sound)
+                    }
                     view.visibility = View.GONE
                     viewModel.rawReagentsString.append(("${values[0]} + "))
                     with(binding) {
 
                         txtChemReaction.animate().rotation(360F).duration = 2700
 
-                       txtChemReaction.setText(
+                        txtChemReaction.setText(
                             formatFormula(viewModel.rawReagentsString.toString()),
                             TextView.BufferType.SPANNABLE
                         )
@@ -71,14 +75,20 @@ class ChipsFragment : Fragment() {
                     viewModel.guessProduct()
                     delay(1000)
 
-                    Log.d("onChipClick", "onChipClick: ${viewModel.reaction.correctProducts.contains(values[0])}")
+                    Log.d(
+                        "onChipClick",
+                        "onChipClick: ${viewModel.reaction.correctProducts.contains(values[0])}"
+                    )
                     Log.d("onChipClick", "onChipClick: ${viewModel.numOfGuessedProducts.value}")
-                    Log.d("onChipClick", "onChipClick: ${viewModel.reaction.correctProducts.size - 1}")
+                    Log.d(
+                        "onChipClick",
+                        "onChipClick: ${viewModel.reaction.correctProducts.size - 1}"
+                    )
                 } else if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == viewModel.reaction.correctProducts.size - 1) {
-                    val mPlayer2: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.tada_sound)
-                    mPlayer2.start()
-                    delay(2000)
-                    mPlayer2.stop()
+
+                    if(PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).getBoolean(NotificationsFragment.SOUND_PREFERENCE_KEY, false)){
+                        callService(R.raw.tada_sound)
+                    }
                     Log.d("onChipClick", "onChipClick: i am here!")
 /*                    view.animate().alpha(
                         0.0F
@@ -95,13 +105,18 @@ class ChipsFragment : Fragment() {
                     setNewReactionView()
                     viewModel.unGuessProduct()
                 } else {
-                    val mPlayer2: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.duck_quack)
-                    mPlayer2.start()
-                    delay(2000)
-                    mPlayer2.stop()
+                    if(PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).getBoolean(NotificationsFragment.SOUND_PREFERENCE_KEY, false)){
+                        callService(R.raw.duck_quack)
+                    }
                 }
             }
         }
+    }
+
+    private fun callService(rawResource: Int) {
+        val serviceIntent = Intent(requireContext(), SoundService::class.java)
+        serviceIntent.putExtra("soundCode", rawResource)
+        requireContext().startService(serviceIntent)
     }
 
     private fun setNewReactionView() {
@@ -111,7 +126,7 @@ class ChipsFragment : Fragment() {
         }
     }
 
-    fun setChipHashMap(){
+    fun setChipHashMap() {
         chipHashMap = hashMapOf(
             binding.chipOne to viewModel.shuffledRawProducts[0],
             binding.chipTwo to viewModel.shuffledRawProducts[1],

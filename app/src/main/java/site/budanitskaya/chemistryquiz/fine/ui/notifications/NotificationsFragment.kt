@@ -16,6 +16,7 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
         const val NOTIFICATION_ON_PREFERENCE_KEY = "preference_notification"
         const val NOTIFICATION_TIME_PREFERENCE_KEY = "preference_notification_time"
         const val DEFAULT_NOTIFICATION_TIME = "21:0"
+        const val SOUND_PREFERENCE_KEY = "sound"
     }
 
     private var notificationSwitchPreference: SwitchPreference? = null
@@ -79,6 +80,9 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
                         NotificationUtil.cancelNotification()
                     }
                 }
+            }
+
+            SOUND_PREFERENCE_KEY -> {
             }
         }
     }

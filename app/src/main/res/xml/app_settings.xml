@@ -14,5 +14,10 @@
             android:title="@string/preference_notification_time_title"
             android:defaultValue="21:0"
             tools:summary="8:00 PM" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="sound"
+            android:title="@string/preference_sound_title" />
     </PreferenceCategory>
 </PreferenceScreen>

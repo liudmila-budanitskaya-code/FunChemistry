@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="site.budanitskaya.chemistryquiz.fine">
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
         android:name=".MainApplication"
@@ -15,20 +14,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChemistryQuiz">
+        <service
+            android:name=".ui.chipscreen.SoundService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <receiver
             android:name=".ui.notifications.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
-
         <receiver
             android:name=".ui.notifications.RescheduleNotificationAfterBoot"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
+
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-
             </intent-filter>
         </receiver>
 
@@ -53,8 +56,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Show notification at right time -->
-
-
         <activity
             android:name=".MainActivity"
             android:parentActivityName=".MainActivity"
