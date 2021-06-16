@@ -2,10 +2,13 @@ package site.budanitskaya.chemistryquiz.fine.di
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.database.AnswersConverter
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.StringConverter
@@ -59,6 +62,8 @@ class ServiceLocator(applicationContext: Context) {
     }).build()
 
     val chipsDatasource = ChipsDatasource(database)
+
+    val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
 
     /*val loggerLocalDataSource = LoggerLocalDataSource(logsDatabase.logDao())
 

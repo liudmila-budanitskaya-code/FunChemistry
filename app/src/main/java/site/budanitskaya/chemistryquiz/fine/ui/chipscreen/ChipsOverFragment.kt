@@ -16,6 +16,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChipsOverBinding
+import site.budanitskaya.chemistryquiz.fine.utils.colorWrapper
 
 
 class ChipsOverFragment : Fragment() {
@@ -56,7 +57,8 @@ class ChipsOverFragment : Fragment() {
         }
 
         val x = PieDataSet(pientri, "Label")
-        x.setColors(Color.RED, Color.GREEN, Color.BLUE);
+        x.setColors(colorWrapper(R.color.green, requireContext()), colorWrapper(R.color.red, requireContext()), colorWrapper(R.color.colorText, requireContext()),colorWrapper(R.color.material_green_50, requireContext()), colorWrapper(R.color.material_green_500, requireContext()));
+
         with(binding.chart1) {
             setUsePercentValues(true)
             getDescription().setEnabled(false)

@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.utils
 
+import android.content.Context
 import android.graphics.Color
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
@@ -427,3 +428,5 @@ fun List<String>.toSpannableList(): List<String>{
     }
     return list
 }
+
+fun colorWrapper(res: Int, context: Context): Int = context.resources.getColor(res)
