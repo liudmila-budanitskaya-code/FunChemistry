@@ -22,19 +22,35 @@
         android:scaleX="2"
         tools:context=".ui.chipscreen.ChipsFragment">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            style="@style/anim_style"
+            android:layout_marginTop="50dp"
+            android:scaleX="0.5"
+            app:layout_constraintBottom_toTopOf="@id/text_game"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/frog"
+            app:lottie_repeatCount="20"
+            app:lottie_speed="0.7" />
+
 
         <TextView
             android:id="@+id/text_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleX="0.5"
-            android:text="@string/hello_blank_fragment"
             android:fontFamily="@font/convergence"
-            android:textSize="20sp"
             android:gravity="center_horizontal"
+            android:layout_marginTop="160dp"
+            android:scaleX="0.5"
+            android:textColor="#DEDEDE"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@+id/txt_chem_reaction"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,16 +58,16 @@
             android:id="@+id/txt_chem_reaction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleX="0.5"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/convergence"
-            app:spannable_text="@{viewmodel.rawReagentsString.toString()}"
+            android:gravity="center_horizontal"
+            android:scaleX="0.5"
+            android:textSize="23sp"
             app:layout_constraintBottom_toTopOf="@+id/chip_card"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_game" />
+            app:layout_constraintTop_toBottomOf="@+id/text_game"
+            app:spannable_text="@{viewmodel.rawReagentsString.toString()}" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/chip_card"
@@ -59,76 +75,80 @@
             android:layout_height="250dp"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
-            android:background="#673AB7"
+            android:backgroundTint="#6B4CA2"
             android:elevation="40dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_chem_reaction" >
+            app:layout_constraintTop_toBottomOf="@id/txt_chem_reaction">
+
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:scaleX="0.5"
+                android:layout_gravity="center"
                 android:alpha="1"
                 android:animateLayoutChanges="true"
+                android:scaleX="0.5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_chem_reaction">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:alpha="1"
                     android:fontFamily="@font/convergence"
                     android:onClick="@{(view)-> fragment.onChipClick(view)}"
                     android:visibility="visible"
                     app:chip_visible="@{true}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:spannable_text="@{viewmodel.shuffledRawProducts[0]}"/>
+                    app:spannable_text="@{viewmodel.shuffledRawProducts[0]}" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_two"
-                    android:alpha="1"
-                    android:fontFamily="@font/convergence"
-                    app:chip_visible="@{true}"
-                    android:onClick="@{(view)-> fragment.onChipClick(view)}"
-                    android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:spannable_text="@{viewmodel.shuffledRawProducts[1]}"/>
+                    android:alpha="1"
+                    android:fontFamily="@font/convergence"
+                    android:onClick="@{(view)-> fragment.onChipClick(view)}"
+                    android:visibility="visible"
+                    app:chip_visible="@{true}"
+                    app:spannable_text="@{viewmodel.shuffledRawProducts[1]}" />
+
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:alpha="1"
                     android:fontFamily="@font/convergence"
                     android:onClick="@{(view)-> fragment.onChipClick(view)}"
-                    app:chip_visible="@{true}"
                     android:visibility="visible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:spannable_text="@{viewmodel.shuffledRawProducts[2]}"/>
+                    app:chip_visible="@{true}"
+                    app:spannable_text="@{viewmodel.shuffledRawProducts[2]}" />
+
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_four"
-                    android:alpha="1"
-                    android:fontFamily="@font/convergence"
-                    app:chip_visible="@{true}"
-                    android:onClick="@{(view)-> fragment.onChipClick(view)}"
-                    android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:spannable_text="@{viewmodel.shuffledRawProducts[3]}"/>
+                    android:alpha="1"
+                    android:fontFamily="@font/convergence"
+                    android:onClick="@{(view)-> fragment.onChipClick(view)}"
+                    android:visibility="visible"
+                    app:chip_visible="@{true}"
+                    app:spannable_text="@{viewmodel.shuffledRawProducts[3]}" />
+
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_five"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:alpha="1"
                     android:fontFamily="@font/convergence"
                     android:onClick="@{(view)-> fragment.onChipClick(view)}"
                     app:chip_visible="@{true}"
-                    android:layout_height="wrap_content"
-                    app:spannable_text="@{viewmodel.shuffledRawProducts[4]}"/>
+                    app:spannable_text="@{viewmodel.shuffledRawProducts[4]}" />
             </com.google.android.material.chip.ChipGroup>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

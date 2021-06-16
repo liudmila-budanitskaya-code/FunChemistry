@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -34,9 +35,12 @@ class ChipsFragment : Fragment() {
             .get(ChipsViewModel::class.java)
     }
 
+    var times = mutableListOf<Long>()
+
     lateinit var args: ChipsFragmentArgs
 
-    var numReactions: Int = 0
+    var numReactions = 0
+    var time = 0L
 
     private lateinit var binding: FragmentChemChipsQuestionBinding
     lateinit var chipHashMap: Map<Chip, String>
@@ -51,6 +55,7 @@ class ChipsFragment : Fragment() {
         )
         binding.viewmodel = viewModel
         binding.fragment = this
+        time = System.currentTimeMillis()
 
         binding.textGame.text =
             "Select the products of this chemical reaction: "
@@ -62,13 +67,25 @@ class ChipsFragment : Fragment() {
         numReactions = args.numOfReactions
 
         viewModel.superFunction()
-        viewModel.numOfGuessedReactions.observe(viewLifecycleOwner, Observer { newValue ->
+        viewModel.numOfGuessedReactions.observe(viewLifecycleOwner, { newValue ->
             if (newValue == numReactions) {
                 findNavController().navigate(
                     ChipsFragmentDirections.actionChemChipsQuestionFragmentToChipsOverFragment(
-                        1
+                        times.toLongArray()
                     )
                 )
+            }
+        })
+
+        viewModel.isReactionGuessed.observe(viewLifecycleOwner, { newValue ->
+            if (newValue) {
+                val i = System.currentTimeMillis() - time
+                time = System.currentTimeMillis()
+                times.add(i)
+                viewModel.setNewReaction()
+                setNewReactionView()
+                viewModel.unGuessProduct()
+                viewModel.guessReaction()
             }
         })
         return binding.root
@@ -126,10 +143,14 @@ class ChipsFragment : Fragment() {
                     )
                     delay(4000)
                     viewModel.guessProduct()
-                    viewModel.setNewReaction()
-                    setNewReactionView()
-                    viewModel.unGuessProduct()
-                    viewModel.guessReaction()
+
+                    viewModel.setReactionGuessed()
+
+                    delay(1000)
+
+                    viewModel.setReactionUnGuessed()
+
+
                 } else {
                     if (PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
                             .getBoolean(NotificationsFragment.SOUND_PREFERENCE_KEY, false)

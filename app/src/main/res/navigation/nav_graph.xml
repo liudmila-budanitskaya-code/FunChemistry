@@ -145,6 +145,6 @@
             app:destination="@id/navigation_game" />
         <argument
             android:name="number"
-            app:argType="integer" />
+            app:argType="long[]" />
     </fragment>
 </navigation>

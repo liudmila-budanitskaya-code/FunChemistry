@@ -18,11 +18,23 @@ class ChipsViewModel : ViewModel() {
     val numOfGuessedReactions: LiveData<Int>
         get() = _numOfGuessedReactions
 
+    private var _isReactionGuessed = MutableLiveData(false)
+    val isReactionGuessed: LiveData<Boolean>
+        get() = _isReactionGuessed
+
     fun guessReaction(){
         _numOfGuessedReactions.value = _numOfGuessedReactions.value?.plus(1)
     }
 
     var valu = "1"
+
+    fun setReactionGuessed(){
+        _isReactionGuessed.value = true
+    }
+
+    fun setReactionUnGuessed(){
+        _isReactionGuessed.value = false
+    }
 
     private val allReactionsList = getAllReactionsList()
 
