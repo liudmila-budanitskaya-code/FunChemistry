@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.ui.cardsscreen
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
@@ -17,8 +18,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.ActivityNavigator
 import com.firebase.ui.auth.AuthUI
 import site.budanitskaya.chemistryquiz.fine.MainActivity
+import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
+import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
@@ -28,6 +31,10 @@ import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 
 class CardsActivity : AppCompatActivity() {
 
+    val preference: SharedPreferences by lazy {
+        ServiceLocator(MainApplication.applicationContext()).preferences
+    }
+
     private lateinit var args: CardsActivityArgs
     lateinit var fragment: Fragment
     lateinit var topic: Topic
@@ -36,7 +43,7 @@ class CardsActivity : AppCompatActivity() {
     var color_front: Int = 0
 
     private val viewModel by lazy {
-        ViewModelProvider(this, TestViewModelFactory())
+        ViewModelProvider(this, TestViewModelFactory(preference))
             .get(TestViewModel::class.java)
     }
 

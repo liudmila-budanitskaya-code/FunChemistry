@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.test
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.preference.PreferenceManager
@@ -16,13 +17,14 @@ import site.budanitskaya.chemistryquiz.fine.domain.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 
-class TestViewModel : ViewModel() {
+class TestViewModel(val preference: SharedPreferences) : ViewModel() {
+
 
     val questionRepository by lazy {
         QuestionRepository(getInstance(MainApplication.getApplication()!!))
     }
 
-    var numOfOpenLevels = PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).getInt("key_level", 1)
+    var numOfOpenLevels = preference.getInt("key_level", 1)
 
     private var _totalScore = MutableLiveData(0)
     val totalScore: LiveData<Int>
@@ -38,10 +40,9 @@ class TestViewModel : ViewModel() {
         if(totalScore.value == 4){
 
             var oldLevel =
-                PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
-                    .getInt("key_level", 0)
+                preference.getInt("key_level", 0)
             Log.d("updateLl", "updateLevel: $oldLevel")
-            PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).edit()
+            preference.edit()
 
                 .putInt("key_level", oldLevel + 1).apply()
             val newTopic = topics.filter { it.id == id + 1 }

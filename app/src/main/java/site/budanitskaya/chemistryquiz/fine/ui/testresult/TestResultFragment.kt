@@ -55,11 +55,11 @@ class TestResultFragment : Fragment() {
         val barDataSet = BarDataSet(true_entries, "True")
 
         val falSet = BarDataSet(false_entries, "False")
-        falSet.color = resources.getColor(R.color.red)
+        falSet.color = resources.getColor(R.color.peach)
         val data = BarData(barDataSet, falSet)
         val barChart = binding.barChart
         barChart.data = data
-        barDataSet.color = resources.getColor(R.color.green)
+        barDataSet.color = resources.getColor(R.color.material_green_a200)
         barChart.animateY(3000)
     }
 }
