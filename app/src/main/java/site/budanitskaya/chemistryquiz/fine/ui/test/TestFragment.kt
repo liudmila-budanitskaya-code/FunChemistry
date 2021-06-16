@@ -14,11 +14,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
+import site.budanitskaya.chemistryquiz.fine.lists.topics
 
 
 class TestFragment : Fragment() {
@@ -29,6 +28,8 @@ class TestFragment : Fragment() {
     val spentTimes by lazy {
         mutableListOf<Long>()
     }
+
+    var numOfOpenLevels = topics.filter{it.isOpen}.size
 
     lateinit var topic: Topic
 
@@ -100,20 +101,25 @@ class TestFragment : Fragment() {
 
     fun onOptionBtnClicked(view: View) {
         if (!clickFlag) {
+            Log.d("addToTotalScore", "updateLevel: ${!clickFlag}")
             if (view is RadioButton) {
                 binding.btnNext.text = "Next"
-                if (view.text == viewModel.currentQuestion.answers[0]) {
-                    if (viewModel.numOfOpenLevels == topic.id) {
-                        viewModel.addToTotalScore()
-                    }
-                    areCorrect.add(true)
-                    binding.bool.text = "True!"
-                    binding.bool.setTextColor(getColor(requireContext(), R.color.green))
-                } else {
-                    areCorrect.add(false)
-                    binding.bool.text = "False!"
-                    binding.bool.setTextColor(getColor(requireContext(), R.color.red))
+
+                topics.forEach { _ ->
+
                 }
+                    if (view.text == viewModel.currentQuestion.answers[0]) {
+                        if (topic.id == numOfOpenLevels) {
+                            viewModel.addToTotalScore()
+                        }
+                        areCorrect.add(true)
+                        binding.bool.text = "True!"
+                        binding.bool.setTextColor(getColor(requireContext(), R.color.green))
+                    } else {
+                        areCorrect.add(false)
+                        binding.bool.text = "False!"
+                        binding.bool.setTextColor(getColor(requireContext(), R.color.red))
+                    }
                 binding.rationale.visibility = View.VISIBLE
                 binding.rationale.text = viewModel.currentQuestion.explanation
             }
@@ -151,7 +157,7 @@ class TestFragment : Fragment() {
                 if (fragment.isAdded) {
                     fragment.navigateToGameOverScreen()
 
-                    if (viewModel.numOfOpenLevels == topic.id) {
+                    if (topic.id == numOfOpenLevels) {
                         viewModel.subtractFromScore()
                     }
                 }
@@ -183,13 +189,14 @@ class TestFragment : Fragment() {
             ((endTime - startTime) / 1000).toString(),
             Toast.LENGTH_LONG
         ).show()
-        if (viewModel.numOfOpenLevels == topic.id) {
+        if (topic.id == numOfOpenLevels) {
             viewModel.addToTotalScore()
         }
 
         spentTimes.add((endTime - startTime) / 1000)
         startTime = endTime
-        viewModel.updateLevel()
+        viewModel.updateLevel(topic.id)
+
 
         Log.d("navigateToGameOverScreen", "navigateToGameOverScreen: ${viewModel.totalScore.value}")
         viewModel.resetScoreToZero()

@@ -27,7 +27,7 @@ import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 
 
-class TopicListFragment : Fragment(), PreferenceListener {
+class TopicListFragment : Fragment() {
 
     var position: Int = 0
     var database = FirebaseDatabase.getInstance().reference
@@ -40,11 +40,19 @@ class TopicListFragment : Fragment(), PreferenceListener {
     private lateinit var binding: FragmentQuizListBinding
 
     val adapter: TopicListAdapter by lazy {
+        var numOfOpenLevels =
+            PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                .getInt("key_level", 0)
+        var index = 1
+        while (numOfOpenLevels > topics[index].id) {
+            topics[index].isOpen = true
+            index++
+        }
         TopicListAdapter(topics, { ifDialogIsToBeShown(it) }, viewModel.numOfOpenLevels)
     }
 
     fun ifDialogIsToBeShown(topic: Topic) {
-        if (topic.id <= viewModel.numOfOpenLevels) {
+        if (topic.isOpen) {
             showAlertDialog(topic, this)
         } else {
             showToast("Complete previous levels!")
@@ -64,7 +72,6 @@ class TopicListFragment : Fragment(), PreferenceListener {
             R.layout.fragment_quiz_list, container, false
         )
         showRecyclerView()
-
 
         Log.d("onCreateView", "onCreateView: ${database.child("levels").key}")
         val db = Firebase.database
@@ -109,10 +116,6 @@ class TopicListFragment : Fragment(), PreferenceListener {
         const val MESSAGES_CHILD = "messages"
     }
 
-    override fun onChange() {
-        Log.d("zzzzz", "onChange: zzzzzz")
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_menu, menu)
@@ -121,10 +124,27 @@ class TopicListFragment : Fragment(), PreferenceListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.reset_progress -> {
-                PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
-                    .edit().putInt("key_level", 1).apply()
-                viewModel.numOfOpenLevels = PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).getInt("key_level", 1)
-                adapter.notifyDataSetChanged()
+                var numOfOpenLevels =
+                    PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                        .getInt("key_level", 0)
+                var index = 1
+                while (numOfOpenLevels > topics[index].id) {
+                    topics[index].isOpen = true
+                    index++
+                }
+                if(numOfOpenLevels==1){
+
+                } else {
+                    PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                        .edit().putInt("key_level", 1).apply()
+                    adapter.notifyDataSetChanged()
+                }
+
+                var idd = 0
+                for (i in topics) {
+                    i.isOpen = i.id == 1
+                    idd = i.id
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

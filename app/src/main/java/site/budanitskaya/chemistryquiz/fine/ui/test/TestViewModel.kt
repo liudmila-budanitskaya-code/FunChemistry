@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.test
 
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.delay
@@ -10,8 +11,10 @@ import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.Question
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase.Companion.getInstance
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
+import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.domain.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
+import site.budanitskaya.chemistryquiz.fine.lists.topics
 
 class TestViewModel : ViewModel() {
 
@@ -30,20 +33,29 @@ class TestViewModel : ViewModel() {
     }
 
 
-    fun updateLevel() {
+    fun updateLevel(id: Int) {
+        Log.d("updateLevel", "updateLevel: ${totalScore.value}")
         if(totalScore.value == 4){
+
             var oldLevel =
                 PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
                     .getInt("key_level", 0)
             PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).edit()
 
                 .putInt("key_level", oldLevel + 1).apply()
+            val newTopic = topics.filter { it.id == id + 1 }
+            if (!newTopic[0].isOpen) {
+                newTopic[0].isOpen = true
+            }
+
+            PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).edit().putInt("key_level", newTopic[0].id).apply()
         }
     }
 
 
 
     fun addToTotalScore() {
+        Log.d("addToTotalScore", "updateLevel: ${totalScore.value}")
         _totalScore.value = _totalScore.value?.plus(1)
     }
 

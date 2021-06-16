@@ -7,7 +7,8 @@ import kotlinx.parcelize.Parcelize
 data class Topic(
     val id: Int,
     val name: String,
-    val drawable: Int
+    val drawable: Int,
+    var isOpen: Boolean
 ) : Parcelable
 
 
