@@ -27,9 +27,6 @@
         <argument
             android:name="topic"
             app:argType="site.budanitskaya.chemistryquiz.fine.domain.Topic" />
-        <action
-            android:id="@+id/action_questionFragment_to_gameOverFragment2"
-            app:destination="@id/gameOverFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
@@ -38,6 +35,10 @@
         <action
             android:id="@+id/action_gameOverFragment_to_quizListFragment"
             app:destination="@id/quizListFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpToInclusive="false" />
         <argument
             android:name="spent_times"
@@ -70,7 +71,11 @@
     <fragment
         android:id="@+id/chemChipsQuestionFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsFragment"
-        tools:layout="@layout/fragment_chem_chips_question" />
+        tools:layout="@layout/fragment_chem_chips_question" >
+        <action
+            android:id="@+id/action_chemChipsQuestionFragment_to_chipsOverFragment"
+            app:destination="@id/chipsOverFragment" />
+    </fragment>
     <fragment
         android:id="@+id/crosswordFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.ui.crossword.CrosswordFragment" />
@@ -86,4 +91,19 @@
         android:id="@+id/timePickerFragment"
         android:name="site.budanitskaya.chemistryquiz.fine.dialogs.TimePickerFragment"
         android:label="TimePickerFragment" />
+    <fragment
+        android:id="@+id/chipsOverFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsOverFragment"
+        tools:layout="@layout/fragment_chips_over" >
+        <action
+            android:id="@+id/action_chipsOverFragment_to_navigation_game"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/navigation_game" />
+        <argument
+            android:name="number"
+            app:argType="integer" />
+    </fragment>
 </navigation>

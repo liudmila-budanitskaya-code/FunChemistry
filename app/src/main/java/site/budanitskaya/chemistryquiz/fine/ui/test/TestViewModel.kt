@@ -40,15 +40,15 @@ class TestViewModel : ViewModel() {
             var oldLevel =
                 PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
                     .getInt("key_level", 0)
+            Log.d("updateLl", "updateLevel: $oldLevel")
             PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).edit()
 
                 .putInt("key_level", oldLevel + 1).apply()
             val newTopic = topics.filter { it.id == id + 1 }
+            Log.d("updateLl", "updateLevel: ${newTopic[0].name}")
             if (!newTopic[0].isOpen) {
                 newTopic[0].isOpen = true
             }
-
-            PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).edit().putInt("key_level", newTopic[0].id).apply()
         }
     }
 

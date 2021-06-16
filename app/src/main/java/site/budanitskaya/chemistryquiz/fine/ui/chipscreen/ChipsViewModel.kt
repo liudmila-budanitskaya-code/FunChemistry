@@ -14,6 +14,13 @@ class ChipsViewModel : ViewModel() {
     val chipsDatasource by lazy {
         ChipsDatasource()
     }
+    private var _numOfGuessedReactions = MutableLiveData(0)
+    val numOfGuessedReactions: LiveData<Int>
+        get() = _numOfGuessedReactions
+
+    fun guessReaction(){
+        _numOfGuessedReactions.value = _numOfGuessedReactions.value?.plus(1)
+    }
 
     var valu = "1"
 

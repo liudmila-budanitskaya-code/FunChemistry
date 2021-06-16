@@ -43,6 +43,7 @@ class TopicListFragment : Fragment() {
         var numOfOpenLevels =
             PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
                 .getInt("key_level", 0)
+        Log.d("supermessage", ": $numOfOpenLevels")
         var index = 1
         while (numOfOpenLevels > topics[index].id) {
             topics[index].isOpen = true

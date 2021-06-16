@@ -49,15 +49,16 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        navController.addOnDestinationChangedListener{_, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.quizListFragment  -> navView.visibility = View.VISIBLE
-                R.id.navigation_game  -> navView.visibility = View.VISIBLE
-                R.id.navigation_notifications  -> navView.visibility = View.VISIBLE
+                R.id.quizListFragment -> navView.visibility = View.VISIBLE
+                R.id.navigation_game -> navView.visibility = View.VISIBLE
+                R.id.navigation_notifications -> navView.visibility = View.VISIBLE
                 R.id.questionFragment -> navView.visibility = View.GONE
                 R.id.gameOverFragment -> navView.visibility = View.GONE
                 R.id.chemChipsQuestionFragment -> navView.visibility = View.GONE
                 R.id.crosswordFragment -> navView.visibility = View.GONE
+                R.id.chipsOverFragment -> navView.visibility = View.GONE
                 else -> navView.visibility = View.VISIBLE
             }
         }
@@ -121,11 +122,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        NotificationUtil.cancelNotification()
+        val navController = this.findNavController(R.id.nav_host_fragment_activity_main)
+        return when (navController.currentDestination?.id) {
+            R.id.chipsOverFragment -> {
+                // custom behavior here
+                navController.navigate(R.id.action_chipsOverFragment_to_navigation_game)
+                true
+            }
+            R.id.gameOverFragment -> {
+                // custom behavior here
+                navController.navigate(R.id.action_gameOverFragment_to_quizListFragment)
+                true
+            }
+            else -> NavigationUI.navigateUp(navController, appBarConfiguration)
+        }
     }
 }
