@@ -134,6 +134,19 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.action_gameOverFragment_to_quizListFragment)
                 true
             }
+            R.id.chemChipsQuestionFragment -> {
+                // custom behavior here
+                navController.navigate(R.id.action_chemChipsQuestionFragment_to_navigation_game)
+                true
+            }
+
+            R.id.questionFragment -> {
+                // custom behavior here
+                navController.navigate(R.id.action_questionFragment_to_quizListFragment)
+                true
+            }
+
+
             else -> NavigationUI.navigateUp(navController, appBarConfiguration)
         }
     }

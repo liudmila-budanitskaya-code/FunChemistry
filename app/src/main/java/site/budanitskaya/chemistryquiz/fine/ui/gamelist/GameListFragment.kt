@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.games
+import site.budanitskaya.chemistryquiz.fine.dialogs.chooseDifficultyDialog
 
 class GameListFragment : Fragment() {
 
@@ -19,9 +20,7 @@ class GameListFragment : Fragment() {
             Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
             when(it.name){
                 "Chemical chips" -> {
-                    findNavController().navigate(
-                        R.id.action_navigation_game_to_chemChipsQuestionFragment
-                    )
+                    chooseDifficultyDialog(this)
                 }
                 "Chemical crossword" -> {
                     findNavController().navigate(
@@ -42,5 +41,11 @@ class GameListFragment : Fragment() {
         gameRecycler.adapter = adapter
         gameRecycler.layoutManager = GridLayoutManager(requireContext(), 1)
         return view
+    }
+
+    fun navigateToChipsScreen(number: Int){
+        findNavController().navigate(
+            GameListFragmentDirections.actionNavigationGameToChemChipsQuestionFragment(number)
+        )
     }
 }

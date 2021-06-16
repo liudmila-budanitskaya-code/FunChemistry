@@ -23,6 +23,7 @@ import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
+import site.budanitskaya.chemistryquiz.fine.ui.test.TestFragmentArgs
 import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
 
 
@@ -33,7 +34,9 @@ class ChipsFragment : Fragment() {
             .get(ChipsViewModel::class.java)
     }
 
-    val numReactions = 5
+    lateinit var args: ChipsFragmentArgs
+
+    var numReactions: Int = 0
 
     private lateinit var binding: FragmentChemChipsQuestionBinding
     lateinit var chipHashMap: Map<Chip, String>
@@ -53,11 +56,19 @@ class ChipsFragment : Fragment() {
             "Select the products of this chemical reaction: "
 
         setChipHashMap()
+        args = ChipsFragmentArgs.fromBundle(
+            requireArguments()
+        )
+        numReactions = args.numOfReactions
 
         viewModel.superFunction()
         viewModel.numOfGuessedReactions.observe(viewLifecycleOwner, Observer { newValue ->
             if (newValue == numReactions) {
-                findNavController().navigate(ChipsFragmentDirections.actionChemChipsQuestionFragmentToChipsOverFragment(1))
+                findNavController().navigate(
+                    ChipsFragmentDirections.actionChemChipsQuestionFragmentToChipsOverFragment(
+                        1
+                    )
+                )
             }
         })
         return binding.root

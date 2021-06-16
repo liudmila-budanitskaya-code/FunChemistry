@@ -24,10 +24,6 @@ fun setSpannableChipText(chip: Chip, rawString: String) {
     )
 }
 
-@BindingAdapter("chip_animate")
-fun setAnimation(chip: Chip, rawString: String) {
-    chip.animate().rotation(360F).duration = 2700
-}
 
 @BindingAdapter("chip_visible")
 fun setVisibility(chip: Chip, bool: Boolean) {
