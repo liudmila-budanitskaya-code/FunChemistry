@@ -7,6 +7,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import site.budanitskaya.chemistryquiz.fine.MainApplication
+import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
 import site.budanitskaya.chemistryquiz.fine.domain.generateReactionEntitiesList
 
@@ -21,56 +23,14 @@ abstract class QuestionDatabase : RoomDatabase() {
             synchronized(QuestionDatabase::class.java) {
                 val instance: QuestionDatabase
                 if (!::INSTANCE.isInitialized) {
-                    instance = buildDatabase(context.applicationContext)
+                    instance = buildDatabase(MainApplication.applicationContext())
                     INSTANCE = instance
                 }
                 return INSTANCE
             }
         }
 
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                QuestionDatabase::class.java, "database"
-            ).addCallback(object : Callback() {
-                override fun onCreate(db: SupportSQLiteDatabase) {
-                    super.onCreate(db)
-                    db.beginTransaction()
-                    val reactionEntitiesList = generateReactionEntitiesList()
-                    for(i in reactionEntitiesList.indices){
-                        val reactionValues = ContentValues().apply {
-                            put("reagents", StringConverter().toOneString(reactionEntitiesList[i].reagents))
-                            put("products", StringConverter().toOneString(reactionEntitiesList[i].products))
-                        }
-                        db.insert("reaction_table", SQLiteDatabase.CONFLICT_ABORT, reactionValues)
-                    }
+        private fun buildDatabase(context: Context) = ServiceLocator(context).database
 
-                    val questionsList = generateQuestionsList()
-                    for (i in questionsList.indices) {
-                        val values = ContentValues().apply {
-                            put("question_title", questionsList[i].questionTitle)
-                            put(
-                                "answer_options",
-                                AnswersConverter().fromAnswers(
-                                    questionsList[i].answers
-                                )
-                            )
-                            put(
-                                "topic",
-                                    questionsList[i].topic
-                            )
-                            put(
-                                "explanation",
-                                questionsList[i].explanation
-                            )
-                        }
-                        db.insert("question_table", SQLiteDatabase.CONFLICT_ABORT, values);
-                    }
-
-
-                    db.setTransactionSuccessful();
-                    db.endTransaction()
-                }
-            }).build()
     }
 }
