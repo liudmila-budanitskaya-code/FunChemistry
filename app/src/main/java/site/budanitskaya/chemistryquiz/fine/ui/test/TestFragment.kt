@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.ui.test
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -18,6 +19,7 @@ import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
+import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.SoundService
 
 
 class TestFragment : Fragment() {
@@ -114,11 +116,15 @@ class TestFragment : Fragment() {
                         }
                         areCorrect.add(true)
                         binding.bool.text = "True!"
-                        binding.bool.setTextColor(getColor(requireContext(), R.color.green))
+                        callService(R.raw.ding_sound_effect)
+                        binding.bool.setTextColor(getColor(requireContext(),
+                            R.color.material_green_a200
+                        ))
                     } else {
                         areCorrect.add(false)
                         binding.bool.text = "False!"
-                        binding.bool.setTextColor(getColor(requireContext(), R.color.red))
+                        callService(R.raw.duck_quack)
+                        binding.bool.setTextColor(getColor(requireContext(), R.color.pink))
                     }
                 binding.rationale.visibility = View.VISIBLE
                 binding.rationale.text = viewModel.currentQuestion.explanation
@@ -206,5 +212,11 @@ class TestFragment : Fragment() {
             )
 
         )
+    }
+
+    private fun callService(rawResource: Int) {
+        val serviceIntent = Intent(requireContext(), SoundService::class.java)
+        serviceIntent.putExtra("soundCode", rawResource)
+        requireContext().startService(serviceIntent)
     }
 }

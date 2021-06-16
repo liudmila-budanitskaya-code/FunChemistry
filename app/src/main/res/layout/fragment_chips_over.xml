@@ -11,6 +11,7 @@
         android:id="@+id/frameLayout4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/one"
         tools:context=".ui.chipscreen.ChipsOverFragment">
 
 
@@ -56,8 +57,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/chart_card"
-            android:layout_width="150dp"
-            android:layout_height="250dp"
+            android:layout_width="300dp"
+            android:layout_height="375dp"
             android:layout_gravity="center"
             android:elevation="40dp"
             app:cardCornerRadius="10dp"

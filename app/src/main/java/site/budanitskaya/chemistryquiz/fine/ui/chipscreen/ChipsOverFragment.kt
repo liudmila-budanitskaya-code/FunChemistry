@@ -57,8 +57,7 @@ class ChipsOverFragment : Fragment() {
         }
 
         val x = PieDataSet(pientri, "Label")
-        x.setColors(colorWrapper(R.color.green, requireContext()), colorWrapper(R.color.red, requireContext()), colorWrapper(R.color.colorText, requireContext()),colorWrapper(R.color.material_green_50, requireContext()), colorWrapper(R.color.material_green_500, requireContext()));
-
+        x.setColors(colorWrapper(R.color.material_purple_a700, requireContext()), colorWrapper(R.color.yellow, requireContext()), colorWrapper(R.color.material_green_a200, requireContext()),colorWrapper(R.color.peach, requireContext()), colorWrapper(R.color.pink, requireContext()));
         with(binding.chart1) {
             setUsePercentValues(true)
             getDescription().setEnabled(false)

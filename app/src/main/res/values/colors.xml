@@ -12,9 +12,9 @@
     <color name="red">#F44336</color>
     <color name="colorText">#000000</color>
     <color name="material_green_50">#E8F5E9</color>
-    <color name="material_green_500">#4CAF50</color>
-    <color name="material_green_700">#388E3C</color>
+    <color name="pink">#FF82AC</color>
+    <color name="peach">#CC8974</color>
     <color name="material_green_a200">#69F0AE</color>
-    <color name="material_lime_a700">#AEEA00</color>
-    <color name="material_purple_a700">#AA00FF</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="material_purple_a700">#53246B</color>
 </resources>
