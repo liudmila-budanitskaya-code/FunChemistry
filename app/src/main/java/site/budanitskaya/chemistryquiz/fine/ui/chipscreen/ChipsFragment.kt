@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,8 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
+import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
 
 
 class ChipsFragment : Fragment() {
@@ -52,7 +53,10 @@ class ChipsFragment : Fragment() {
             if (view is Chip) {
                 val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
                 if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == 0) {
-
+                    val mPlayer2: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.tada_sound)
+                    mPlayer2.start()
+                    delay(2000)
+                    mPlayer2.stop()
                     view.visibility = View.GONE
                     viewModel.rawReagentsString.append(("${values[0]} + "))
                     with(binding) {
@@ -71,6 +75,10 @@ class ChipsFragment : Fragment() {
                     Log.d("onChipClick", "onChipClick: ${viewModel.numOfGuessedProducts.value}")
                     Log.d("onChipClick", "onChipClick: ${viewModel.reaction.correctProducts.size - 1}")
                 } else if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == viewModel.reaction.correctProducts.size - 1) {
+                    val mPlayer2: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.tada_sound)
+                    mPlayer2.start()
+                    delay(2000)
+                    mPlayer2.stop()
                     Log.d("onChipClick", "onChipClick: i am here!")
 /*                    view.animate().alpha(
                         0.0F
@@ -86,6 +94,11 @@ class ChipsFragment : Fragment() {
                     viewModel.setNewReaction()
                     setNewReactionView()
                     viewModel.unGuessProduct()
+                } else {
+                    val mPlayer2: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.duck_quack)
+                    mPlayer2.start()
+                    delay(2000)
+                    mPlayer2.stop()
                 }
             }
         }
