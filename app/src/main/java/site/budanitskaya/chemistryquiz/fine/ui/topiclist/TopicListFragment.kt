@@ -123,7 +123,7 @@ class TopicListFragment : Fragment(), PreferenceListener {
             R.id.reset_progress -> {
                 PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
                     .edit().putInt("key_level", 1).apply()
-                viewModel.numOfOpenLevels = 1
+                viewModel.numOfOpenLevels = PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).getInt("key_level", 1)
                 adapter.notifyDataSetChanged()
                 true
             }

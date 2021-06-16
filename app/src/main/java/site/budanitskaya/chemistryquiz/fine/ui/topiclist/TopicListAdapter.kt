@@ -39,7 +39,7 @@ class TopicListAdapter(
         private val itemButton: ShapeableImageView = root.findViewById(R.id.game_item)
 
         fun bind(position: Int) {
-            if (position >= numOpenLevels) {
+            if (position > numOpenLevels + 1) {
                 itemButton.alpha = 0.2F
             }
 
@@ -58,8 +58,4 @@ class TopicListAdapter(
         }
     }
 
-}
-
-interface PreferenceListener{
-    fun onChange()
 }
