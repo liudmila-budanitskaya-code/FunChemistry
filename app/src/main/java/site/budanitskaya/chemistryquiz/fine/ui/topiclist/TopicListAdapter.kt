@@ -1,9 +1,11 @@
 package site.budanitskaya.chemistryquiz.fine.ui.topiclist
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.preference.Preference
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import site.budanitskaya.chemistryquiz.fine.R
@@ -55,4 +57,9 @@ class TopicListAdapter(
             holder.bind(position)
         }
     }
+
+}
+
+interface PreferenceListener{
+    fun onChange()
 }

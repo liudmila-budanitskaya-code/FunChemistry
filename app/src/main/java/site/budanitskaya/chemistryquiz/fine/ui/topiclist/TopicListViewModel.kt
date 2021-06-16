@@ -12,6 +12,7 @@ class TopicListViewModel : ViewModel() {
     val numOfOpenLevels: LiveData<Int>
         get() = _numOfOpenLevels*/
 
+
     var numOfOpenLevels = PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext()).getInt("key_level", 1)
 
 
