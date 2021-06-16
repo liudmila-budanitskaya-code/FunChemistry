@@ -20,6 +20,8 @@ import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
+import site.budanitskaya.chemistryquiz.fine.di.TestLocator
+import site.budanitskaya.chemistryquiz.fine.di.TestViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.SoundService
@@ -48,8 +50,7 @@ class TestFragment : Fragment() {
     }
 
     private val viewModel by lazy {
-        ViewModelProvider(this, TestViewModelFactory(preference))
-            .get(TestViewModel::class.java)
+        TestLocator(this).provideViewModel(this)
     }
     var clickFlag = false
     private var currentQuizItem = 0

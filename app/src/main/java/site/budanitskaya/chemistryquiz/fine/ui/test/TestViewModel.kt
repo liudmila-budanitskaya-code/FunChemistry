@@ -17,12 +17,7 @@ import site.budanitskaya.chemistryquiz.fine.domain.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 
-class TestViewModel(val preference: SharedPreferences) : ViewModel() {
-
-
-    val questionRepository by lazy {
-        QuestionRepository(getInstance(MainApplication.getApplication()!!))
-    }
+class TestViewModel(val preference: SharedPreferences, val questionRepository: QuestionRepository) : ViewModel() {
 
     var numOfOpenLevels = preference.getInt("key_level", 1)
 

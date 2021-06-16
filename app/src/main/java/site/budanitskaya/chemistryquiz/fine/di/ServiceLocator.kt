@@ -4,20 +4,21 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import site.budanitskaya.chemistryquiz.fine.MainApplication
+import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.database.AnswersConverter
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.StringConverter
 import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
+import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
 import site.budanitskaya.chemistryquiz.fine.domain.generateReactionEntitiesList
-import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModel
-import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModelFactory
+import site.budanitskaya.chemistryquiz.fine.navigator.AppNavigator
+import site.budanitskaya.chemistryquiz.fine.navigator.AppNavigatorImpl
 
 class ServiceLocator(applicationContext: Context) {
     val database = Room.databaseBuilder(
@@ -67,6 +68,12 @@ class ServiceLocator(applicationContext: Context) {
     val chipsDatasource = ChipsDatasource(database)
 
     val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+
+    val questionsRepository = QuestionRepository(database)
+
+    fun provideNavigator(activity: MainActivity): AppNavigator {
+        return AppNavigatorImpl(activity)
+    }
 
 
 

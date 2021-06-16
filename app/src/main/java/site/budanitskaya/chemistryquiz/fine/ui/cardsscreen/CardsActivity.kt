@@ -22,17 +22,22 @@ import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
+import site.budanitskaya.chemistryquiz.fine.di.TestLocator
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
 import site.budanitskaya.chemistryquiz.fine.ui.test.TestViewModel
-import site.budanitskaya.chemistryquiz.fine.ui.test.TestViewModelFactory
+import site.budanitskaya.chemistryquiz.fine.di.TestViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 
 class CardsActivity : AppCompatActivity() {
 
     val preference: SharedPreferences by lazy {
         ServiceLocator(MainApplication.applicationContext()).preferences
+    }
+
+    val  questionRepository by lazy {
+        ServiceLocator(MainApplication.applicationContext()).questionsRepository
     }
 
     private lateinit var args: CardsActivityArgs
@@ -43,8 +48,7 @@ class CardsActivity : AppCompatActivity() {
     var color_front: Int = 0
 
     private val viewModel by lazy {
-        ViewModelProvider(this, TestViewModelFactory(preference))
-            .get(TestViewModel::class.java)
+        TestLocator(this).provideViewModel(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

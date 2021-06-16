@@ -16,6 +16,7 @@ import androidx.preference.PreferenceManager
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
 
@@ -23,13 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     val auth = FirebaseAuth.getInstance().currentUser
 
-    private lateinit var navView: BottomNavigationView
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
-
-    private val navController by lazy {
-        this.findNavController(R.id.nav_host_fragment_activity_main)
-    }
+    val navigator = ServiceLocator(MainApplication.applicationContext()).provideNavigator(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         actionBar?.show()
@@ -37,32 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        navView = findViewById(R.id.nav_view)
-        navView.itemRippleColor = getColorStateList(R.color.colorPrimary)
-
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.quizListFragment, R.id.navigation_game, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.quizListFragment -> navView.visibility = View.VISIBLE
-                R.id.navigation_game -> navView.visibility = View.VISIBLE
-                R.id.navigation_notifications -> navView.visibility = View.VISIBLE
-                R.id.questionFragment -> navView.visibility = View.GONE
-                R.id.gameOverFragment -> navView.visibility = View.GONE
-                R.id.chemChipsQuestionFragment -> navView.visibility = View.GONE
-                R.id.crosswordFragment -> navView.visibility = View.GONE
-                R.id.chipsOverFragment -> navView.visibility = View.GONE
-                else -> navView.visibility = View.VISIBLE
-            }
-        }
-        navView.setupWithNavController(navController)
+        navigator.superMethod()
 
     }
 
@@ -122,32 +92,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.nav_host_fragment_activity_main)
-        return when (navController.currentDestination?.id) {
-            R.id.chipsOverFragment -> {
-                // custom behavior here
-                navController.navigate(R.id.action_chipsOverFragment_to_navigation_game)
-                true
-            }
-            R.id.gameOverFragment -> {
-                // custom behavior here
-                navController.navigate(R.id.action_gameOverFragment_to_quizListFragment)
-                true
-            }
-            R.id.chemChipsQuestionFragment -> {
-                // custom behavior here
-                navController.navigate(R.id.action_chemChipsQuestionFragment_to_navigation_game)
-                true
-            }
-
-            R.id.questionFragment -> {
-                // custom behavior here
-                navController.navigate(R.id.action_questionFragment_to_quizListFragment)
-                true
-            }
-
-
-            else -> NavigationUI.navigateUp(navController, appBarConfiguration)
-        }
+        return navigator.navigateToUpButton()
     }
 }
