@@ -5,15 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.runBlocking
+import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.domain.mapReactionEntitiesToReactions
 import site.budanitskaya.chemistryquiz.fine.models.Reaction
 import java.lang.StringBuilder
 
-class ChipsViewModel : ViewModel() {
-    val chipsDatasource by lazy {
-        ChipsDatasource()
-    }
+class ChipsViewModel(private val chipsDatasource: ChipsDatasource) : ViewModel() {
+
     private var _numOfGuessedReactions = MutableLiveData(0)
     val numOfGuessedReactions: LiveData<Int>
         get() = _numOfGuessedReactions

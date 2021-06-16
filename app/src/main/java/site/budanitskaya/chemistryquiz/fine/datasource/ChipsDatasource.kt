@@ -5,11 +5,8 @@ import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.database.ReactionsDatabaseDao
 
-class ChipsDatasource : ReactionsDatabaseDao {
+class ChipsDatasource(private val database: QuestionDatabase) : ReactionsDatabaseDao {
 
-    val database by lazy {
-        QuestionDatabase.getInstance(MainApplication.getApplication()!!)
-    }
 
     override suspend fun insert(reaction: ReactionEntity) {
         database.reactionDao()?.insert(reaction)

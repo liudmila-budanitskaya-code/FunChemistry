@@ -9,6 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import site.budanitskaya.chemistryquiz.fine.database.AnswersConverter
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.StringConverter
+import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
 import site.budanitskaya.chemistryquiz.fine.domain.generateReactionEntitiesList
 
@@ -56,6 +57,8 @@ class ServiceLocator(applicationContext: Context) {
             db.endTransaction()
         }
     }).build()
+
+    val chipsDatasource = ChipsDatasource(database)
 
     /*val loggerLocalDataSource = LoggerLocalDataSource(logsDatabase.logDao())
 

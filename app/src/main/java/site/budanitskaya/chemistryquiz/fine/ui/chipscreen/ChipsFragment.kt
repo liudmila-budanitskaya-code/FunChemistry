@@ -22,6 +22,7 @@ import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
+import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
 import site.budanitskaya.chemistryquiz.fine.ui.test.TestFragmentArgs
@@ -31,7 +32,7 @@ import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.form
 class ChipsFragment : Fragment() {
 
     private val viewModel by lazy {
-        ViewModelProvider(this, ChipsViewModelFactory())
+        ViewModelProvider(this, ChipsViewModelFactory(ServiceLocator(MainApplication.applicationContext()).chipsDatasource))
             .get(ChipsViewModel::class.java)
     }
 
