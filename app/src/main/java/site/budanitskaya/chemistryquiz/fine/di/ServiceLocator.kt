@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -15,6 +16,8 @@ import site.budanitskaya.chemistryquiz.fine.database.StringConverter
 import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
 import site.budanitskaya.chemistryquiz.fine.domain.generateReactionEntitiesList
+import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModel
+import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModelFactory
 
 class ServiceLocator(applicationContext: Context) {
     val database = Room.databaseBuilder(
@@ -64,6 +67,10 @@ class ServiceLocator(applicationContext: Context) {
     val chipsDatasource = ChipsDatasource(database)
 
     val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+
+
+
+
 
     /*val loggerLocalDataSource = LoggerLocalDataSource(logsDatabase.logDao())
 
