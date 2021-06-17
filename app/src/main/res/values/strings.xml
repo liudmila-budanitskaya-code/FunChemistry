@@ -92,7 +92,7 @@
     <string name="notification_channel_description">App that helps you learn Spanish</string>
     <string name="set">Set</string>
     <string name="cancel">Cancel</string>
-    <string name="notification_text">Text</string>
+    <string name="notification_text">Your daily training is waiting for you!</string>
     <string name="preference_sound_title">Sound ON/OFF</string>
 
 

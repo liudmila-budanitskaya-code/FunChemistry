@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/convergence"
             android:gravity="center_horizontal"
-            android:text="seconds on completing these chemical reactions. \n A solid performance! \n Here's how your distribution across reaction looks. \Good luck!"
+            android:text="seconds to complete these chemical reactions. \n A solid performance! \n Here's how your distribution across reaction looks. \Good luck!"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/chart_card"
             app:layout_constraintEnd_toEndOf="parent"

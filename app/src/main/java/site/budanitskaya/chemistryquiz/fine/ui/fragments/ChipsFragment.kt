@@ -67,7 +67,7 @@ class ChipsFragment : Fragment() {
         time = System.currentTimeMillis()
 
         binding.textGame.text =
-            "Select the products of this chemical reaction: "
+            "Choose the products of this chemical reaction: "
 
         setChipHashMap()
         args = ChipsFragmentArgs.fromBundle(

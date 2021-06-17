@@ -32,8 +32,8 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val builder: NotificationCompat.Builder =
             NotificationCompat.Builder(context, PRIMARY_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stand_up)
-                .setContentTitle("Chemistry quiz!")
+                .setSmallIcon(R.drawable.ic_baseline_school_24)
+                .setContentTitle("It's time to practice chemistry!")
                 .setContentText(context.getString(R.string.notification_text))
                 .setContentIntent(contentPendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
