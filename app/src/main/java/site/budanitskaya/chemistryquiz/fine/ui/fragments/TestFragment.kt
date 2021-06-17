@@ -19,7 +19,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
-import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
+import site.budanitskaya.chemistryquiz.fine.datasource.QuestionDatasource
 import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.services.SoundService
@@ -38,7 +38,7 @@ class TestFragment : Fragment() {
     }
 
     @Inject
-    lateinit var questionRepository: QuestionRepository
+    lateinit var questionDatasource: QuestionDatasource
 
     @Inject
     lateinit var preference: SharedPreferences
@@ -57,7 +57,7 @@ class TestFragment : Fragment() {
             this,
             TestViewModelFactory(
                 preference,
-                questionRepository
+                questionDatasource
             )
         ).get(TestViewModel::class.java)
     }

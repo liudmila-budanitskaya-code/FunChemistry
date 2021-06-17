@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class QuestionRepository @Inject constructor(private val questionDatabaseDao: QuestionDatabaseDao?) :
+class QuestionDatasource @Inject constructor(private val questionDatabaseDao: QuestionDatabaseDao?) :
     QuestionDatabaseDao {
 
     override suspend fun insert(question: Question) {

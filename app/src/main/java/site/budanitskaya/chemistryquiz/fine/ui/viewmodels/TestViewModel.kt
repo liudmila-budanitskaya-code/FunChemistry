@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.viewmodels
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -9,14 +8,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
-import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
+import site.budanitskaya.chemistryquiz.fine.datasource.QuestionDatasource
 import site.budanitskaya.chemistryquiz.fine.utils.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.utils.toQuizItem
+import java.lang.StringBuilder
 import javax.inject.Inject
 
 @HiltViewModel
-class TestViewModel @Inject constructor(val preference: SharedPreferences, val questionRepository: QuestionRepository) : ViewModel() {
+class TestViewModel @Inject constructor(val preference: SharedPreferences, val questionDatasource: QuestionDatasource) : ViewModel() {
 
     var numOfOpenLevels = preference.getInt("key_level", 1)
 
@@ -56,7 +56,7 @@ class TestViewModel @Inject constructor(val preference: SharedPreferences, val q
     init {
         runBlocking {
             quizItems =
-                mapQuestionsToQuizItems(questionRepository.getQuestionList().toMutableList())
+                mapQuestionsToQuizItems(questionDatasource.getQuestionList().toMutableList())
             delay(0L)
         }
     }
@@ -79,7 +79,7 @@ class TestViewModel @Inject constructor(val preference: SharedPreferences, val q
 
     fun insertQuestions(questions: List<Question>) {
         viewModelScope.launch {
-            questionRepository.insertAll(questions)
+            questionDatasource.insertAll(questions)
         }
     }
 
@@ -97,7 +97,7 @@ class TestViewModel @Inject constructor(val preference: SharedPreferences, val q
     fun getRandomQuestionByTopic(currentTopic: String): Question {
         var question: Question
         runBlocking {
-            question = questionRepository.getQuestionByTopic(currentTopic).random()
+            question = questionDatasource.getQuestionByTopic(currentTopic).random()
         }
         return question
     }

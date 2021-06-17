@@ -19,10 +19,11 @@ import com.firebase.ui.auth.AuthUI
 import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
+import site.budanitskaya.chemistryquiz.fine.datasource.QuestionDatasource
 import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TestViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TestViewModel
+import site.budanitskaya.chemistryquiz.fine.utils.buildCardText
 import site.budanitskaya.chemistryquiz.fine.utils.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
 import javax.inject.Inject
@@ -35,12 +36,12 @@ class CardsActivity : AppCompatActivity() {
     lateinit var preference: SharedPreferences
 
     @Inject
-    lateinit var questionRepository: QuestionRepository
+    lateinit var questionDatasource: QuestionDatasource
 
     private lateinit var args: CardsActivityArgs
     lateinit var fragment: Fragment
     lateinit var topic: Topic
-    lateinit var card: QuizItem
+    lateinit var quizitem: QuizItem
     var color_back: Int = 0
     var color_front: Int = 0
 
@@ -49,7 +50,7 @@ class CardsActivity : AppCompatActivity() {
             this,
             TestViewModelFactory(
                 preference,
-                questionRepository
+                questionDatasource
             )
         ).get(TestViewModel::class.java)
     }
@@ -59,7 +60,7 @@ class CardsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cards)
 
         populate()
-        fragment = CardsFrontFragment.newInstance(card, color_front)
+        fragment = CardsFrontFragment.newInstance(quizitem, color_front)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .add(R.id.container, fragment)
@@ -70,7 +71,7 @@ class CardsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         findViewById<ConstraintLayout>(R.id.container)?.setOnClickListener {
-            flipCard(card)
+            flipCard(quizitem)
         }
         findViewById<AppCompatButton>(R.id.next_btn).setOnClickListener {
             setItem()
@@ -85,7 +86,7 @@ class CardsActivity : AppCompatActivity() {
         args =
             CardsActivityArgs.fromBundle(intent.extras!!)
         topic = args.topic
-        card = viewModel.getRandomQuestionByTopic(topic.name).toQuizItem()
+        quizitem = viewModel.getRandomQuestionByTopic(topic.name).toQuizItem()
         color_back = generateRandomColor()
         color_front = generateRandomColor()
     }
@@ -103,8 +104,8 @@ class CardsActivity : AppCompatActivity() {
     }
 
     private fun setItem() {
-        card = viewModel.getRandomQuestionByTopic(topic.name).toQuizItem()
-        fragment = CardsFrontFragment.newInstance(card, color_front)
+        quizitem = viewModel.getRandomQuestionByTopic(topic.name).toQuizItem()
+        fragment = CardsFrontFragment.newInstance(quizitem, color_front)
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .commit()
@@ -139,7 +140,7 @@ class CardsActivity : AppCompatActivity() {
             rootView.setCardBackgroundColor(currentColor!!)
             rootView.cameraDistance = scale
             val text = view.findViewById<TextView>(R.id.name_five)
-            text.text = quizitem?.text
+            text.text = buildCardText(quizitem!!)
             return view
         }
 

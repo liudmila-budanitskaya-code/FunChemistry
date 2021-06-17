@@ -10,7 +10,6 @@ import javax.inject.Singleton
 class ChipsDatasource @Inject constructor(private val reactionsDatabaseDao: ReactionsDatabaseDao?) :
     ReactionsDatabaseDao {
 
-
     override suspend fun insert(reaction: ReactionEntity) {
         reactionsDatabaseDao?.insert(reaction)
     }
