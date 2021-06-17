@@ -10,13 +10,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import site.budanitskaya.chemistryquiz.fine.MainActivity
-import site.budanitskaya.chemistryquiz.fine.database.AnswersConverter
 import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
-import site.budanitskaya.chemistryquiz.fine.database.StringConverter
+import site.budanitskaya.chemistryquiz.fine.database.converters.AnswersConverter
+import site.budanitskaya.chemistryquiz.fine.database.converters.StringConverter
 import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.domain.generateQuestionsList
 import site.budanitskaya.chemistryquiz.fine.domain.generateReactionEntitiesList
+import site.budanitskaya.chemistryquiz.fine.firebasehelper.FirebaseAuthHelper
+import site.budanitskaya.chemistryquiz.fine.firebasehelper.FirebaseAuthHelperImpl
 import site.budanitskaya.chemistryquiz.fine.navigator.AppNavigator
 import site.budanitskaya.chemistryquiz.fine.navigator.AppNavigatorImpl
 
@@ -73,6 +75,10 @@ class ServiceLocator(applicationContext: Context) {
 
     fun provideNavigator(activity: MainActivity): AppNavigator {
         return AppNavigatorImpl(activity)
+    }
+
+    fun provideFirebaseAuthHelper(activity: MainActivity): FirebaseAuthHelper {
+        return FirebaseAuthHelperImpl(activity)
     }
 
 

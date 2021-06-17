@@ -5,6 +5,5 @@ import androidx.navigation.ui.AppBarConfiguration
 
 interface AppNavigator {
     fun navigateToUpButton(): Boolean
-    fun destChangeListen()
-    fun superMethod()
+    fun initialSetup()
 }

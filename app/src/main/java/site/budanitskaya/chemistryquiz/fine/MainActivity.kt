@@ -5,24 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.preference.PreferenceManager
-import com.firebase.ui.auth.AuthUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
+import site.budanitskaya.chemistryquiz.fine.firebasehelper.FirebaseAuthHelperImpl
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
 
 class MainActivity : AppCompatActivity() {
 
-    val auth = FirebaseAuth.getInstance().currentUser
+    val firebaseAuthHelper = ServiceLocator(MainApplication.applicationContext()).provideFirebaseAuthHelper(this)
 
     val navigator = ServiceLocator(MainApplication.applicationContext()).provideNavigator(this)
 
@@ -30,9 +19,7 @@ class MainActivity : AppCompatActivity() {
         actionBar?.show()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-        navigator.superMethod()
+        navigator.initialSetup()
 
     }
 
@@ -56,34 +43,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                this.finish()
-                Toast.makeText(this, "Successfully Log Out", Toast.LENGTH_SHORT).show()
-            }
+        firebaseAuthHelper.signOut()
     }
 
     override fun onResume() {
         super.onResume()
-        if (auth != null && intent != null) {
-            createUI()
-        } else {
-            startActivity(Intent(this, LoginActivity::class.java))
-            this.finish()
-        }
-    }
-
-    fun createUI() {
-        val list = auth?.providerData
-        var providerData: String = ""
-        list?.let {
-            for (provider in list) {
-                providerData = providerData + " " + provider.providerId
-            }
-        }
+        firebaseAuthHelper.updateView()
     }
 
     override fun onBackPressed() {

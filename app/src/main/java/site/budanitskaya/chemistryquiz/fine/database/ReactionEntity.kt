@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.database
 
 import androidx.room.*
+import site.budanitskaya.chemistryquiz.fine.database.converters.StringConverter
 
 @Entity(tableName = "reaction_table")
 @TypeConverters(StringConverter::class)
@@ -12,15 +13,4 @@ data class ReactionEntity(
     @ColumnInfo(name = "products")
     var products: List<String> = listOf("default_products")
 )
-class StringConverter {
-    @TypeConverter
-    fun toOneString(answers: List<String>): String {
-        return answers.joinToString(", ")
-    }
-
-    @TypeConverter
-    fun toOneList(data: String): List<String> {
-        return data.split(", ")
-    }
-}
 

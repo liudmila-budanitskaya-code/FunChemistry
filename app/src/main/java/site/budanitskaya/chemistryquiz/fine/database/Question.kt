@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.database
 
 import androidx.room.*
+import site.budanitskaya.chemistryquiz.fine.database.converters.AnswersConverter
 
 
 @Entity(tableName = "question_table")
@@ -17,15 +18,3 @@ data class Question(
     @ColumnInfo(name = "explanation")
     var explanation: String = "default_explanation"
 )
-
-class AnswersConverter {
-    @TypeConverter
-    fun fromAnswers(answers: List<String>): String {
-        return answers.joinToString(", ")
-    }
-
-    @TypeConverter
-    fun toAnswers(data: String): List<String> {
-        return data.split(", ")
-    }
-}

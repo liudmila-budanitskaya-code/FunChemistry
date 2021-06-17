@@ -52,11 +52,7 @@ class AppNavigatorImpl(private val activity: MainActivity) : AppNavigator {
         }
     }
 
-    override fun destChangeListen() {
-        TODO("Not yet implemented")
-    }
-
-    override fun superMethod() {
+    override fun initialSetup() {
         navView = activity.findViewById(R.id.nav_view)
         navView.itemRippleColor = activity.getColorStateList(R.color.colorPrimary)
 
