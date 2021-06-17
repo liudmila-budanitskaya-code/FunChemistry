@@ -34,7 +34,7 @@ class TopicListFragment : Fragment() {
     var database = FirebaseDatabase.getInstance().reference
 
     private val viewModel by lazy {
-        ViewModelProvider(this, TopicListViewModelFactory())
+        ViewModelProvider(this, TopicListViewModelFactory(preference))
             .get(TopicListViewModel::class.java)
     }
 

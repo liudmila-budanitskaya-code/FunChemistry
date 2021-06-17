@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,8 +12,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
@@ -20,8 +21,9 @@ import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestio
 import site.budanitskaya.chemistryquiz.fine.di.ChipsLocator
 import site.budanitskaya.chemistryquiz.fine.services.SoundService
 import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class ChipsFragment : Fragment() {
 
     private val viewModel by lazy {
@@ -34,6 +36,9 @@ class ChipsFragment : Fragment() {
 
     var numReactions = 0
     var time = 0L
+
+    @Inject
+    lateinit var preferences: SharedPreferences
 
     private lateinit var binding: FragmentChemChipsQuestionBinding
     lateinit var chipHashMap: Map<Chip, String>
@@ -89,7 +94,7 @@ class ChipsFragment : Fragment() {
             if (view is Chip) {
                 val values: List<String> = chipHashMap.filterKeys { it == view }.values.toList()
                 if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == 0) {
-                    if (PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                    if (preferences
                             .getBoolean(NotificationsFragment.SOUND_PREFERENCE_KEY, false)
                     ) {
                         callService(R.raw.tada_sound)
@@ -119,7 +124,7 @@ class ChipsFragment : Fragment() {
                     )
                 } else if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == viewModel.reaction.correctProducts.size - 1) {
 
-                    if (PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                    if (preferences
                             .getBoolean(NotificationsFragment.SOUND_PREFERENCE_KEY, false)
                     ) {
                         callService(R.raw.tada_sound)
@@ -145,7 +150,7 @@ class ChipsFragment : Fragment() {
 
 
                 } else {
-                    if (PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                    if (preferences
                             .getBoolean(NotificationsFragment.SOUND_PREFERENCE_KEY, false)
                     ) {
                         callService(R.raw.duck_quack)
