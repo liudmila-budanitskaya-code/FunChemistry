@@ -10,11 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.database.*
 import dagger.hilt.android.AndroidEntryPoint
-import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuizListBinding
 import site.budanitskaya.chemistryquiz.fine.dialogs.showAlertDialog
@@ -23,20 +21,14 @@ import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.IntermittentSpan
 import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.SpacesItemDecoration
 import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.TopicListAdapter
-import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TopicListViewModelFactory
-import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TopicListViewModel
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class TopicListFragment : Fragment() {
 
     var position: Int = 0
     var database = FirebaseDatabase.getInstance().reference
-
-    private val viewModel by lazy {
-        ViewModelProvider(this, TopicListViewModelFactory(preference))
-            .get(TopicListViewModel::class.java)
-    }
 
     @Inject
     lateinit var preference: SharedPreferences
@@ -77,7 +69,6 @@ class TopicListFragment : Fragment() {
             R.layout.fragment_quiz_list, container, false
         )
         showRecyclerView()
-
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -107,7 +98,6 @@ class TopicListFragment : Fragment() {
             )
 
         findNavController().navigate(action)
-
     }
 
     companion object {
@@ -122,7 +112,7 @@ class TopicListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.reset_progress -> {
-                var numOfOpenLevels =
+                val numOfOpenLevels =
                     preference
                         .getInt("key_level", 0)
                 var index = 1
@@ -130,24 +120,18 @@ class TopicListFragment : Fragment() {
                     topics[index].isOpen = true
                     index++
                 }
-                if (numOfOpenLevels == 1) {
-
-                } else {
+                if (numOfOpenLevels != 1) {
                     preference
                         .edit().putInt("key_level", 1).apply()
                     adapter.notifyDataSetChanged()
                 }
 
-                var idd = 0
                 for (i in topics) {
                     i.isOpen = i.id == 1
-                    idd = i.id
                 }
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
-
     }
-
 }

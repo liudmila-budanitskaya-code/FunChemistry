@@ -47,7 +47,7 @@
             android:layout_marginTop="160dp"
             android:scaleX="0.5"
             android:textColor="#DEDEDE"
-            android:text="@string/hello_blank_fragment"
+            android:text= "Choose the products of this chemical reaction: "
             android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@+id/txt_chem_reaction"
             app:layout_constraintEnd_toEndOf="parent"

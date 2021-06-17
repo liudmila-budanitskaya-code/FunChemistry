@@ -64,16 +64,13 @@ class ChipsFragment : Fragment() {
         binding.fragment = this
         time = System.currentTimeMillis()
 
-        binding.textGame.text =
-            "Choose the products of this chemical reaction: "
-
         setChipHashMap()
         args = ChipsFragmentArgs.fromBundle(
             requireArguments()
         )
         numReactions = args.numOfReactions
 
-        viewModel.superFunction()
+        viewModel.initSetup()
         viewModel.numOfGuessedReactions.observe(viewLifecycleOwner, { newValue ->
             if (newValue == numReactions) {
                 findNavController().navigate(
@@ -111,7 +108,6 @@ class ChipsFragment : Fragment() {
                     view.visibility = View.GONE
                     viewModel.rawReagentsString.append(("${values[0]} + "))
                     with(binding) {
-
                         txtChemReaction.animate().rotation(360F).duration = 2700
                         txtChemReaction.setText(
                             formatFormula(viewModel.rawReagentsString.toString()),
@@ -120,16 +116,6 @@ class ChipsFragment : Fragment() {
                     }
                     viewModel.guessProduct()
                     delay(1000)
-
-                    Log.d(
-                        "onChipClick",
-                        "onChipClick: ${viewModel.reaction.correctProducts.contains(values[0])}"
-                    )
-                    Log.d("onChipClick", "onChipClick: ${viewModel.numOfGuessedProducts.value}")
-                    Log.d(
-                        "onChipClick",
-                        "onChipClick: ${viewModel.reaction.correctProducts.size - 1}"
-                    )
                 } else if (viewModel.reaction.correctProducts.contains(values[0]) && viewModel.numOfGuessedProducts.value == viewModel.reaction.correctProducts.size - 1) {
 
                     if (preferences
@@ -137,7 +123,6 @@ class ChipsFragment : Fragment() {
                     ) {
                         callService(R.raw.tada_sound)
                     }
-                    Log.d("onChipClick", "onChipClick: i am here!")
                     view.visibility = View.GONE
                     viewModel.rawReagentsString.append(values[0])
                     binding.txtChemReaction.setText(

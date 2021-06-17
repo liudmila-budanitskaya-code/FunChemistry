@@ -1,13 +1,11 @@
-package site.budanitskaya.chemistryquiz.fine.models
+package site.budanitskaya.chemistryquiz.fine.utils
 
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.lists.generateQuizItems
 import site.budanitskaya.chemistryquiz.fine.lists.generateReactionsList
-import site.budanitskaya.chemistryquiz.fine.utils.extensions.toQuestion
-import site.budanitskaya.chemistryquiz.fine.utils.extensions.toQuizItem
-import site.budanitskaya.chemistryquiz.fine.utils.extensions.toReaction
-import site.budanitskaya.chemistryquiz.fine.utils.extensions.toReactionEntity
+import site.budanitskaya.chemistryquiz.fine.models.QuizItem
+import site.budanitskaya.chemistryquiz.fine.models.Reaction
 
 
 fun mapQuizItemsToQuestionsList(quizItems: List<QuizItem>): List<Question> {

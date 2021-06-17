@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.utils.extensions
+package site.budanitskaya.chemistryquiz.fine.utils
 
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity

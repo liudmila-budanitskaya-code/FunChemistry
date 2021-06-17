@@ -1,8 +1,5 @@
 package site.budanitskaya.chemistryquiz.fine.utils
 
-import java.text.SimpleDateFormat
-import java.util.*
-
 object TimeUtils {
 
     fun formatTimeSavedInPreference(time: String?): String {

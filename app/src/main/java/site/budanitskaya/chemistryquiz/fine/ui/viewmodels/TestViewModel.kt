@@ -10,9 +10,9 @@ import kotlinx.coroutines.runBlocking
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
-import site.budanitskaya.chemistryquiz.fine.models.mapQuestionsToQuizItems
+import site.budanitskaya.chemistryquiz.fine.utils.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.lists.topics
-import site.budanitskaya.chemistryquiz.fine.utils.extensions.toQuizItem
+import site.budanitskaya.chemistryquiz.fine.utils.toQuizItem
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,27 +30,19 @@ class TestViewModel @Inject constructor(val preference: SharedPreferences, val q
 
 
     fun updateLevel(id: Int) {
-        Log.d("updateLevel", "updateLevel: ${totalScore.value}")
         if(totalScore.value == 4){
-
-            var oldLevel =
+            val oldLevel =
                 preference.getInt("key_level", 0)
-            Log.d("updateLl", "updateLevel: $oldLevel")
             preference.edit()
-
                 .putInt("key_level", oldLevel + 1).apply()
             val newTopic = topics.filter { it.id == id + 1 }
-            Log.d("updateLl", "updateLevel: ${newTopic[0].name}")
             if (!newTopic[0].isOpen) {
                 newTopic[0].isOpen = true
             }
         }
     }
 
-
-
     fun addToTotalScore() {
-        Log.d("addToTotalScore", "updateLevel: ${totalScore.value}")
         _totalScore.value = _totalScore.value?.plus(1)
     }
 

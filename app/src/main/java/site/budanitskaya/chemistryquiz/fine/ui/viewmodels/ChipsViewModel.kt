@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.runBlocking
 import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
-import site.budanitskaya.chemistryquiz.fine.models.mapReactionEntitiesToReactions
+import site.budanitskaya.chemistryquiz.fine.utils.mapReactionEntitiesToReactions
 import site.budanitskaya.chemistryquiz.fine.models.Reaction
 import java.lang.StringBuilder
 import javax.inject.Inject
@@ -55,10 +55,10 @@ class ChipsViewModel @Inject constructor (private val chipsDatasource: ChipsData
 
         shuffledRawProducts = reaction.answers.shuffled()
 
-        superFunction()
+        initSetup()
     }
 
-    fun superFunction() {
+    fun initSetup() {
         val rawReagentList = mutableListOf<String>()
         rawReagentList.add(reaction.reagents[0])
         rawReagentList.add(reaction.reagents[1])

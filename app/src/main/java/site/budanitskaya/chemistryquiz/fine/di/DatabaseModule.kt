@@ -16,8 +16,8 @@ import site.budanitskaya.chemistryquiz.fine.database.converters.StringConverter
 import site.budanitskaya.chemistryquiz.fine.database.daos.QuestionDatabaseDao
 import site.budanitskaya.chemistryquiz.fine.database.daos.ReactionsDatabaseDao
 import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
-import site.budanitskaya.chemistryquiz.fine.models.generateQuestionsList
-import site.budanitskaya.chemistryquiz.fine.models.generateReactionEntitiesList
+import site.budanitskaya.chemistryquiz.fine.utils.generateQuestionsList
+import site.budanitskaya.chemistryquiz.fine.utils.generateReactionEntitiesList
 import javax.inject.Singleton
 
 

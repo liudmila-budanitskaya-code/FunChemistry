@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
-import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -24,7 +23,7 @@ import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TestViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TestViewModel
-import site.budanitskaya.chemistryquiz.fine.utils.extensions.toQuizItem
+import site.budanitskaya.chemistryquiz.fine.utils.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
 import javax.inject.Inject
 
