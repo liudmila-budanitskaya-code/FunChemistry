@@ -10,5 +10,3 @@ data class Topic(
     val drawable: Int,
     var isOpen: Boolean
 ) : Parcelable
-
-
