@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.chemicalchips.games
+import site.budanitskaya.chemistryquiz.fine.lists.games
 import site.budanitskaya.chemistryquiz.fine.dialogs.chooseDifficultyDialog
 import site.budanitskaya.chemistryquiz.fine.ui.adapters.GamesListAdapter
 
