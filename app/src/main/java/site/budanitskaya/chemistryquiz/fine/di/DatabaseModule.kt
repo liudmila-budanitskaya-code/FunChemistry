@@ -20,6 +20,7 @@ import site.budanitskaya.chemistryquiz.fine.models.generateQuestionsList
 import site.budanitskaya.chemistryquiz.fine.models.generateReactionEntitiesList
 import javax.inject.Singleton
 
+
 @InstallIn(SingletonComponent::class)
 @Module
 object DatabaseModule {
@@ -81,5 +82,4 @@ object DatabaseModule {
             }
         }).build()
     }
-
 }

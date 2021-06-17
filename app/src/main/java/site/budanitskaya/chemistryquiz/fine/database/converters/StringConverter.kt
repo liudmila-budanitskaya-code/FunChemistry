@@ -2,6 +2,7 @@ package site.budanitskaya.chemistryquiz.fine.database.converters
 
 import androidx.room.TypeConverter
 
+
 class StringConverter {
     @TypeConverter
     fun toOneString(answers: List<String>): String {

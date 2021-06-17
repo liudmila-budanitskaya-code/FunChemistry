@@ -14,7 +14,6 @@ fun showAlertDialog(topic: Topic, fragment: TopicListFragment) {
         when (which) {
             0 -> {
                 dialog.dismiss()
-
                 fragment.navigateToTest(topic)
             }
             1 -> {
@@ -30,7 +29,7 @@ fun showAlertDialog(topic: Topic, fragment: TopicListFragment) {
 
 fun chooseDifficultyDialog(fragment: GameListFragment) {
     val alertDialog: AlertDialog.Builder = AlertDialog.Builder(fragment.requireContext())
-    alertDialog.setTitle("Chhose the number of questions")
+    alertDialog.setTitle("Choose the number of questions")
     val items = arrayOf("3", "5", "7")
     val checkedItem = 1
     alertDialog.setSingleChoiceItems(items, checkedItem) { dialog, which ->

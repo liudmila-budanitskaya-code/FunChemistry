@@ -1,7 +1,5 @@
 package site.budanitskaya.chemistryquiz.fine.datasource
 
-import site.budanitskaya.chemistryquiz.fine.database.daos.QuestionDatabaseDao
-import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.database.daos.ReactionsDatabaseDao
 import javax.inject.Inject

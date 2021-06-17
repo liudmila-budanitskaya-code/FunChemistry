@@ -1,9 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.datasource
 
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
-import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.daos.QuestionDatabaseDao
-import site.budanitskaya.chemistryquiz.fine.database.daos.ReactionsDatabaseDao
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,15 +10,15 @@ class QuestionRepository @Inject constructor(private val questionDatabaseDao: Qu
     QuestionDatabaseDao {
 
     override suspend fun insert(question: Question) {
-
+        questionDatabaseDao?.insert(question)
     }
 
     override suspend fun update(question: Question) {
-
+        questionDatabaseDao?.update(question)
     }
 
     override suspend fun delete(question: Question) {
-
+        questionDatabaseDao?.delete(question)
     }
 
     override suspend fun getQuestionList(): List<Question> {
@@ -38,6 +36,4 @@ class QuestionRepository @Inject constructor(private val questionDatabaseDao: Qu
     override suspend fun getQuestionByTopic(currentTopic: String): List<Question> {
         return questionDatabaseDao?.getQuestionByTopic(currentTopic)!!
     }
-
-
 }

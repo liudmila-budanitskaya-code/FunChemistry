@@ -4,11 +4,14 @@ import android.content.Intent
 import android.widget.Toast
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import site.budanitskaya.chemistryquiz.fine.ui.activities.MainActivity
 import site.budanitskaya.chemistryquiz.fine.ui.activities.LoginActivity
 
 class FirebaseAuthHelperImpl(val activity: MainActivity) : FirebaseAuthHelper {
-    val auth = FirebaseAuth.getInstance().currentUser
+
+    val auth: FirebaseUser = FirebaseAuth.getInstance().currentUser
+
     override fun signOut() {
         AuthUI.getInstance()
             .signOut(activity)
@@ -30,9 +33,9 @@ class FirebaseAuthHelperImpl(val activity: MainActivity) : FirebaseAuthHelper {
     }
 
     override fun createUI() {
-        val list = auth?.providerData
+        val list = auth.providerData
         var providerData: String = ""
-        list?.let {
+        list.let {
             for (provider in list) {
                 providerData = providerData + " " + provider.providerId
             }

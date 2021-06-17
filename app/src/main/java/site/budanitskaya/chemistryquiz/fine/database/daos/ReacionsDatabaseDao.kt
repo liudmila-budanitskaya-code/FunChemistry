@@ -3,6 +3,7 @@ package site.budanitskaya.chemistryquiz.fine.database.daos
 import androidx.room.*
 import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
 
+
 @Dao
 interface ReactionsDatabaseDao {
 
