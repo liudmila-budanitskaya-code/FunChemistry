@@ -13,9 +13,9 @@ import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    val firebaseAuthHelper = ServiceLocator(MainApplication.applicationContext()).provideFirebaseAuthHelper(this)
+    val firebaseAuthHelper = ServiceLocator().provideFirebaseAuthHelper(this)
 
-    val navigator = ServiceLocator(MainApplication.applicationContext()).provideNavigator(this)
+    val navigator = ServiceLocator().provideNavigator(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         actionBar?.show()

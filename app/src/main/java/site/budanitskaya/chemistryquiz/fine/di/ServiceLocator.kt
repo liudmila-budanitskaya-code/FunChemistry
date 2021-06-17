@@ -8,8 +8,7 @@ import site.budanitskaya.chemistryquiz.fine.firebasehelper.FirebaseAuthHelperImp
 import site.budanitskaya.chemistryquiz.fine.navigator.AppNavigator
 import site.budanitskaya.chemistryquiz.fine.navigator.AppNavigatorImpl
 
-class ServiceLocator(applicationContext: Context) {
-
+class ServiceLocator() {
 
     fun provideNavigator(activity: MainActivity): AppNavigator {
         return AppNavigatorImpl(activity)
@@ -18,17 +17,5 @@ class ServiceLocator(applicationContext: Context) {
     fun provideFirebaseAuthHelper(activity: MainActivity): FirebaseAuthHelper {
         return FirebaseAuthHelperImpl(activity)
     }
-
-
-
-
-
-    /*val loggerLocalDataSource = LoggerLocalDataSource(logsDatabase.logDao())
-
-    fun provideDateFormatter() = DateFormatter()
-
-    fun provideNavigator(activity: FragmentActivity): AppNavigator {
-        return AppNavigatorImpl(activity)
-    }*/
 
 }
