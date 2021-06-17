@@ -1,6 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.domain
 
-import site.budanitskaya.chemistryquiz.fine.database.ReactionEntity
+import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.models.Reaction
 import site.budanitskaya.chemistryquiz.fine.lists.generateReactionsList
 

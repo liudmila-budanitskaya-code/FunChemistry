@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.database
+package site.budanitskaya.chemistryquiz.fine.database.entities
 
 import androidx.room.*
 import site.budanitskaya.chemistryquiz.fine.database.converters.AnswersConverter

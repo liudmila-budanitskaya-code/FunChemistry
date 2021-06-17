@@ -1,9 +1,8 @@
 package site.budanitskaya.chemistryquiz.fine.datasource
 
-import site.budanitskaya.chemistryquiz.fine.MainApplication
-import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
-import site.budanitskaya.chemistryquiz.fine.database.ReactionEntity
-import site.budanitskaya.chemistryquiz.fine.database.ReactionsDatabaseDao
+import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
+import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
+import site.budanitskaya.chemistryquiz.fine.database.daos.ReactionsDatabaseDao
 
 class ChipsDatasource(private val database: QuestionDatabase) : ReactionsDatabaseDao {
 

@@ -1,7 +1,7 @@
-package site.budanitskaya.chemistryquiz.fine.database
+package site.budanitskaya.chemistryquiz.fine.database.daos
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
+import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 
 @Dao
 interface QuestionDatabaseDao {

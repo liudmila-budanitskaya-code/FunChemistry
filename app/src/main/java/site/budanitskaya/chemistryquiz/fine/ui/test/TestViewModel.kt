@@ -3,16 +3,12 @@ package site.budanitskaya.chemistryquiz.fine.ui.test
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.*
-import androidx.preference.PreferenceManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
-import site.budanitskaya.chemistryquiz.fine.database.Question
-import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase.Companion.getInstance
+import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
-import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.domain.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.lists.topics

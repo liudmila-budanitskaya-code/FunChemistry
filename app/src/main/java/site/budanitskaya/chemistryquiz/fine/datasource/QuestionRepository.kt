@@ -1,8 +1,8 @@
 package site.budanitskaya.chemistryquiz.fine.datasource
 
-import site.budanitskaya.chemistryquiz.fine.database.Question
-import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
-import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabaseDao
+import site.budanitskaya.chemistryquiz.fine.database.entities.Question
+import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
+import site.budanitskaya.chemistryquiz.fine.database.daos.QuestionDatabaseDao
 
 class QuestionRepository(private val questionDataBase: QuestionDatabase) : QuestionDatabaseDao {
 

@@ -4,13 +4,12 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
-import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import site.budanitskaya.chemistryquiz.fine.MainActivity
-import site.budanitskaya.chemistryquiz.fine.database.QuestionDatabase
+import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.converters.AnswersConverter
 import site.budanitskaya.chemistryquiz.fine.database.converters.StringConverter
 import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
