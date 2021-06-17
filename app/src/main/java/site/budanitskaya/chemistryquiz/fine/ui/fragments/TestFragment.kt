@@ -126,17 +126,15 @@ class TestFragment : Fragment() {
             Log.d("addToTotalScore", "updateLevel: ${!clickFlag}")
             if (view is RadioButton) {
                 binding.btnNext.text = "Next"
-
-                topics.forEach { _ ->
-
-                }
                 if (view.text == viewModel.currentQuestion.answers[0]) {
                     if (topic.id == numOfOpenLevels) {
                         viewModel.addToTotalScore()
                     }
                     areCorrect.add(true)
                     binding.bool.text = "True!"
-                    callService(R.raw.ding_sound_effect)
+                    if(preference.getBoolean("Sound ON/OFF", false)){
+                        callService(R.raw.ding_sound_effect)
+                    }
                     binding.bool.setTextColor(
                         getColor(
                             requireContext(),
@@ -146,7 +144,9 @@ class TestFragment : Fragment() {
                 } else {
                     areCorrect.add(false)
                     binding.bool.text = "False!"
-                    callService(R.raw.duck_quack)
+                    if(preference.getBoolean("Sound ON/OFF", false)){
+                        callService(R.raw.duck_quack)
+                    }
                     binding.bool.setTextColor(getColor(requireContext(), R.color.pink))
                 }
                 binding.rationale.visibility = View.VISIBLE
