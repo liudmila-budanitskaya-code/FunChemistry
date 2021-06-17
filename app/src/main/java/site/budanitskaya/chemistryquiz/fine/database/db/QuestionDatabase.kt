@@ -14,21 +14,4 @@ import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 abstract class QuestionDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDatabaseDao?
     abstract fun reactionDao(): ReactionsDatabaseDao?
-
-    companion object {
-        private lateinit var INSTANCE: QuestionDatabase
-        fun getInstance(context: Context): QuestionDatabase {
-            synchronized(QuestionDatabase::class.java) {
-                val instance: QuestionDatabase
-                if (!Companion::INSTANCE.isInitialized) {
-                    instance = buildDatabase(MainApplication.applicationContext())
-                    INSTANCE = instance
-                }
-                return INSTANCE
-            }
-        }
-
-        private fun buildDatabase(context: Context) = ServiceLocator(context).database
-
-    }
 }

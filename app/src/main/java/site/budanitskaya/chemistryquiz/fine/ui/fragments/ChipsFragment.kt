@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
@@ -17,17 +18,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
-import site.budanitskaya.chemistryquiz.fine.di.ChipsLocator
+import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.services.SoundService
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.ChipsViewModelFactory
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.ChipsViewModel
 import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class ChipsFragment : Fragment() {
 
-    private val viewModel by lazy {
-        ChipsLocator(this).provideViewModel(this)
-    }
+
 
     var times = mutableListOf<Long>()
 
@@ -38,6 +39,19 @@ class ChipsFragment : Fragment() {
 
     @Inject
     lateinit var preferences: SharedPreferences
+
+    @Inject
+    lateinit var chipsDatasource: ChipsDatasource
+
+    private val viewModel by lazy {
+        ViewModelProvider(
+            this,
+            ChipsViewModelFactory(chipsDatasource)
+        )
+            .get(ChipsViewModel::class.java)
+    }
+
+
 
     private lateinit var binding: FragmentChemChipsQuestionBinding
     lateinit var chipHashMap: Map<Chip, String>

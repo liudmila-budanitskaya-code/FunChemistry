@@ -3,8 +3,13 @@ package site.budanitskaya.chemistryquiz.fine.datasource
 import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.database.daos.ReactionsDatabaseDao
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ChipsDatasource(private val database: QuestionDatabase) : ReactionsDatabaseDao {
+
+@Singleton
+class ChipsDatasource @Inject constructor(private val database: QuestionDatabase) :
+    ReactionsDatabaseDao {
 
 
     override suspend fun insert(reaction: ReactionEntity) {
