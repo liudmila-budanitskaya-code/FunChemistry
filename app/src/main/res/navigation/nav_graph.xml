@@ -122,7 +122,7 @@
         android:name="site.budanitskaya.chemistryquiz.fine.ui.crossword.CrosswordFragment" />
     <activity
         android:id="@+id/cardsActivity"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.cardsscreen.CardsActivity"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.activities.CardsActivity"
         tools:layout="@layout/activity_cards" >
         <argument
             android:name="topic"

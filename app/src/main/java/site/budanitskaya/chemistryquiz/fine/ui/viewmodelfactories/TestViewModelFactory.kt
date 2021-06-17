@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.di
+package site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel

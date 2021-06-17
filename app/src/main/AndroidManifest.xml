@@ -36,7 +36,7 @@
         </receiver>
 
         <activity
-            android:name=".ui.cardsscreen.CardsActivity"
+            android:name=".ui.activities.CardsActivity"
             android:theme="@style/Theme.MainActivity" />
         <activity
             android:name=".ui.login.LoginActivity"

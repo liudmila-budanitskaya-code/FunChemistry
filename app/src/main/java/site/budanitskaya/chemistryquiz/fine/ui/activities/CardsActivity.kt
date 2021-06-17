@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.cardsscreen
+package site.budanitskaya.chemistryquiz.fine.ui.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
