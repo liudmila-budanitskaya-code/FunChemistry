@@ -49,8 +49,6 @@ class ChipsFragment : Fragment() {
             .get(ChipsViewModel::class.java)
     }
 
-
-
     private lateinit var binding: FragmentChemChipsQuestionBinding
     lateinit var chipHashMap: Map<Chip, String>
 
@@ -115,7 +113,6 @@ class ChipsFragment : Fragment() {
                     with(binding) {
 
                         txtChemReaction.animate().rotation(360F).duration = 2700
-
                         txtChemReaction.setText(
                             formatFormula(viewModel.rawReagentsString.toString()),
                             TextView.BufferType.SPANNABLE
@@ -141,9 +138,6 @@ class ChipsFragment : Fragment() {
                         callService(R.raw.tada_sound)
                     }
                     Log.d("onChipClick", "onChipClick: i am here!")
-/*                    view.animate().alpha(
-                        0.0F
-                    ).duration = 3000*/
                     view.visibility = View.GONE
                     viewModel.rawReagentsString.append(values[0])
                     binding.txtChemReaction.setText(
@@ -152,14 +146,9 @@ class ChipsFragment : Fragment() {
                     )
                     delay(4000)
                     viewModel.guessProduct()
-
                     viewModel.setReactionGuessed()
-
                     delay(1000)
-
                     viewModel.setReactionUnGuessed()
-
-
                 } else {
                     if (preferences
                             .getBoolean(NotificationsFragment.SOUND_PREFERENCE_KEY, false)

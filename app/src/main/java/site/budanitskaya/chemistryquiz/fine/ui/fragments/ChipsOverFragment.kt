@@ -28,9 +28,7 @@ class ChipsOverFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_chips_over, container, false
         )
@@ -47,7 +45,6 @@ class ChipsOverFragment : Fragment() {
                 x++
                 delay(100)
             }
-
         }
 
         val pientri = mutableListOf<PieEntry>()
@@ -60,35 +57,20 @@ class ChipsOverFragment : Fragment() {
         x.setColors(colorWrapper(R.color.material_purple_a700, requireContext()), colorWrapper(R.color.yellow, requireContext()), colorWrapper(R.color.material_green_a200, requireContext()),colorWrapper(R.color.peach, requireContext()), colorWrapper(R.color.pink, requireContext()));
         with(binding.chart1) {
             setUsePercentValues(true)
-            getDescription().setEnabled(false)
+            description.isEnabled = false
             setExtraOffsets(5f, 10f, 5f, 5f)
-
             dragDecelerationFrictionCoef = 0.95f
-
             data = PieData(x)
-
-
             setHoleColor(Color.WHITE)
-
             setTransparentCircleColor(Color.WHITE)
             setTransparentCircleAlpha(110)
-
             holeRadius = 58f
             transparentCircleRadius = 61f
-
             setDrawCenterText(true)
-
-            setRotationAngle(0f)
-            // enable rotation of the chart by touch
-            // enable rotation of the chart by touch
-            setRotationEnabled(true)
-            setHighlightPerTapEnabled(true)
+            rotationAngle = 0f
+            isRotationEnabled = true
+            isHighlightPerTapEnabled = true
         }
-
-
         return binding.root
-
     }
-
-
 }

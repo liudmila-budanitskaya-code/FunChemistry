@@ -9,18 +9,8 @@ import site.budanitskaya.chemistryquiz.fine.ui.activities.MainActivity
 import site.budanitskaya.chemistryquiz.fine.ui.activities.LoginActivity
 
 class FirebaseAuthHelperImpl(val activity: MainActivity) : FirebaseAuthHelper {
-
-    val auth: FirebaseUser = FirebaseAuth.getInstance().currentUser
-
-    override fun signOut() {
-        AuthUI.getInstance()
-            .signOut(activity)
-            .addOnCompleteListener {
-                val intent = Intent(activity, LoginActivity::class.java)
-                activity.startActivity(intent)
-                activity.finish()
-                Toast.makeText(activity, "Successfully Log Out", Toast.LENGTH_SHORT).show()
-            }
+    val auth: FirebaseUser by lazy {
+        FirebaseAuth.getInstance().currentUser
     }
 
     override fun updateView() {
@@ -33,9 +23,9 @@ class FirebaseAuthHelperImpl(val activity: MainActivity) : FirebaseAuthHelper {
     }
 
     override fun createUI() {
-        val list = auth.providerData
+        val list = auth?.providerData
         var providerData: String = ""
-        list.let {
+        list?.let {
             for (provider in list) {
                 providerData = providerData + " " + provider.providerId
             }

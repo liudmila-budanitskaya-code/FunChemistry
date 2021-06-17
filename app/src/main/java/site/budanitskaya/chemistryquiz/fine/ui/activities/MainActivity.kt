@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import com.firebase.ui.auth.AuthUI
 import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
@@ -22,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navigator.initialSetup()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -44,8 +45,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun signOut() {
-        firebaseAuthHelper.signOut()
+    fun signOut() {
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                val intent = Intent(this, LoginActivity::class.java)
+                this.startActivity(intent)
+                this.finish()
+                Toast.makeText(this, "Successfully Log Out", Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onResume() {

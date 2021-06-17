@@ -53,7 +53,7 @@ class TopicListFragment : Fragment() {
             topics[index].isOpen = true
             index++
         }
-        TopicListAdapter(topics, { ifDialogIsToBeShown(it) }, viewModel.numOfOpenLevels)
+        TopicListAdapter(topics) { ifDialogIsToBeShown(it) }
     }
 
     fun ifDialogIsToBeShown(topic: Topic) {

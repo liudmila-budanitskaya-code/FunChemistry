@@ -1,24 +1,10 @@
 package site.budanitskaya.chemistryquiz.fine.utils
 
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 object TimeUtils {
 
-    private val dateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
-
-    /**
-     * Notification time is saved in preference as string in
-     * the format dd:dd, where d is a single digit
-     * for example, 9 pm is stored as 21:0
-     *
-     * this function parse this format and print it
-     * properly like 8:00 pm
-     *
-     * @param time saved in shared preference
-     */
     fun formatTimeSavedInPreference(time: String?): String {
         if (time == null) return ""
 
@@ -52,56 +38,6 @@ object TimeUtils {
         } catch (e: IndexOutOfBoundsException) {
             e.printStackTrace()
             return ""
-        }
-    }
-
-    fun convertDateToString(date: Date): String = dateFormat.format(date)
-
-    fun convertStringToDate(string: String?): Date? {
-        if (string == null) return null
-
-        return try {
-            dateFormat.parse(string)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-            null
-        }
-    }
-
-    /**
-     * @return today's date
-     */
-    fun getCurrentDate(): Date = Calendar.getInstance().time
-
-    /**
-     * return  SUNDAY = 1
-     * MONDAY = 2
-     * TUESDAY = 3
-     * WEDNESDAY = 4
-     * THURSDAY = 5
-     * FRIDAY = 6
-     * SATURDAY = 7
-     */
-    fun getCurrentDayOfWeek(): Int = (Calendar.getInstance().get(Calendar.DAY_OF_WEEK))
-
-    /**
-     * remove time from date and then subtract date
-     * to get difference in number of days
-     */
-    fun subtractDates(currentDate: Date, lastPracticeDate: Date): Int {
-        return try {
-            val currentDateWithoutTime =
-                dateFormat.parse(dateFormat.format(currentDate)) ?: return 0
-            val lastPracticeDateWithoutTime =
-                dateFormat.parse(dateFormat.format(lastPracticeDate)) ?: return 0
-
-            val diff = currentDateWithoutTime.time - lastPracticeDateWithoutTime.time
-
-            TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
-
-        } catch (e: ParseException) {
-            e.printStackTrace()
-            0
         }
     }
 }

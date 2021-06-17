@@ -18,11 +18,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.ActivityNavigator
 import com.firebase.ui.auth.AuthUI
 import dagger.hilt.android.AndroidEntryPoint
-import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
-import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TestViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TestViewModel
@@ -61,12 +59,7 @@ class CardsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cards)
 
-        args =
-            CardsActivityArgs.fromBundle(intent.extras!!)
-        topic = args.topic
-        card = viewModel.getRandomQuestionByTopic(topic.name).toQuizItem()
-        color_back = generateRandomColor()
-        color_front = generateRandomColor()
+        populate()
         fragment = CardsFrontFragment.newInstance(card, color_front)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -87,6 +80,15 @@ class CardsActivity : AppCompatActivity() {
         findViewById<AppCompatButton>(R.id.back_btn).setOnClickListener {
             returnBack()
         }
+    }
+
+    private fun populate() {
+        args =
+            CardsActivityArgs.fromBundle(intent.extras!!)
+        topic = args.topic
+        card = viewModel.getRandomQuestionByTopic(topic.name).toQuizItem()
+        color_back = generateRandomColor()
+        color_front = generateRandomColor()
     }
 
     private fun returnBack() {
@@ -111,17 +113,17 @@ class CardsActivity : AppCompatActivity() {
 
     class CardsFrontFragment : Fragment() {
 
-        private val ARG_PARAM1 = "param1"
-        private var param1: QuizItem? = null
-        private val ARG_PARAM2 = "param2"
-        private var param2: Int? = null
+        private val QUIZITEM = "quizitem"
+        private var quizitem: QuizItem? = null
+        private val COLOR = "param2"
+        private var currentColor: Int? = null
 
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             arguments?.let {
-                param1 = it.get(ARG_PARAM1) as QuizItem
-                param2 = it.getInt(ARG_PARAM2)
+                quizitem = it.get(QUIZITEM) as QuizItem
+                currentColor = it.getInt(COLOR)
             }
         }
 
@@ -135,40 +137,37 @@ class CardsActivity : AppCompatActivity() {
             val distance = 8000
             val scale = resources.displayMetrics.density * distance
             val rootView = view.findViewById<CardView>(R.id.card_view_front)
-            rootView.setCardBackgroundColor(param2!!)
+            rootView.setCardBackgroundColor(currentColor!!)
             rootView.cameraDistance = scale
             val text = view.findViewById<TextView>(R.id.name_five)
-            text.text = param1?.text
+            text.text = quizitem?.text
             return view
         }
 
         companion object {
             @JvmStatic
-            fun newInstance(param1: QuizItem, param2: Int) =
+            fun newInstance(quizitem: QuizItem, color: Int) =
                 CardsFrontFragment().apply {
                     arguments = Bundle().apply {
-                        putParcelable(ARG_PARAM1, param1 as Parcelable)
-                        putInt(ARG_PARAM2, param2)
+                        putParcelable(QUIZITEM, quizitem as Parcelable)
+                        putInt(COLOR, color)
                     }
                 }
         }
     }
 
-    /**
-     * A fragment representing the back of the card.
-     */
     class CardBackFragment : Fragment() {
 
-        private val ARG_PARAM1 = "param1"
-        private var param1: QuizItem? = null
-        private val ARG_PARAM2 = "param2"
-        private var param2: Int? = null
+        private val QUIZITEM = "quizitem"
+        private var quizitem: QuizItem? = null
+        private val COLOR = "param2"
+        private var currentColor: Int? = null
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             arguments?.let {
-                param1 = it.get(ARG_PARAM1) as QuizItem
-                param2 = it.getInt(ARG_PARAM2)
+                quizitem = it.get(QUIZITEM) as QuizItem
+                currentColor = it.getInt(COLOR)
             }
         }
 
@@ -182,12 +181,12 @@ class CardsActivity : AppCompatActivity() {
             val scale = resources.displayMetrics.density * distance
             val rootView = view.findViewById<ConstraintLayout>(R.id.card_view_back)
             val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
-            linearLayout.setBackgroundColor(param2!!)
+            linearLayout.setBackgroundColor(currentColor!!)
             rootView.cameraDistance = scale
             val answerTxt = view.findViewById<TextView>(R.id.answer_txt)
-            answerTxt.text = param1?.answers?.get(0)!!
+            answerTxt.text = quizitem?.answers?.get(0)!!
             val explanationTxt = view.findViewById<TextView>(R.id.explanation_txt)
-            explanationTxt.text = param1!!.explanation
+            explanationTxt.text = quizitem!!.explanation
             return view
         }
 
@@ -196,27 +195,14 @@ class CardsActivity : AppCompatActivity() {
             fun newInstance(param1: QuizItem, color_back: Int) =
                 CardBackFragment().apply {
                     arguments = Bundle().apply {
-                        putParcelable(ARG_PARAM1, param1 as Parcelable)
-                        putInt(ARG_PARAM2, color_back)
+                        putParcelable(QUIZITEM, param1 as Parcelable)
+                        putInt(COLOR, color_back)
                     }
                 }
         }
     }
 
     private fun flipCard(card: QuizItem) {
-        Log.d("flipcard", "flipCard: in flip card!")
-/*        if (showingBack) {
-            supportFragmentManager.popBackStack()
-            return
-        }
-
-        // Flip to the back.
-
-        showingBack = true*/
-
-        // Create and commit a new fragment transaction that adds the fragment for
-        // the back of the card, uses custom animations, and is part of the fragment
-        // manager's back stack.
 
         if (fragment is CardsFrontFragment) {
             fragment = CardBackFragment.newInstance(card, color_back)
@@ -226,34 +212,19 @@ class CardsActivity : AppCompatActivity() {
             fragment = CardsFrontFragment.newInstance(card, color_front)
             commit()
         }
-
     }
 
     private fun commit() {
         supportFragmentManager?.beginTransaction()
-
-            // Replace the default fragment animations with animator resources
-            // representing rotations when switching to the back of the card, as
-            // well as animator resources representing rotations when flipping
-            // back to the front (e.g. when the system Back button is pressed).
-            ?.setCustomAnimations(
+            .setCustomAnimations(
                 R.animator.card_flip_right_in,
                 R.animator.card_flip_right_out,
                 R.animator.card_flip_left_in,
                 R.animator.card_flip_left_out
             )
-
-            // Replace any fragments currently in the container view with a
-            // fragment representing the next page (indicated by the
-            // just-incremented currentPage variable).
-            ?.replace(R.id.container, fragment)
-
-            // Add this transaction to the back stack, allowing users to press
-            // Back to get to the front of the card.
-            ?.addToBackStack(null)
-
-            // Commit the transaction.
-            ?.commit()
+            .replace(R.id.container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -280,7 +251,6 @@ class CardsActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
-        // [START auth_fui_signout]
         AuthUI.getInstance()
             .signOut(this)
             .addOnCompleteListener {
