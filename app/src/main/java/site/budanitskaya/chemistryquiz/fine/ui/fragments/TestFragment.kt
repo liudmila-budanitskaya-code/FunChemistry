@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
@@ -23,8 +24,9 @@ import site.budanitskaya.chemistryquiz.fine.di.TestLocator
 import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.services.SoundService
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class TestFragment : Fragment() {
 
     private lateinit var args: TestFragmentArgs
@@ -34,9 +36,12 @@ class TestFragment : Fragment() {
         mutableListOf<Long>()
     }
 
-    val preference: SharedPreferences by lazy {
-        ServiceLocator(MainApplication.applicationContext()).preferences
-    }
+    @Inject
+    lateinit var preference: SharedPreferences
+
+    /*  val preference: SharedPreferences by lazy {
+          ServiceLocator(MainApplication.applicationContext()).preferences
+      } */
 
 
     var numOfOpenLevels = topics.filter { it.isOpen }.size

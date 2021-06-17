@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     val firebaseAuthHelper = ServiceLocator(MainApplication.applicationContext()).provideFirebaseAuthHelper(this)

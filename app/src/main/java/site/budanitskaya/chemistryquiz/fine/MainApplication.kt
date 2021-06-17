@@ -2,9 +2,11 @@ package site.budanitskaya.chemistryquiz.fine
 
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.utils.NotificationUtil
 
+@HiltAndroidApp
 class MainApplication : Application() {
     init {
         instance = this
