@@ -9,14 +9,15 @@ import androidx.core.app.NotificationCompat
 import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.ui.activities.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AlarmReceiver : BroadcastReceiver() {
-    private var mNotificationManager: NotificationManager? = null
+
+    @Inject
+    lateinit var mNotificationManager: NotificationManager
 
     override fun onReceive(context: Context, intent: Intent) {
-        mNotificationManager =
-            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         deliverNotification(context)
     }
 
@@ -39,7 +40,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
 
-        mNotificationManager!!.notify(NOTIFICATION_ID, builder.build())
+        mNotificationManager.notify(NOTIFICATION_ID, builder.build())
     }
 
     companion object {
