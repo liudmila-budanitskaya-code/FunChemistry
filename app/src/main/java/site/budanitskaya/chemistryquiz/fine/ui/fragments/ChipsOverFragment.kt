@@ -11,13 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChipsOverBinding
 import site.budanitskaya.chemistryquiz.fine.utils.colorWrapper
 
-
+@AndroidEntryPoint
 class ChipsOverFragment : Fragment() {
 
     private lateinit var binding: FragmentChipsOverBinding

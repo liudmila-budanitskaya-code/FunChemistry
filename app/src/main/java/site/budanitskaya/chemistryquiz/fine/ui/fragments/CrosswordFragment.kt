@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RawRes
 import androidx.databinding.DataBindingUtil
+import dagger.hilt.android.AndroidEntryPoint
 import org.akop.ararat.core.Crossword
 import org.akop.ararat.core.buildCrossword
 import org.akop.ararat.io.PuzFormatter
@@ -14,6 +15,8 @@ import org.akop.ararat.view.CrosswordView
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentCrosswordBinding
 
+
+@AndroidEntryPoint
 class CrosswordFragment : Fragment(), CrosswordView.OnLongPressListener, CrosswordView.OnStateChangeListener, CrosswordView.OnSelectionChangeListener {
 
     private var crosswordView: CrosswordView? = null

@@ -29,7 +29,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_chart"
             android:elevation="@dimen/cardview_default_elevation"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,8 @@
             android:layout_height="wrap_content">
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChart"
-                android:layout_width="406dp"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
                 android:layout_height="420dp"
                 android:alpha="1"
                 android:background="@color/white"/>

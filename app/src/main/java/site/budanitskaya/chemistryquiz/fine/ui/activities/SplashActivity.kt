@@ -3,9 +3,12 @@ package site.budanitskaya.chemistryquiz.fine.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.R
 
+
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     val splashScope = CoroutineScope(Dispatchers.Main)

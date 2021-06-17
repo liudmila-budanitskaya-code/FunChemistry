@@ -3,11 +3,12 @@ package site.budanitskaya.chemistryquiz.fine.datasource
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.daos.QuestionDatabaseDao
+import site.budanitskaya.chemistryquiz.fine.database.daos.ReactionsDatabaseDao
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class QuestionRepository @Inject constructor(private val questionDataBase: QuestionDatabase) :
+class QuestionRepository @Inject constructor(private val questionDatabaseDao: QuestionDatabaseDao?) :
     QuestionDatabaseDao {
 
     override suspend fun insert(question: Question) {
@@ -23,19 +24,19 @@ class QuestionRepository @Inject constructor(private val questionDataBase: Quest
     }
 
     override suspend fun getQuestionList(): List<Question> {
-        return questionDataBase.questionDao()?.getQuestionList()!!
+        return questionDatabaseDao?.getQuestionList()!!
     }
 
     override suspend fun insertAll(questions: List<Question>) {
-        questionDataBase.questionDao()?.insertAll(questions)
+        questionDatabaseDao?.insertAll(questions)
     }
 
     override suspend fun getRowCount(): Int {
-        return questionDataBase.questionDao()?.getRowCount()!!
+        return questionDatabaseDao?.getRowCount()!!
     }
 
     override suspend fun getQuestionByTopic(currentTopic: String): List<Question> {
-        return questionDataBase.questionDao()?.getQuestionByTopic(currentTopic)!!
+        return questionDatabaseDao?.getQuestionByTopic(currentTopic)!!
     }
 
 

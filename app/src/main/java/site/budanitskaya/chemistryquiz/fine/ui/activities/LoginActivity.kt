@@ -10,9 +10,10 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.R
 
-
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     companion object {

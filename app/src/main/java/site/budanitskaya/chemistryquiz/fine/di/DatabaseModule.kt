@@ -13,6 +13,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import site.budanitskaya.chemistryquiz.fine.database.converters.AnswersConverter
 import site.budanitskaya.chemistryquiz.fine.database.converters.StringConverter
+import site.budanitskaya.chemistryquiz.fine.database.daos.QuestionDatabaseDao
 import site.budanitskaya.chemistryquiz.fine.database.daos.ReactionsDatabaseDao
 import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.models.generateQuestionsList
@@ -22,6 +23,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object DatabaseModule {
+
+    @Provides
+    fun questionDao(database: QuestionDatabase): QuestionDatabaseDao {
+        return database.questionDao()
+    }
 
     @Provides
     fun provideReactionDao(database: QuestionDatabase): ReactionsDatabaseDao {

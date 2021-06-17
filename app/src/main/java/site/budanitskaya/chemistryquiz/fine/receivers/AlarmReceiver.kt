@@ -6,9 +6,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.ui.activities.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
 
+@AndroidEntryPoint
 class AlarmReceiver : BroadcastReceiver() {
     private var mNotificationManager: NotificationManager? = null
 

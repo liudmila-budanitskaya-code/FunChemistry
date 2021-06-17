@@ -11,10 +11,13 @@ import android.location.LocationManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.IBinder
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import site.budanitskaya.chemistryquiz.fine.R
 import java.util.*
 
+
+@AndroidEntryPoint
 class SoundService : Service() {
 
     private val job = SupervisorJob()

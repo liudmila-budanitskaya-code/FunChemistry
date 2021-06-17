@@ -73,7 +73,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="TextView"
-                    android:textSize="17sp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
                     tools:layout_editor_absoluteX="57dp"
                     tools:layout_editor_absoluteY="148dp"
                     tools:text="@string/title_activity_settings" />
@@ -82,30 +83,35 @@
                     android:id="@+id/rg"
                     android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
+                    android:layout_marginStart="10dp"
                     android:layout_height="wrap_content">
 
                     <RadioButton
                         android:id="@+id/btn_opt_one"
-                        android:textSize="17sp"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                     <RadioButton
                         android:id="@+id/btn_opt_two"
                         android:layout_width="match_parent"
-                        android:textSize="17sp"
+                        android:layout_margin="5dp"
+                        android:textSize="20sp"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
                         android:id="@+id/btn_opt_three"
                         android:layout_width="match_parent"
-                        android:textSize="17sp"
+                        android:layout_margin="5dp"
+                        android:textSize="20sp"
                         android:layout_height="wrap_content"/>
 
                     <RadioButton
                         android:id="@+id/btn_opt_four"
                         android:layout_width="match_parent"
-                        android:textSize="17sp"
+                        android:layout_margin="5dp"
+                        android:textSize="20sp"
                         android:layout_height="wrap_content" />
 
 

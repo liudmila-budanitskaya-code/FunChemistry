@@ -3,6 +3,7 @@ package site.budanitskaya.chemistryquiz.fine.ui.viewmodels
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -12,9 +13,10 @@ import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.models.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.utils.extensions.toQuizItem
+import javax.inject.Inject
 
-
-class TestViewModel(val preference: SharedPreferences, val questionRepository: QuestionRepository) : ViewModel() {
+@HiltViewModel
+class TestViewModel @Inject constructor(val preference: SharedPreferences, val questionRepository: QuestionRepository) : ViewModel() {
 
     var numOfOpenLevels = preference.getInt("key_level", 1)
 

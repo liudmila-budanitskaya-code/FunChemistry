@@ -28,8 +28,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ChipsFragment : Fragment() {
 
-
-
     var times = mutableListOf<Long>()
 
     lateinit var args: ChipsFragmentArgs
@@ -43,7 +41,7 @@ class ChipsFragment : Fragment() {
     @Inject
     lateinit var chipsDatasource: ChipsDatasource
 
-    private val viewModel by lazy {
+    val viewModel by lazy {
         ViewModelProvider(
             this,
             ChipsViewModelFactory(chipsDatasource)

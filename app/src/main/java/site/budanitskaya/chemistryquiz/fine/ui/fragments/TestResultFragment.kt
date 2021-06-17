@@ -10,9 +10,12 @@ import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestResultBinding
 
+
+@AndroidEntryPoint
 class TestResultFragment : Fragment() {
 
     private lateinit var args: TestResultFragmentArgs
