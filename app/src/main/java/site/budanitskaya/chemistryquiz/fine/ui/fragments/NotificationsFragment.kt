@@ -7,12 +7,18 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
+import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.utils.NotificationUtil
 import site.budanitskaya.chemistryquiz.fine.utils.TimeUtils
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClickListener,
     SharedPreferences.OnSharedPreferenceChangeListener {
+
+    @Inject
+    lateinit var preference: SharedPreferences
 
     companion object {
         const val NOTIFICATION_ON_PREFERENCE_KEY = "preference_notification"
@@ -30,7 +36,7 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
         setupClickListeners()
         notificationTimePreference?.summary =
             TimeUtils.formatTimeSavedInPreference(
-                PreferenceManager.getDefaultSharedPreferences(context).getString(
+                preference.getString(
                     NOTIFICATION_TIME_PREFERENCE_KEY,
                     DEFAULT_NOTIFICATION_TIME
                 )

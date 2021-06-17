@@ -39,10 +39,6 @@ class TestFragment : Fragment() {
     @Inject
     lateinit var preference: SharedPreferences
 
-    /*  val preference: SharedPreferences by lazy {
-          ServiceLocator(MainApplication.applicationContext()).preferences
-      } */
-
 
     var numOfOpenLevels = topics.filter { it.isOpen }.size
 

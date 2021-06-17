@@ -1,6 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.database.*
+import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuizListBinding
@@ -23,8 +25,9 @@ import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.SpacesItemDeco
 import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.TopicListAdapter
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TopicListViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TopicListViewModel
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class TopicListFragment : Fragment() {
 
     var position: Int = 0
@@ -35,11 +38,14 @@ class TopicListFragment : Fragment() {
             .get(TopicListViewModel::class.java)
     }
 
+    @Inject
+    lateinit var preference: SharedPreferences
+
     private lateinit var binding: FragmentQuizListBinding
 
     val adapter: TopicListAdapter by lazy {
         var numOfOpenLevels =
-            PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+            preference
                 .getInt("key_level", 0)
         Log.d("supermessage", ": $numOfOpenLevels")
         var index = 1
@@ -117,17 +123,17 @@ class TopicListFragment : Fragment() {
         return when (item.itemId) {
             R.id.reset_progress -> {
                 var numOfOpenLevels =
-                    PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                    preference
                         .getInt("key_level", 0)
                 var index = 1
                 while (numOfOpenLevels > topics[index].id) {
                     topics[index].isOpen = true
                     index++
                 }
-                if(numOfOpenLevels==1){
+                if (numOfOpenLevels == 1) {
 
                 } else {
-                    PreferenceManager.getDefaultSharedPreferences(MainApplication.applicationContext())
+                    preference
                         .edit().putInt("key_level", 1).apply()
                     adapter.notifyDataSetChanged()
                 }
