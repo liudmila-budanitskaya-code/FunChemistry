@@ -1,5 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.datasource
 
+import site.budanitskaya.chemistryquiz.fine.database.daos.QuestionDatabaseDao
 import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.database.daos.ReactionsDatabaseDao
@@ -8,28 +9,28 @@ import javax.inject.Singleton
 
 
 @Singleton
-class ChipsDatasource @Inject constructor(private val database: QuestionDatabase) :
+class ChipsDatasource @Inject constructor(private val reactionsDatabaseDao: ReactionsDatabaseDao?) :
     ReactionsDatabaseDao {
 
 
     override suspend fun insert(reaction: ReactionEntity) {
-        database.reactionDao()?.insert(reaction)
+        reactionsDatabaseDao?.insert(reaction)
     }
 
     override suspend fun update(reaction: ReactionEntity) {
-        database.reactionDao()?.update(reaction)
+        reactionsDatabaseDao?.update(reaction)
     }
 
     override suspend fun delete(reaction: ReactionEntity) {
-        database.reactionDao()?.delete(reaction)
+        reactionsDatabaseDao?.delete(reaction)
     }
 
     override suspend fun getReactionList(): List<ReactionEntity> {
-        return database.reactionDao()?.getReactionList()!!
+        return reactionsDatabaseDao?.getReactionList()!!
     }
 
     override suspend fun insertAll(reactions: List<ReactionEntity>) {
-        database.reactionDao()?.insertAll(reactions)!!
+        reactionsDatabaseDao?.insertAll(reactions)!!
     }
 }
 

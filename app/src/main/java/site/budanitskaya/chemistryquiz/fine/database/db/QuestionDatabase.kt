@@ -12,6 +12,6 @@ import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 
 @Database(entities = [Question::class, ReactionEntity::class], version = 1)
 abstract class QuestionDatabase : RoomDatabase() {
-    abstract fun questionDao(): QuestionDatabaseDao?
-    abstract fun reactionDao(): ReactionsDatabaseDao?
+    abstract fun questionDao(): QuestionDatabaseDao
+    abstract fun reactionDao(): ReactionsDatabaseDao
 }
