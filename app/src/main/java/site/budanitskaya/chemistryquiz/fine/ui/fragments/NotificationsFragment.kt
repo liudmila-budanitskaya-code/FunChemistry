@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.notifications
+package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,6 +8,8 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import site.budanitskaya.chemistryquiz.fine.R
+import site.budanitskaya.chemistryquiz.fine.utils.NotificationUtil
+import site.budanitskaya.chemistryquiz.fine.utils.TimeUtils
 
 class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClickListener,
     SharedPreferences.OnSharedPreferenceChangeListener {

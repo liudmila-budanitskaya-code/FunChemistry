@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.topiclist
+package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 
 import android.os.Bundle
@@ -11,16 +11,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuizListBinding
 import site.budanitskaya.chemistryquiz.fine.dialogs.showAlertDialog
 import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
+import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.IntermittentSpan
+import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.SpacesItemDecoration
+import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.TopicListAdapter
+import site.budanitskaya.chemistryquiz.fine.ui.topiclist.*
 
 
 class TopicListFragment : Fragment() {
@@ -70,13 +71,6 @@ class TopicListFragment : Fragment() {
         )
         showRecyclerView()
 
-        Log.d("onCreateView", "onCreateView: ${database.child("levels").key}")
-        val db = Firebase.database
-        val messagesRef = db.reference.child("levels")
-        val options = FirebaseRecyclerOptions.Builder<UserInformation>()
-            .setQuery(messagesRef, UserInformation::class.java)
-            .build()
-        Log.d("dddddddddd", "onCreateView: ${options.snapshots}")
         setHasOptionsMenu(true)
         return binding.root
     }

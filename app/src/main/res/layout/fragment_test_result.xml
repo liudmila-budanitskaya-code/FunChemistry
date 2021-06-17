@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:background="@drawable/one"
         android:layout_height="match_parent"
-        tools:context=".ui.testresult.TestResultFragment">
+        tools:context=".ui.fragments.TestResultFragment">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/return_btn"

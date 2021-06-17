@@ -22,7 +22,7 @@ import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.di.TestLocator
 import site.budanitskaya.chemistryquiz.fine.models.Topic
-import site.budanitskaya.chemistryquiz.fine.models.toQuizItem
+import site.budanitskaya.chemistryquiz.fine.utils.extensions.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
 
 class CardsActivity : AppCompatActivity() {

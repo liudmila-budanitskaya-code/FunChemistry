@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
+package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry

@@ -7,7 +7,7 @@
 
         <variable
             name="game"
-            type="site.budanitskaya.chemistryquiz.fine.ui.test.TestFragment" />
+            type="site.budanitskaya.chemistryquiz.fine.ui.fragments.TestFragment" />
 
         <variable
             name="viewModel"
@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="10dp"
-                tools:context=".ui.test.TestFragment">
+                tools:context=".ui.fragments.TestFragment">
 
                 <LinearLayout
                     android:layout_width="match_parent"

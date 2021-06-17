@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/quizListFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.topiclist.TopicListFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.TopicListFragment"
         tools:layout="@layout/fragment_quiz_list" >
         <action
             android:id="@+id/action_quizListFragment_to_questionFragment"
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/questionFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.test.TestFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.TestFragment"
         tools:layout="@layout/fragment_test" >
         <action
             android:id="@+id/action_questionFragment_to_gameOverFragment"
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.testresult.TestResultFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.TestResultFragment"
         tools:layout="@layout/fragment_test_result" >
         <action
             android:id="@+id/action_gameOverFragment_to_quizListFragment"
@@ -69,7 +69,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.NotificationsFragment"
         tools:layout="@layout/fragment_notifications" >
         <action
             android:id="@+id/action_navigation_notifications_to_timePickerFragment"
@@ -78,7 +78,7 @@
 
     <fragment
         android:id="@+id/navigation_game"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.gamelist.GameListFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.GameListFragment"
         tools:layout="@layout/fragment_gameslist" >
         <action
             android:id="@+id/action_navigation_game_to_chemChipsQuestionFragment"
@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/chemChipsQuestionFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.ChipsFragment"
         tools:layout="@layout/fragment_chem_chips_question" >
         <action
             android:id="@+id/action_chemChipsQuestionFragment_to_chipsOverFragment"
@@ -119,7 +119,7 @@
     </fragment>
     <fragment
         android:id="@+id/crosswordFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.crossword.CrosswordFragment" />
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.CrosswordFragment" />
     <activity
         android:id="@+id/cardsActivity"
         android:name="site.budanitskaya.chemistryquiz.fine.ui.activities.CardsActivity"
@@ -134,7 +134,7 @@
         android:label="TimePickerFragment" />
     <fragment
         android:id="@+id/chipsOverFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsOverFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.ChipsOverFragment"
         tools:layout="@layout/fragment_chips_over" >
         <action
             android:id="@+id/action_chipsOverFragment_to_navigation_game"

@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.test
+package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.app.Dialog
 import android.content.Intent

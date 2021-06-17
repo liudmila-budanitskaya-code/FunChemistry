@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
+package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,7 +19,6 @@ import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
 import site.budanitskaya.chemistryquiz.fine.di.ChipsLocator
 import site.budanitskaya.chemistryquiz.fine.services.SoundService
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
 import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
 
 

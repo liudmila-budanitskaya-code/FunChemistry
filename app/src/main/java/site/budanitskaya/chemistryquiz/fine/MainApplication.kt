@@ -3,7 +3,7 @@ package site.budanitskaya.chemistryquiz.fine
 import android.app.Application
 import android.content.Context
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
+import site.budanitskaya.chemistryquiz.fine.utils.NotificationUtil
 
 class MainApplication : Application() {
     init {

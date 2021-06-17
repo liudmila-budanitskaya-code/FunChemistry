@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.gamelist
+package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.chemicalchips.games
 import site.budanitskaya.chemistryquiz.fine.dialogs.chooseDifficultyDialog
+import site.budanitskaya.chemistryquiz.fine.ui.adapters.GamesListAdapter
 
 class GameListFragment : Fragment() {
 
@@ -45,7 +46,9 @@ class GameListFragment : Fragment() {
 
     fun navigateToChipsScreen(number: Int){
         findNavController().navigate(
-            GameListFragmentDirections.actionNavigationGameToChemChipsQuestionFragment(number)
+            GameListFragmentDirections.actionNavigationGameToChemChipsQuestionFragment(
+                number
+            )
         )
     }
 }

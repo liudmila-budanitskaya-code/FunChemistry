@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.gamelist
+package site.budanitskaya.chemistryquiz.fine.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View

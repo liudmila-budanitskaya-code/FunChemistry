@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.topiclist
+package site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist
 
 import android.view.LayoutInflater
 import android.view.View

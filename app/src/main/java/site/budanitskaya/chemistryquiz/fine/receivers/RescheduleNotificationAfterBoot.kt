@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.preference.PreferenceManager
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
+import site.budanitskaya.chemistryquiz.fine.utils.NotificationUtil
+import site.budanitskaya.chemistryquiz.fine.ui.fragments.NotificationsFragment
 
 
 class RescheduleNotificationAfterBoot : BroadcastReceiver() {

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import androidx.preference.PreferenceManager
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
+import site.budanitskaya.chemistryquiz.fine.ui.fragments.NotificationsFragment
 import java.util.*
 
 

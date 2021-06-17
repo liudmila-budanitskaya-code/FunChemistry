@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.testresult
+package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,7 +26,9 @@ class TestResultFragment : Fragment() {
             inflater, R.layout.fragment_test_result, container, false
         )
         args =
-            TestResultFragmentArgs.fromBundle(requireArguments())
+            TestResultFragmentArgs.fromBundle(
+                requireArguments()
+            )
         if (args.spentTimes.toList().isNotEmpty() && args.areCorrect.toList().isNotEmpty()) {
             setBarChart(args.spentTimes.toList(), args.areCorrect.toList())
         }

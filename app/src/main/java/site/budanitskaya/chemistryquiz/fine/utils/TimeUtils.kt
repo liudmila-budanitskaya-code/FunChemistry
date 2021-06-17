@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.notifications
+package site.budanitskaya.chemistryquiz.fine.utils
 
 import java.text.ParseException
 import java.text.SimpleDateFormat

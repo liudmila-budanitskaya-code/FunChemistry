@@ -2,8 +2,8 @@ package site.budanitskaya.chemistryquiz.fine.dialogs
 
 import android.app.AlertDialog
 import site.budanitskaya.chemistryquiz.fine.models.Topic
-import site.budanitskaya.chemistryquiz.fine.ui.gamelist.GameListFragment
-import site.budanitskaya.chemistryquiz.fine.ui.topiclist.TopicListFragment
+import site.budanitskaya.chemistryquiz.fine.ui.fragments.GameListFragment
+import site.budanitskaya.chemistryquiz.fine.ui.fragments.TopicListFragment
 
 fun showAlertDialog(topic: Topic, fragment: TopicListFragment) {
     val alertDialog: AlertDialog.Builder = AlertDialog.Builder(fragment.requireContext())
@@ -37,7 +37,6 @@ fun chooseDifficultyDialog(fragment: GameListFragment) {
         when (which) {
             0 -> {
                 dialog.dismiss()
-
                 fragment.navigateToChipsScreen(3)
             }
             1 -> {

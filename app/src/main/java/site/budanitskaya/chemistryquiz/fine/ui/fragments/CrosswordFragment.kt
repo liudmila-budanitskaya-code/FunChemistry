@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.crossword
+package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.os.Bundle
 import android.view.*

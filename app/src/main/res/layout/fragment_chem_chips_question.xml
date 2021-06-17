@@ -10,7 +10,7 @@
 
         <variable
             name="fragment"
-            type="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsFragment" />
+            type="site.budanitskaya.chemistryquiz.fine.ui.fragments.ChipsFragment" />
 
     </data>
 
@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/back"
         android:scaleX="2"
-        tools:context=".ui.chipscreen.ChipsFragment">
+        tools:context=".ui.fragments.ChipsFragment">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"

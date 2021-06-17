@@ -10,8 +10,8 @@ import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.models.mapQuestionsToQuizItems
-import site.budanitskaya.chemistryquiz.fine.models.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.lists.topics
+import site.budanitskaya.chemistryquiz.fine.utils.extensions.toQuizItem
 
 class TestViewModel(val preference: SharedPreferences, val questionRepository: QuestionRepository) : ViewModel() {
 

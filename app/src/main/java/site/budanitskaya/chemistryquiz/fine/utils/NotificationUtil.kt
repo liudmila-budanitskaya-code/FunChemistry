@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.notifications
+package site.budanitskaya.chemistryquiz.fine.utils
 
 import android.app.*
 import android.content.ComponentName
@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import site.budanitskaya.chemistryquiz.fine.receivers.AlarmReceiver
 import site.budanitskaya.chemistryquiz.fine.receivers.RescheduleNotificationAfterBoot
+import site.budanitskaya.chemistryquiz.fine.ui.fragments.NotificationsFragment
 import java.util.*
 
 object NotificationUtil {
