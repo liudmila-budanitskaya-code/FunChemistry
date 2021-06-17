@@ -36,9 +36,6 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
             app:destination="@id/gameOverFragment" />
-        <argument
-            android:name="topic"
-            app:argType="site.budanitskaya.chemistryquiz.fine.domain.Topic" />
         <action
             android:id="@+id/action_questionFragment_to_quizListFragment"
             app:enterAnim="@anim/slide_in_left"
@@ -46,6 +43,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/quizListFragment" />
+        <argument
+            android:name="topic"
+            app:argType="site.budanitskaya.chemistryquiz.fine.models.Topic" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
@@ -126,7 +126,7 @@
         tools:layout="@layout/activity_cards" >
         <argument
             android:name="topic"
-            app:argType="site.budanitskaya.chemistryquiz.fine.domain.Topic" />
+            app:argType="site.budanitskaya.chemistryquiz.fine.models.Topic" />
     </activity>
     <dialog
         android:id="@+id/timePickerFragment"

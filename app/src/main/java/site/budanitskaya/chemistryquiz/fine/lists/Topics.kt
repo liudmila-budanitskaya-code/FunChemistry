@@ -1,7 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.lists
 
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.domain.Topic
+import site.budanitskaya.chemistryquiz.fine.models.Topic
 
 val topics: MutableList<Topic> = mutableListOf(
     Topic(

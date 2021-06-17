@@ -1,7 +1,7 @@
 package site.budanitskaya.chemistryquiz.fine.chemicalchips
 
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.domain.Game
+import site.budanitskaya.chemistryquiz.fine.models.Game
 
 val games: MutableList<Game> = mutableListOf(
     Game(

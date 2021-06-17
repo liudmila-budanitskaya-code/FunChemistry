@@ -1,10 +1,9 @@
 package site.budanitskaya.chemistryquiz.fine.dialogs
 
 import android.app.AlertDialog
-import site.budanitskaya.chemistryquiz.fine.domain.Topic
+import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.ui.gamelist.GameListFragment
 import site.budanitskaya.chemistryquiz.fine.ui.topiclist.TopicListFragment
-import site.budanitskaya.chemistryquiz.fine.ui.topiclist.TopicListViewModel
 
 fun showAlertDialog(topic: Topic, fragment: TopicListFragment) {
     val alertDialog: AlertDialog.Builder = AlertDialog.Builder(fragment.requireContext())

@@ -5,8 +5,8 @@ import android.graphics.Color
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
-import site.budanitskaya.chemistryquiz.fine.domain.toQuestion
-import site.budanitskaya.chemistryquiz.fine.domain.QuizItem
+import site.budanitskaya.chemistryquiz.fine.models.toQuestion
+import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import java.util.*
 
 fun generateQuizItems(): MutableList<QuizItem> {

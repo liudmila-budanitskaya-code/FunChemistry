@@ -2,9 +2,9 @@ package site.budanitskaya.chemistryquiz.fine.ui.cardsscreen
 
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
@@ -18,12 +18,12 @@ import androidx.navigation.ActivityNavigator
 import com.firebase.ui.auth.AuthUI
 import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.MainApplication
-import site.budanitskaya.chemistryquiz.fine.domain.QuizItem
+import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.di.TestLocator
-import site.budanitskaya.chemistryquiz.fine.domain.Topic
-import site.budanitskaya.chemistryquiz.fine.domain.toQuizItem
+import site.budanitskaya.chemistryquiz.fine.models.Topic
+import site.budanitskaya.chemistryquiz.fine.models.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
 import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 

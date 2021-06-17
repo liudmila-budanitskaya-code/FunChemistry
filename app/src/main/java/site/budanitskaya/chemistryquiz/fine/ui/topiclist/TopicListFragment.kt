@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.topiclist
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -12,9 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.firebase.ui.auth.data.model.User
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -22,9 +19,8 @@ import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentQuizListBinding
 import site.budanitskaya.chemistryquiz.fine.dialogs.showAlertDialog
-import site.budanitskaya.chemistryquiz.fine.domain.Topic
+import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
-import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 
 
 class TopicListFragment : Fragment() {
