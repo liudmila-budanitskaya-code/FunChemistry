@@ -14,16 +14,17 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
-import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
-import site.budanitskaya.chemistryquiz.fine.di.TestLocator
+import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.services.SoundService
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TestViewModelFactory
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TestViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -35,6 +36,9 @@ class TestFragment : Fragment() {
     val spentTimes by lazy {
         mutableListOf<Long>()
     }
+
+    @Inject
+    lateinit var questionRepository: QuestionRepository
 
     @Inject
     lateinit var preference: SharedPreferences
@@ -49,8 +53,16 @@ class TestFragment : Fragment() {
     }
 
     private val viewModel by lazy {
-        TestLocator(this).provideViewModel(this)
+        ViewModelProvider(
+            this,
+            TestViewModelFactory(
+                preference,
+                questionRepository
+            )
+        ).get(TestViewModel::class.java)
     }
+
+
     var clickFlag = false
     private var currentQuizItem = 0
 

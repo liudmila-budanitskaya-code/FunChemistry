@@ -14,26 +14,31 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.ActivityNavigator
 import com.firebase.ui.auth.AuthUI
+import dagger.hilt.android.AndroidEntryPoint
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
+import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
-import site.budanitskaya.chemistryquiz.fine.di.TestLocator
 import site.budanitskaya.chemistryquiz.fine.models.Topic
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TestViewModelFactory
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TestViewModel
 import site.budanitskaya.chemistryquiz.fine.utils.extensions.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
+import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class CardsActivity : AppCompatActivity() {
 
-    val preference: SharedPreferences by lazy {
-        ServiceLocator(MainApplication.applicationContext()).preferences
-    }
+    @Inject
+    lateinit var preference: SharedPreferences
 
-    val  questionRepository by lazy {
-        ServiceLocator(MainApplication.applicationContext()).questionsRepository
-    }
+    @Inject
+    lateinit var questionRepository: QuestionRepository
 
     private lateinit var args: CardsActivityArgs
     lateinit var fragment: Fragment
@@ -43,7 +48,13 @@ class CardsActivity : AppCompatActivity() {
     var color_front: Int = 0
 
     private val viewModel by lazy {
-        TestLocator(this).provideViewModel(this)
+        ViewModelProvider(
+            this,
+            TestViewModelFactory(
+                preference,
+                questionRepository
+            )
+        ).get(TestViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

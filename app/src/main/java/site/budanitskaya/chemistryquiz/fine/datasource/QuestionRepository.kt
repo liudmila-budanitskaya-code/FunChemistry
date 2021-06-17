@@ -3,8 +3,12 @@ package site.budanitskaya.chemistryquiz.fine.datasource
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.daos.QuestionDatabaseDao
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class QuestionRepository(private val questionDataBase: QuestionDatabase) : QuestionDatabaseDao {
+@Singleton
+class QuestionRepository @Inject constructor(private val questionDataBase: QuestionDatabase) :
+    QuestionDatabaseDao {
 
     override suspend fun insert(question: Question) {
 
