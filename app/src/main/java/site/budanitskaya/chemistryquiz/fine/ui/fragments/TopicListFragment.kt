@@ -21,7 +21,8 @@ import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.IntermittentSpan
 import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.SpacesItemDecoration
 import site.budanitskaya.chemistryquiz.fine.ui.adapters.topiclist.TopicListAdapter
-import site.budanitskaya.chemistryquiz.fine.ui.topiclist.*
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TopicListViewModelFactory
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TopicListViewModel
 
 
 class TopicListFragment : Fragment() {

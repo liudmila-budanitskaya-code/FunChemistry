@@ -3,7 +3,7 @@ package site.budanitskaya.chemistryquiz.fine.di
 import androidx.lifecycle.ViewModelProvider
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.ui.fragments.ChipsFragment
-import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModel
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.ChipsViewModel
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.ChipsViewModelFactory
 
 class ChipsLocator(val fragment: ChipsFragment) {

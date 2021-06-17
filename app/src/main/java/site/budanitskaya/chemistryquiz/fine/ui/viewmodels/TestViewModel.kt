@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.test
+package site.budanitskaya.chemistryquiz.fine.ui.viewmodels
 
 import android.content.SharedPreferences
 import android.util.Log

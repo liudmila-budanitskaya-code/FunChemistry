@@ -1,8 +1,8 @@
-package site.budanitskaya.chemistryquiz.fine.ui.topiclist
+package site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModel
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TopicListViewModel
 
 class TopicListViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

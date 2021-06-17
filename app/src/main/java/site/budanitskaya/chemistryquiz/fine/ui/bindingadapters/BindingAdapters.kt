@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
+package site.budanitskaya.chemistryquiz.fine.ui.bindingadapters
 
 import android.text.Html
 import android.text.SpannableString

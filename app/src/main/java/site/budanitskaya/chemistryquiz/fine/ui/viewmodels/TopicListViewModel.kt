@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.topiclist
+package site.budanitskaya.chemistryquiz.fine.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

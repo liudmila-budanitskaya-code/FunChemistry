@@ -3,7 +3,7 @@ package site.budanitskaya.chemistryquiz.fine.di
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import site.budanitskaya.chemistryquiz.fine.MainApplication
-import site.budanitskaya.chemistryquiz.fine.ui.test.TestViewModel
+import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TestViewModel
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodelfactories.TestViewModelFactory
 
 class TestLocator(val owner: ViewModelStoreOwner) {

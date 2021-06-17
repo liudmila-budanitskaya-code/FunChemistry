@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="site.budanitskaya.chemistryquiz.fine.ui.chipscreen.ChipsViewModel" />
+            type="site.budanitskaya.chemistryquiz.fine.ui.viewmodels.ChipsViewModel" />
 
         <variable
             name="fragment"

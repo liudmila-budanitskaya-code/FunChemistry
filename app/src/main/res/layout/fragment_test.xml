@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="site.budanitskaya.chemistryquiz.fine.ui.test.TestViewModel" />
+            type="site.budanitskaya.chemistryquiz.fine.ui.viewmodels.TestViewModel" />
     </data>
 
     <LinearLayout
