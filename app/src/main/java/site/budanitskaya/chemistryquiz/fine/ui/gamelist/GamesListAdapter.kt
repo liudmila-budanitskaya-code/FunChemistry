@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.models.Game
+import site.budanitskaya.chemistryquiz.fine.domain.Game
 
 class GamesListAdapter(
     private val games: List<Game>,

@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.models
+package site.budanitskaya.chemistryquiz.fine.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

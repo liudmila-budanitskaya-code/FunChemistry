@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.runBlocking
 import site.budanitskaya.chemistryquiz.fine.datasource.ChipsDatasource
 import site.budanitskaya.chemistryquiz.fine.domain.mapReactionEntitiesToReactions
-import site.budanitskaya.chemistryquiz.fine.models.Reaction
+import site.budanitskaya.chemistryquiz.fine.domain.Reaction
 import java.lang.StringBuilder
 
 class ChipsViewModel(private val chipsDatasource: ChipsDatasource) : ViewModel() {
@@ -71,7 +71,7 @@ class ChipsViewModel(private val chipsDatasource: ChipsDatasource) : ViewModel()
         return allReactions
     }
 
-    fun getReaction(allReactions: List<Reaction>): Reaction{
+    fun getReaction(allReactions: List<Reaction>): Reaction {
         return allReactions.shuffled()[0]
     }
 

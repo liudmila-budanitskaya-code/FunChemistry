@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.domain
 
 import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
-import site.budanitskaya.chemistryquiz.fine.models.Reaction
 import site.budanitskaya.chemistryquiz.fine.lists.generateReactionsList
 
 fun ReactionEntity.toReaction() = Reaction(reagents = reagents, answers = products, correctProducts = products.subList(0, 2))

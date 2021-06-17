@@ -1,11 +1,12 @@
-package site.budanitskaya.chemistryquiz.fine.ui.notifications
+package site.budanitskaya.chemistryquiz.fine.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import androidx.preference.PreferenceManager
+import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
+import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
 
 
 class RescheduleNotificationAfterBoot : BroadcastReceiver() {

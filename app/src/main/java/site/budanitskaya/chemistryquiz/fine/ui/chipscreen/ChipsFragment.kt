@@ -1,19 +1,14 @@
 package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
@@ -23,10 +18,8 @@ import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentChemChipsQuestionBinding
 import site.budanitskaya.chemistryquiz.fine.di.ChipsLocator
-import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
-import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationUtil
+import site.budanitskaya.chemistryquiz.fine.services.SoundService
 import site.budanitskaya.chemistryquiz.fine.ui.notifications.NotificationsFragment
-import site.budanitskaya.chemistryquiz.fine.ui.test.TestFragmentArgs
 import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter.Companion.formatFormula
 
 

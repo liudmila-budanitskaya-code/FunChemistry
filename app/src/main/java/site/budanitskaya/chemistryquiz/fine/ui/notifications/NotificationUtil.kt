@@ -8,6 +8,8 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import site.budanitskaya.chemistryquiz.fine.receivers.AlarmReceiver
+import site.budanitskaya.chemistryquiz.fine.receivers.RescheduleNotificationAfterBoot
 import java.util.*
 
 object NotificationUtil {

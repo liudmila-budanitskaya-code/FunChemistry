@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.notifications
+package site.budanitskaya.chemistryquiz.fine.receivers
 
 import android.app.NotificationManager
 import android.app.PendingIntent

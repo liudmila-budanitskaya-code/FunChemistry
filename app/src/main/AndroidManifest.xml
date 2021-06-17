@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChemistryQuiz">
         <service
-            android:name=".ui.chipscreen.SoundService"
+            android:name=".services.SoundService"
             android:enabled="true"
             android:exported="true"></service>
 
         <receiver
-            android:name=".ui.notifications.AlarmReceiver"
+            android:name=".receivers.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
         <receiver
-            android:name=".ui.notifications.RescheduleNotificationAfterBoot"
+            android:name=".receivers.RescheduleNotificationAfterBoot"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

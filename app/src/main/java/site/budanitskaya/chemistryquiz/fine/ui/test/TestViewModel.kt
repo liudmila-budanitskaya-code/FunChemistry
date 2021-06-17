@@ -6,7 +6,7 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import site.budanitskaya.chemistryquiz.fine.models.QuizItem
+import site.budanitskaya.chemistryquiz.fine.domain.QuizItem
 import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.datasource.QuestionRepository
 import site.budanitskaya.chemistryquiz.fine.domain.mapQuestionsToQuizItems

@@ -14,17 +14,15 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.FragmentTestBinding
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 import site.budanitskaya.chemistryquiz.fine.di.TestLocator
-import site.budanitskaya.chemistryquiz.fine.di.TestViewModelFactory
 import site.budanitskaya.chemistryquiz.fine.domain.Topic
 import site.budanitskaya.chemistryquiz.fine.lists.topics
-import site.budanitskaya.chemistryquiz.fine.ui.chipscreen.SoundService
+import site.budanitskaya.chemistryquiz.fine.services.SoundService
 
 
 class TestFragment : Fragment() {

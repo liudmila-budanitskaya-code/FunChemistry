@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.chipscreen
+package site.budanitskaya.chemistryquiz.fine.services
 
 import android.annotation.SuppressLint
 import android.app.Service
