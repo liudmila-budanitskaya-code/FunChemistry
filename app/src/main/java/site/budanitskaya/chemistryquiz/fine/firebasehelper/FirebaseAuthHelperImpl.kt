@@ -4,8 +4,8 @@ import android.content.Intent
 import android.widget.Toast
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import site.budanitskaya.chemistryquiz.fine.MainActivity
-import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
+import site.budanitskaya.chemistryquiz.fine.ui.activities.MainActivity
+import site.budanitskaya.chemistryquiz.fine.ui.activities.LoginActivity
 
 class FirebaseAuthHelperImpl(val activity: MainActivity) : FirebaseAuthHelper {
     val auth = FirebaseAuth.getInstance().currentUser

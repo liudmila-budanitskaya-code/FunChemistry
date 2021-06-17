@@ -16,7 +16,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.ActivityNavigator
 import com.firebase.ui.auth.AuthUI
-import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.R
@@ -25,7 +24,6 @@ import site.budanitskaya.chemistryquiz.fine.di.TestLocator
 import site.budanitskaya.chemistryquiz.fine.models.Topic
 import site.budanitskaya.chemistryquiz.fine.models.toQuizItem
 import site.budanitskaya.chemistryquiz.fine.utils.generateRandomColor
-import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 
 class CardsActivity : AppCompatActivity() {
 

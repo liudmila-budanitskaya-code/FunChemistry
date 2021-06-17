@@ -1,4 +1,4 @@
-package site.budanitskaya.chemistryquiz.fine.ui.login
+package site.budanitskaya.chemistryquiz.fine.ui.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -10,7 +10,6 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
-import site.budanitskaya.chemistryquiz.fine.MainActivity
 import site.budanitskaya.chemistryquiz.fine.R
 
 

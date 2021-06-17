@@ -1,13 +1,13 @@
-package site.budanitskaya.chemistryquiz.fine
+package site.budanitskaya.chemistryquiz.fine.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import site.budanitskaya.chemistryquiz.fine.MainApplication
+import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
-import site.budanitskaya.chemistryquiz.fine.firebasehelper.FirebaseAuthHelperImpl
-import site.budanitskaya.chemistryquiz.fine.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 

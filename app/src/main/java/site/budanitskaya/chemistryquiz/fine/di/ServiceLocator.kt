@@ -8,7 +8,7 @@ import androidx.preference.PreferenceManager
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import site.budanitskaya.chemistryquiz.fine.MainActivity
+import site.budanitskaya.chemistryquiz.fine.ui.activities.MainActivity
 import site.budanitskaya.chemistryquiz.fine.database.db.QuestionDatabase
 import site.budanitskaya.chemistryquiz.fine.database.converters.AnswersConverter
 import site.budanitskaya.chemistryquiz.fine.database.converters.StringConverter
