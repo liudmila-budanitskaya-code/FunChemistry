@@ -12,6 +12,8 @@ import site.budanitskaya.chemistryquiz.fine.ui.fragments.NotificationsFragment
 class RescheduleNotificationAfterBoot : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
 
+
+
         val notificationOn = PreferenceManager.getDefaultSharedPreferences(context)
             .getBoolean(NotificationsFragment.NOTIFICATION_ON_PREFERENCE_KEY, false)
 

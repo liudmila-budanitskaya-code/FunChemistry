@@ -1,28 +1,12 @@
 <resources>
     <string name="app_name">ChemistryQuiz</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_settings">SettingsActivity</string>
-
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="game_over">Game Over!</string>
     <string name="q1_text">Which of these is a weak acid?</string>
     <string name="title_home">Home</string>
     <string name="title_game">Games</string>
     <string name="title_notifications">Notifications</string>
+    <string name="play_again_button">Play Again</string>
+    <string name="front">Front</string>
+    <string name="chemistry_quiz">Chemistry Quiz</string>
     <string name="solve_square">Solve square</string>
     <string name="solve_word">Solve word</string>
     <string name="solve_puzzle">Solve puzzle</string>
@@ -31,69 +15,16 @@
     <string name="down">%1$d. Down • %2$s</string>
     <string name="title_by_author">%1$s by %2$s</string>
     <string name="youve_solved_the_puzzle">You\'ve solved the puzzle!</string>
-    <string name="play_again_button">Play Again</string>
-    <string name="front">Front</string>
-    <string name="chemistry_quiz">Chemistry Quiz</string>
     <string name="tos_url">https://example.com/terms.html</string>
     <string name="privacy_policy">https://example.com/privacy.html</string>
     <string name="error_code">ERROR_CODE</string>
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <string name="empty_string" translatable="false" />
-    <string name="quit">Quit</string>
-    <string name="continue_str">Continue</string>
-    <string name="try_again">Try Again</string>
-    <string name="success">Success</string>
-    <string name="failed">Failed</string>
-    <string name="error">Error</string>
     <string name="settings">Settings</string>
     <string name="notification">Notification</string>
-    <!-- ============================================================= -->
-
-    <!-- =============== Fragment Toolbar Titles ===================== -->
-    <string name="exercises_fragment_title">Learn Spanish</string>
-    <string name="lessons_fragment_title">Lessons</string>
     <string name="quiz_fragment_title">Quiz</string>
-    <string name="settings_fragment_title">Settings</string>
-    <!-- ============================================================= -->
-
-    <!-- ===================== Lesson Fragment ======================= -->
-    <string name="no_lesson_available">No Lesson Available for this Exercise</string>
-    <string name="phonetics">[%1$s]</string>
-    <string name="lesson_is_locked_msg">Complete previous exercise, to unlock!</string>
-    <!-- ============================================================= -->
-
-    <!-- ====================== Quiz Fragment ======================== -->
-    <string name="check_answer_btn_title">Check</string>
-    <string name="enter_answer_hint">Enter answer</string>
-    <string name="correct_answer_msg">Correct Answer</string>
-    <string name="wrong_answer_msg">Wrong Answer</string>
-    <string name="display_correct_answer">Correct Answer is : %1$s</string>
-    <string name="life_line_in_quiz_content_description">Life line in quiz</string>
-    <string name="close_quiz_dialog_title">Are you sure about that?</string>
-    <string name="close_quiz_dialog_message">All progress in this quiz will be lost.</string>
-    <!-- ============================================================= -->
-
-    <!-- ===================== Result Fragment ======================= -->
-    <string name="xp_points_gain">Practice Complete! %1$s XP</string>
-    <string name="total_xp">Total XP = %1$d XP</string>
-    <string name="streak_count">Streak = %1$d</string>
-    <!-- ============================================================= -->
-
-    <!-- ==================== Settings Fragment ====================== -->
-    <string name="preference_notification_title">Practice reminder</string>
-    <string name="preference_notification_time_title">Practice reminder time</string>
-    <!-- ============================================================= -->
-
-    <!-- ====================== Notification ========================= -->
+    <string name="preference_notification_title">Reminder</string>
+    <string name="preference_notification_time_title">Reminder time</string>
     <string name="notification_title">Practice Time</string>
-
-    <string name="notification_channel_name">Learn Spanish</string>
-    <string name="notification_channel_description">App that helps you learn Spanish</string>
-    <string name="set">Set</string>
-    <string name="cancel">Cancel</string>
     <string name="notification_text">Your daily training is waiting for you!</string>
     <string name="preference_sound_title">Sound ON/OFF</string>
-
-
 </resources>
+
