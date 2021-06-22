@@ -87,13 +87,14 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
             app:destination="@id/chemChipsQuestionFragment" />
-<!--        <action
+        <action
             android:id="@+id/action_navigation_game_to_crosswordFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
-            app:destination="@id/crosswordFragment" />-->
+            app:destination="@id/crosswordFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/chemChipsQuestionFragment"
@@ -117,9 +118,6 @@
             android:name="num_of_reactions"
             app:argType="integer" />
     </fragment>
-<!--    <fragment
-        android:id="@+id/crosswordFragment"
-        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.CrosswordFragment" />-->
     <activity
         android:id="@+id/cardsActivity"
         android:name="site.budanitskaya.chemistryquiz.fine.ui.activities.CardsActivity"
@@ -146,5 +144,18 @@
         <argument
             android:name="number"
             app:argType="long[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/crosswordFragment"
+        android:name="site.budanitskaya.chemistryquiz.fine.ui.fragments.CrosswordFragment"
+        tools:layout="@layout/fragment_crossword">
+
+        <action
+            android:id="@+id/action_crosswordFragment_to_navigation_game"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/navigation_game" />
     </fragment>
 </navigation>

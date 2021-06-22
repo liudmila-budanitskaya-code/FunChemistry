@@ -26,9 +26,9 @@ class GameListFragment : Fragment() {
                     chooseDifficultyDialog(this)
                 }
                 "Chemical crossword" -> {
-                    /*findNavController().navigate(
+                    findNavController().navigate(
                         R.id.action_navigation_game_to_crosswordFragment
-                    )*/
+                    )
                 }
             }
         }
