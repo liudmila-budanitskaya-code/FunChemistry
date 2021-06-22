@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.CrosswordFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="site.budanitskaya.chemistryquiz.fine.ui.viewmodels.MainViewModel" />
+
+        <variable
+            name="activity"
+            type="site.budanitskaya.chemistryquiz.fine.ui.fragments.CrosswordFragment" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/activity_background"
+        tools:context=".MainActivity">
 
-</FrameLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/crossword_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            app:layout_constraintBottom_toTopOf="@+id/explanations_recyclerview"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/crossword_recyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:setup_crossword="@{viewModel}"
+                android:layout_margin="3dp"
+                app:listData="@{viewModel.cellList}"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/explanations_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="25dp"
+            app:adapter="@{activity.explanationsAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/crossword_card" />
+
+        <TextView
+            android:id="@+id/crossword_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rock_salt"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:spannable_color="@{viewModel.header}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.042" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

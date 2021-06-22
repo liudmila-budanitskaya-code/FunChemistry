@@ -17,4 +17,6 @@
     <color name="material_green_a200">#69F0AE</color>
     <color name="yellow">#FFEB3B</color>
     <color name="material_purple_a700">#53246B</color>
+
+    <color name="light_green">#8AFF8F</color>
 </resources>
