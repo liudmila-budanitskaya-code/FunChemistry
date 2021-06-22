@@ -10,10 +10,14 @@ import site.budanitskaya.chemistryquiz.fine.utils.mainCrossword
 class MainViewModel : ViewModel() {
 
     var _cellList = MutableLiveData(generateSquareListFromString(mainCrossword))
-    val cellList: LiveData<List<Square>>
+    val cellList: LiveData<MutableList<Square>>
         get() = _cellList
 
     var header = "Chemical crossword"
+
+    fun updateCellList(square: Square){
+
+    }
 
 }
 

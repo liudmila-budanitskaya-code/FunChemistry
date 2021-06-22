@@ -67,7 +67,7 @@ val answerNumberList = listOf(
     311
 )
 
-fun generateSquareListFromString(sourceString: String): List<Square> {
+fun generateSquareListFromString(sourceString: String): MutableList<Square> {
     val list = mutableListOf<Square>()
     val initialList = sourceString.toList()
     for (i in initialList.indices) {
@@ -84,6 +84,6 @@ fun generateSquareListFromString(sourceString: String): List<Square> {
             list.add(Square(i, "", "", CellState.EMPTY))
         }
     }
-    return list.toList()
+    return list
 
 }

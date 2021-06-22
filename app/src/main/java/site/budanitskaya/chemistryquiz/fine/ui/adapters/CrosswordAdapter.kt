@@ -4,11 +4,14 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.databinding.CrosswordItemBinding
+import site.budanitskaya.chemistryquiz.fine.enums.CellState
 import site.budanitskaya.chemistryquiz.fine.models.Square
 import site.budanitskaya.chemistryquiz.fine.ui.activities.MainActivity
 import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.MainViewModel
@@ -50,7 +53,7 @@ class CrosswordAdapter(private val viewModel: MainViewModel) :
             binding.data = data
             binding.holder = this
             binding.executePendingBindings()
-            setupCrosswordCell()
+            setupCrosswordCell(data)
         }
 
         fun calculateSquareSize(): Int {
@@ -65,7 +68,14 @@ class CrosswordAdapter(private val viewModel: MainViewModel) :
             return viewModel.cellList.value?.get(adapterPosition)!!.value
         }
 
-        private fun setupCrosswordCell() {
+        private fun setupCrosswordCell(square: Square) {
+            val list = viewModel.cellList
+
+            val squareZero = list.value?.filter { it.id == square.id }
+
+            val square = squareZero?.get(0)
+
+/*            viewModel.updateCellList(square!!)*/
 
             // adapting cells to the screen size
 
@@ -79,6 +89,22 @@ class CrosswordAdapter(private val viewModel: MainViewModel) :
                     viewModel.cellList.value?.get(adapterPosition)!!
                 )
             )
+            when(square?.state){
+                CellState.CORRECT -> {
+                    binding.etTxt.background = ResourcesCompat.getDrawable(
+                        binding.etTxt.resources,
+                        R.color.light_green,
+                        null
+                    )
+                }
+                CellState.INCORRECT -> {
+                    binding.etTxt.background = ResourcesCompat.getDrawable(
+                        binding.etTxt.resources,
+                        R.color.pink,
+                        null
+                    )
+                }
+            }
         }
     }
 }
