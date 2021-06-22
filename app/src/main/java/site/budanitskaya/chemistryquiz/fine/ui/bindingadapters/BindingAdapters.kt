@@ -97,6 +97,3 @@ fun setup(recyclerView: RecyclerView, viewModel: MainViewModel){
 fun setupAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>){
     recyclerView.adapter = adapter
 }
-
-
-
