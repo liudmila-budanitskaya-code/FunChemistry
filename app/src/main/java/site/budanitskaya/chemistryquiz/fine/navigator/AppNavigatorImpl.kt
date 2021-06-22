@@ -60,7 +60,7 @@ class AppNavigatorImpl(private val activity: AppCompatActivity) : AppNavigator {
                 R.id.questionFragment -> navView.visibility = View.GONE
                 R.id.gameOverFragment -> navView.visibility = View.GONE
                 R.id.chemChipsQuestionFragment -> navView.visibility = View.GONE
-                R.id.crosswordFragment -> navView.visibility = View.GONE
+/*                R.id.crosswordFragment -> navView.visibility = View.GONE*/
                 R.id.chipsOverFragment -> navView.visibility = View.GONE
                 else -> navView.visibility = View.VISIBLE
             }
