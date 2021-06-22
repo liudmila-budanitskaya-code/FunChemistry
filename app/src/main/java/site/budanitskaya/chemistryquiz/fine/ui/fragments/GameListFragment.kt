@@ -19,21 +19,6 @@ import site.budanitskaya.chemistryquiz.fine.ui.adapters.GamesListAdapter
 @AndroidEntryPoint
 class GameListFragment : Fragment() {
 
-    val adapter: GamesListAdapter by lazy {
-        GamesListAdapter(games) {
-            when(it.name){
-                "Chemical chips" -> {
-                    chooseDifficultyDialog(this)
-                }
-                "Chemical crossword" -> {
-                    findNavController().navigate(
-                        R.id.action_navigation_game_to_crosswordFragment
-                    )
-                }
-            }
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,12 +26,28 @@ class GameListFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_gameslist, container, false)
         val gameRecycler = view.findViewById<RecyclerView>(R.id.game_recycler)
+
+        val adapter =
+            GamesListAdapter(games) {
+                when (it.name) {
+                    "Chemical chips" -> {
+                        chooseDifficultyDialog(this)
+                    }
+                    "Chemical crossword" -> {
+                        findNavController().navigate(
+                            R.id.action_navigation_game_to_crosswordFragment
+                        )
+                    }
+                }
+            }
+
+
         gameRecycler.adapter = adapter
         gameRecycler.layoutManager = GridLayoutManager(requireContext(), 1)
         return view
     }
 
-    fun navigateToChipsScreen(number: Int){
+    fun navigateToChipsScreen(number: Int) {
         findNavController().navigate(
             GameListFragmentDirections.actionNavigationGameToChemChipsQuestionFragment(
                 number
