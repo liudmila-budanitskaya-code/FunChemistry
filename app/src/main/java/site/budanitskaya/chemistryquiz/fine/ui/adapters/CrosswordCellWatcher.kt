@@ -5,11 +5,9 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import site.budanitskaya.chemistryquiz.fine.R
-import site.budanitskaya.chemistryquiz.fine.enums.CellState
 import site.budanitskaya.chemistryquiz.fine.models.Square
-import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.MainViewModel
 
-class CrosswordCellWatcher(val square : Square, val viwmodel: MainViewModel) :
+class CrosswordCellWatcher(val view: View, val square : Square) :
     TextWatcher {
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -17,20 +15,29 @@ class CrosswordCellWatcher(val square : Square, val viwmodel: MainViewModel) :
         if (s.toString()
                 .toUpperCase() != square.value.toUpperCase() && s.toString() != "\n"
         ) {
-            square.state = CellState.INCORRECT
-            viwmodel.updateList(square)
+            view.background = ResourcesCompat.getDrawable(
+                view.resources,
+                R.color.pink,
+                null
+            )
         } else if (s.toString().equals(square.value, ignoreCase = true) && s.toString() != "\n"
         ) {
-            square.state = CellState.CORRECT
-            viwmodel.updateList(square)
+            view.background = ResourcesCompat.getDrawable(
+                view.resources,
+                R.color.light_green,
+                null
+            )
         }
     }
 
     override fun afterTextChanged(s: Editable?) {
         if (s.toString().equals("", ignoreCase = true)
         ) {
-            square.state = CellState.EMPTY
-            viwmodel.updateList(square)
+            view.background = ResourcesCompat.getDrawable(
+                view.resources,
+                R.drawable.crossword_square,
+                null
+            )
         }
     }
 }

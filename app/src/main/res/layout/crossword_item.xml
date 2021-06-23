@@ -48,7 +48,7 @@
             android:imeOptions="actionNext"
             android:maxLength="1"
             android:textSize="@{4*holder.squareSize/5}"
-            app:cell_style="@{holder.getValue(data)}"
+            app:cell_style="@{holder.getValue()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
