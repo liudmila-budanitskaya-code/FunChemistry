@@ -36,9 +36,8 @@
                 android:id="@+id/crossword_recyclerview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:setup_crossword="@{viewModel}"
                 android:layout_margin="3dp"
-                app:listData="@{viewModel.cellList}"/>
+                app:setup_crossword="@{viewModel.cellList}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -61,12 +60,12 @@
             android:fontFamily="@font/rock_salt"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:spannable_color="@{viewModel.header}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.042" />
+            app:layout_constraintVertical_bias="0.042"
+            app:spannable_color="@{viewModel.header}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,13 +8,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.models.Square
-import site.budanitskaya.chemistryquiz.fine.ui.adapters.CrosswordAdapter
-import site.budanitskaya.chemistryquiz.fine.ui.viewmodels.MainViewModel
 import site.budanitskaya.chemistryquiz.fine.utils.paintString
 import kotlin.math.sqrt
 
@@ -39,15 +38,6 @@ fun setSpannableChipText(chip: Chip, rawString: String) {
 @BindingAdapter("chip_visible")
 fun setVisibility(chip: Chip, bool: Boolean) {
     chip.visibility = View.VISIBLE
-}
-
-@BindingAdapter("listData")
-fun bindRecyclerView(
-    recyclerView: RecyclerView,
-    data: List<Square>?
-) {
-    val adapter = recyclerView.adapter as CrosswordAdapter
-    adapter.submitList(data)
 }
 
 @BindingAdapter("cell_style")
@@ -86,10 +76,9 @@ fun display(textView: TextView, string: String){
 }
 
 @BindingAdapter("setup_crossword")
-fun setup(recyclerView: RecyclerView, viewModel: MainViewModel){
+fun setup(recyclerView: RecyclerView, squareList: LiveData<List<Square>>){
     recyclerView.layoutManager =
-        GridLayoutManager(recyclerView.context, sqrt(viewModel.cellList.value?.size?.toDouble()!!).toInt())
-    recyclerView.adapter = CrosswordAdapter(viewModel)
+        GridLayoutManager(recyclerView.context, sqrt(squareList.value?.size?.toDouble()!!).toInt())
     recyclerView.setHasFixedSize(true)
 }
 
