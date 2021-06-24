@@ -20,3 +20,7 @@ $ git clone https://github.com/liudmila-budanitskaya-code/FunChemistry
 
 ## Run
 Run the project with Android Studio 4.2
+
+## External links
+
+Video demonstrating the work of this android app: https://youtu.be/cDJg6Y-t_wY
