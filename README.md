@@ -13,10 +13,10 @@ It demonstrates the use of:
 
 
 
-##Download
+## Download
 
 To get the project from GitHub, run the following Git command:
 $ git clone https://github.com/liudmila-budanitskaya-code/FunChemistry
 
-##Run
+## Run
 Run the project with Android Studio 4.2
