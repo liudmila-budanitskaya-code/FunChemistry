@@ -1,20 +1,21 @@
 package site.budanitskaya.chemistryquiz.fine.database.entities
 
 import androidx.room.*
+import site.budanitskaya.chemistryquiz.fine.database.constants.DbConstants
 import site.budanitskaya.chemistryquiz.fine.database.converters.AnswersConverter
 
 
-@Entity(tableName = "question_table")
+@Entity(tableName = DbConstants.DATABASE_QUESTION_NAME)
 @TypeConverters(AnswersConverter::class)
 data class Question(
     @PrimaryKey(autoGenerate = true)
     var questionId: Long = 0L,
-    @ColumnInfo(name = "question_title")
-    var questionTitle: String = "default_question_title",
-    @ColumnInfo(name = "answer_options")
-    var answers: List<String> = listOf("answer1", "answer2", "answer3", "answer4"),
-    @ColumnInfo(name = "topic")
-    var topic: String = "default_topic",
-    @ColumnInfo(name = "explanation")
-    var explanation: String = "default_explanation"
+    @ColumnInfo(name = DbConstants.FIRST_COLUMN_TITLE)
+    var questionTitle: String = DbConstants.DEFAULT_FIRST_COLUMN_TITLE,
+    @ColumnInfo(name = DbConstants.SECOND_COLUMN_TITLE)
+    var answers: List<String> = DbConstants.DEFAULT_SECOND_COLUMN_TITLE,
+    @ColumnInfo(name = DbConstants.THIRD_COLUMN_TITLE)
+    var topic: String = DbConstants.DEFAULT_THIRD_COLUMN_TITLE,
+    @ColumnInfo(name = DbConstants.FOURTH_COLUMN_TITLE)
+    var explanation: String = DbConstants.DEFAULT_FOURTH_COLUMN_TITLE
 )

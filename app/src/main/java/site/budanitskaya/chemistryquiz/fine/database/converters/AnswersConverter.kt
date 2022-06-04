@@ -1,16 +1,17 @@
 package site.budanitskaya.chemistryquiz.fine.database.converters
 
 import androidx.room.TypeConverter
+import site.budanitskaya.chemistryquiz.fine.database.constants.DbConstants.DEFAULT_DELIMITER
 
 
 class AnswersConverter {
     @TypeConverter
     fun fromAnswers(answers: List<String>): String {
-        return answers.joinToString(", ")
+        return answers.joinToString(DEFAULT_DELIMITER)
     }
 
     @TypeConverter
     fun toAnswers(data: String): List<String> {
-        return data.split(", ")
+        return data.split(DEFAULT_DELIMITER)
     }
 }
