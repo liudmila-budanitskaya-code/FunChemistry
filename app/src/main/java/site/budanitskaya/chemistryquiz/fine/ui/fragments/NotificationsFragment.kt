@@ -1,7 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.ui.fragments
 
 import android.content.SharedPreferences
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
@@ -36,8 +35,6 @@ class NotificationsFragment : PreferenceFragmentCompat(), Preference.OnPreferenc
         super.onViewCreated(view, savedInstanceState)
         val d = ResourcesCompat.getDrawable(resources, R.drawable.one, null)
         view.background = d
-
-
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

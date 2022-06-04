@@ -86,5 +86,5 @@ object NotificationUtil {
         return calendar
     }
 
-    const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
+    private const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
 }

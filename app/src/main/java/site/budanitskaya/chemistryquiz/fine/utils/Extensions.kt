@@ -4,7 +4,6 @@ import site.budanitskaya.chemistryquiz.fine.database.entities.Question
 import site.budanitskaya.chemistryquiz.fine.database.entities.ReactionEntity
 import site.budanitskaya.chemistryquiz.fine.models.QuizItem
 import site.budanitskaya.chemistryquiz.fine.models.Reaction
-import site.budanitskaya.chemistryquiz.fine.utils.StringFormatter
 
 fun Question.toQuizItem() = QuizItem(text = questionTitle, answers = answers, topic = topic, explanation = explanation)
 

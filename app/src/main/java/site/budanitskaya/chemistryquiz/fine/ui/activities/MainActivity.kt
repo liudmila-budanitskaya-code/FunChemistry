@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.firebase.ui.auth.AuthUI
 import dagger.hilt.android.AndroidEntryPoint
-import site.budanitskaya.chemistryquiz.fine.MainApplication
 import site.budanitskaya.chemistryquiz.fine.R
 import site.budanitskaya.chemistryquiz.fine.di.ServiceLocator
 

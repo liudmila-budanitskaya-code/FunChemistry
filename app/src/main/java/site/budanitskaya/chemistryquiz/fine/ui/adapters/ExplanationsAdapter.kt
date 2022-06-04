@@ -1,18 +1,11 @@
 package site.budanitskaya.chemistryquiz.fine.ui.adapters
 
-import android.graphics.Color
-import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.chemistryquiz.fine.R
-import kotlin.math.sqrt
 
 class ExplanationsAdapter(private val explanations: List<String>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import site.budanitskaya.chemistryquiz.fine.MainApplication
-import java.util.*
 
 fun colorWrapper(res: Int, context: Context): Int = context.resources.getColor(res)
 

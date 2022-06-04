@@ -71,7 +71,7 @@ class ChipsFragment : Fragment() {
         numReactions = args.numOfReactions
 
         viewModel.initSetup()
-        viewModel.numOfGuessedReactions.observe(viewLifecycleOwner, { newValue ->
+        viewModel.numOfGuessedReactions.observe(viewLifecycleOwner) { newValue ->
             if (newValue == numReactions) {
                 findNavController().navigate(
                     ChipsFragmentDirections.actionChemChipsQuestionFragmentToChipsOverFragment(
@@ -79,9 +79,9 @@ class ChipsFragment : Fragment() {
                     )
                 )
             }
-        })
+        }
 
-        viewModel.isReactionGuessed.observe(viewLifecycleOwner, { newValue ->
+        viewModel.isReactionGuessed.observe(viewLifecycleOwner) { newValue ->
             if (newValue) {
                 val i = System.currentTimeMillis() - time
                 time = System.currentTimeMillis()
@@ -91,7 +91,7 @@ class ChipsFragment : Fragment() {
                 viewModel.unGuessProduct()
                 viewModel.guessReaction()
             }
-        })
+        }
         return binding.root
     }
 

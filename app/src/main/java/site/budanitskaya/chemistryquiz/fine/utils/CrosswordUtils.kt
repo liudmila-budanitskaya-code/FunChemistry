@@ -3,7 +3,7 @@ package site.budanitskaya.chemistryquiz.fine.utils
 import site.budanitskaya.chemistryquiz.fine.enums.CellState
 import site.budanitskaya.chemistryquiz.fine.models.Square
 
-val mainCrossword =
+const val mainCrossword =
     "             V    " +
             "        SILICIUM  " +
             "             T    " +

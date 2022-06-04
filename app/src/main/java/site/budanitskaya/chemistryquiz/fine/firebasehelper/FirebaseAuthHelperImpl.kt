@@ -1,8 +1,6 @@
 package site.budanitskaya.chemistryquiz.fine.firebasehelper
 
 import android.content.Intent
-import android.widget.Toast
-import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import site.budanitskaya.chemistryquiz.fine.ui.activities.MainActivity
@@ -14,7 +12,7 @@ class FirebaseAuthHelperImpl(val activity: MainActivity) : FirebaseAuthHelper {
     }
 
     override fun updateView() {
-        if (auth != null && activity.intent != null) {
+        if (activity.intent != null) {
             createUI()
         } else {
             activity.startActivity(Intent(activity, LoginActivity::class.java))
@@ -25,7 +23,7 @@ class FirebaseAuthHelperImpl(val activity: MainActivity) : FirebaseAuthHelper {
     override fun createUI() {
         val list = auth?.providerData
         var providerData: String = ""
-        list?.let {
+        list.let {
             for (provider in list) {
                 providerData = providerData + " " + provider.providerId
             }

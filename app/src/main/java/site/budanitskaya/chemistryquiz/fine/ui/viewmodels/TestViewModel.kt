@@ -12,7 +12,6 @@ import site.budanitskaya.chemistryquiz.fine.datasource.QuestionDatasource
 import site.budanitskaya.chemistryquiz.fine.utils.mapQuestionsToQuizItems
 import site.budanitskaya.chemistryquiz.fine.lists.topics
 import site.budanitskaya.chemistryquiz.fine.utils.toQuizItem
-import java.lang.StringBuilder
 import javax.inject.Inject
 
 @HiltViewModel

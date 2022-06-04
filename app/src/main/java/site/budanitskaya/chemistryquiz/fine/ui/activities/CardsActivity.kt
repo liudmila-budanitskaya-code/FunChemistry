@@ -215,7 +215,7 @@ class CardsActivity : AppCompatActivity() {
     }
 
     private fun commit() {
-        supportFragmentManager?.beginTransaction()
+        supportFragmentManager.beginTransaction()
             .setCustomAnimations(
                 R.animator.card_flip_right_in,
                 R.animator.card_flip_right_out,
