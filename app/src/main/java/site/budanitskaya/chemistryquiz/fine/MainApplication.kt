@@ -8,6 +8,7 @@ import site.budanitskaya.chemistryquiz.fine.utils.NotificationUtil
 
 @HiltAndroidApp
 class MainApplication : Application() {
+
     init {
         instance = this
     }
